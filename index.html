@@ -19,10 +19,10 @@
 .top{position:fixed;z-index:50;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:24px clamp(22px,5vw,88px);background:rgba(11,11,13,.58);backdrop-filter:blur(32px) saturate(120%);-webkit-backdrop-filter:blur(32px) saturate(120%);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 8px 30px rgba(0,0,0,.18)}
 .brand{display:flex;align-items:center;gap:8px;white-space:nowrap}.brand .mark{width:18px;height:18px;flex-basis:18px;align-self:center}.brandword{display:inline-flex;align-items:baseline;font:400 24px/1 "Space Grotesk";letter-spacing:-.062em}.brandword .pedro{font-weight:700}.brandword .studio{font-weight:400;opacity:.72;margin-left:1px}.brandword .dot{font-weight:700;color:var(--lime);margin-left:1px}
 .topright{display:flex;gap:10px;align-items:center}.lang{display:flex;border:1px solid #666;border-radius:99px;padding:3px}.lang button{border:0;background:none;border-radius:99px;font-size:11px;padding:5px 8px;cursor:pointer}.lang .on{background:var(--lime);color:#111}.menu{border:1px solid #777;background:transparent;border-radius:99px;padding:10px 15px;cursor:pointer}
-.intro{position:fixed;z-index:100;inset:0;display:grid;place-items:center;background:#0b0b0d;color:#f5f5f0;pointer-events:none;overflow:hidden;isolation:isolate;visibility:hidden}.intro.playing{visibility:visible;animation:introDismiss 5.8s linear both}
+.intro{position:fixed;z-index:100;inset:0;display:grid;place-items:center;background:#0b0b0d;color:#f5f5f0;pointer-events:none;overflow:hidden;isolation:isolate;visibility:hidden}.intro.playing{visibility:visible;animation:introDismiss 10s linear both}
 .introin{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.5vw,19px);max-width:calc(100% - 28px);white-space:nowrap}
-.intro-symbol{width:clamp(47px,6.6vw,92px);height:clamp(47px,6.6vw,92px);flex:0 0 auto;overflow:visible}.intro.playing .intro-symbol{animation:introSymbol 5.8s cubic-bezier(.22,.8,.26,1) both}
-.intro-piece{fill:var(--lime);transform-box:fill-box;transform-origin:center}.intro.playing .intro-piece{animation:introPiece 5.8s cubic-bezier(.22,.8,.26,1) both}
+.intro-symbol{width:clamp(47px,6.6vw,92px);height:clamp(47px,6.6vw,92px);flex:0 0 auto;overflow:visible}.intro.playing .intro-symbol{animation:introSymbol 10s cubic-bezier(.22,.8,.26,1) both}
+.intro-piece{fill:var(--lime);transform-box:fill-box;transform-origin:center}.intro.playing .intro-piece{animation:introPiece 10s cubic-bezier(.22,.8,.26,1) both}
 .intro-piece:nth-of-type(2){--dx:-42px;--dy:-27px;--rot:-35deg}
 .intro-piece:nth-of-type(3){--dx:38px;--dy:-32px;--rot:34deg}
 .intro-piece:nth-of-type(4){--dx:43px;--dy:25px;--rot:42deg}
@@ -30,12 +30,12 @@
 .intro-piece:nth-of-type(6){--dx:-43px;--dy:28px;--rot:40deg}
 .intro-piece:nth-of-type(7){--dx:-40px;--dy:-25px;--rot:-36deg}
 .introword{display:inline-flex;align-items:baseline;font:400 clamp(23px,5.1vw,76px)/1 "Space Grotesk";letter-spacing:-.065em;clip-path:inset(0 100% 0 0);opacity:0;transform:translateX(-12px);}
-.intro.playing .introword{animation:introWord 5.8s cubic-bezier(.22,.8,.26,1) both}.introword .pedro{font-weight:700}.introword .studio{font-weight:400;opacity:.72;margin-left:1px}.introword .dot{font-weight:700;color:var(--lime);margin-left:1px}
-.intro-curtain{position:absolute;z-index:2;inset:0;background:var(--lime);transform:translateY(100%)}.intro.playing .intro-curtain{animation:introCurtain 5.8s cubic-bezier(.7,0,.2,1) both}
-@keyframes introPiece{0%{opacity:0;transform:translate(var(--dx,0px),var(--dy,-35px)) rotate(var(--rot,32deg)) scale(.65)}16%{opacity:1}32%,100%{opacity:1;transform:none}}
-@keyframes introSymbol{0%{transform:rotate(-14deg)}32%,100%{transform:rotate(0)}}
-@keyframes introWord{0%,33%{clip-path:inset(0 100% 0 0);opacity:0;transform:translateX(-12px)}55%,100%{clip-path:inset(0 0 0 0);opacity:1;transform:none}}
-@keyframes introCurtain{0%,77%{transform:translateY(100%)}90%{transform:translateY(0)}100%{transform:translateY(-100%)}}
+.intro.playing .introword{animation:introWord 10s cubic-bezier(.22,.8,.26,1) both}.introword .pedro{font-weight:700}.introword .studio{font-weight:400;opacity:.72;margin-left:1px}.introword .dot{font-weight:700;color:var(--lime);margin-left:1px}
+.intro-curtain{position:absolute;z-index:2;inset:0;background:var(--lime);transform:translateY(100%)}.intro.playing .intro-curtain{animation:introCurtain 10s cubic-bezier(.7,0,.2,1) both}
+@keyframes introPiece{0%{opacity:0;transform:translate(var(--dx,0px),var(--dy,-35px)) rotate(var(--rot,32deg)) scale(.65)}12%{opacity:.15}42%,100%{opacity:1;transform:none}}
+@keyframes introSymbol{0%{transform:rotate(-14deg)}42%,100%{transform:rotate(0)}}
+@keyframes introWord{0%,42%{clip-path:inset(0 100% 0 0);opacity:0;transform:translateX(-12px)}70%,100%{clip-path:inset(0 0 0 0);opacity:1;transform:none}}
+@keyframes introCurtain{0%,88%{transform:translateY(100%)}94%{transform:translateY(0)}100%{transform:translateY(-100%)}}
 @keyframes introDismiss{0%,98%{visibility:visible}100%{visibility:hidden}}
 @media(max-width:520px){.introin{gap:8px}.intro-symbol{width:41px;height:41px}.introword{font-size:clamp(20px,5.4vw,30px)}}
 @media(prefers-reduced-motion:reduce){.intro:not(.force-motion){visibility:hidden!important}.intro.playing:not(.force-motion){animation-duration:.1ms}.intro.playing:not(.force-motion) .intro-piece,.intro.playing:not(.force-motion) .intro-symbol,.intro.playing:not(.force-motion) .introword,.intro.playing:not(.force-motion) .intro-curtain{animation:none}}
@@ -100,7 +100,7 @@ function playBrandIntro(){
   fresh.classList.add('playing');
   const finish=()=>{fresh.classList.remove('playing');fresh.style.display='none'};
   fresh.addEventListener('animationend',e=>{if(e.target===fresh&&e.animationName==='introDismiss')finish()},{once:true});
-  window.setTimeout(finish,6400);
+  window.setTimeout(finish,10800);
 }
 window.addEventListener('pageshow',()=>{if(!introPlayed){introPlayed=true;playBrandIntro()}else{playBrandIntro()}});
 
