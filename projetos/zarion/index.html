@@ -343,7 +343,7 @@ function boot(){
  function readTargets(){
   if(reduced)return;
   // Direct, reversible scroll-scrub: no delayed animation, no timer, no cached progress.
-  if(workTrigger&&progressBar){
+  if(!window.CSS?.supports?.('animation-timeline: view()')&&workTrigger&&progressBar){
    const rect=workTrigger.getBoundingClientRect();
    const start=innerHeight*.84,end=innerHeight*.20;
    const progress=clamp((start-rect.top)/Math.max(1,start-end));
@@ -438,3 +438,28 @@ function boot(){
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
 </script>
+
+<style id="latera-timeline-native-scroll-20261118">
+/* Timeline linked to actual scrolling. Scrolling backwards reverses it instantly. */
+@supports (animation-timeline: view()) {
+  .section.works .find-wrapper {
+    view-timeline-name: --latera-work-timeline;
+    view-timeline-axis: block;
+  }
+  .section.works .find-color-bg {
+    animation-name: latera-progress-native;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --latera-work-timeline;
+    animation-range: cover 0% cover 100%;
+  }
+  @keyframes latera-progress-native {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section.works .find-color-bg { animation: none !important; width: 100% !important; }
+}
+</style>
