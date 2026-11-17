@@ -22,10 +22,12 @@ jobs:
         run: |
           set -euo pipefail
           test -s index.html
-          for project in fynora mooni videfo zarion althor norte nexora; do
+          for project in fynora videfo zarion althor norte nexora; do
             test -s "projetos/$project/index.html"
           done
-          echo "Homepage and seven project HTML files present."
+          # Mooni is a reserved placeholder; publishing other projects must not fail because it is empty.
+          test -f projetos/mooni/index.html
+          echo "Homepage and six active project pages verified; Mooni placeholder exists."
 
   deploy:
     needs: verify
