@@ -322,7 +322,7 @@ function boot(){
   [...fading,...headingWrappers].forEach(function(el){if(ready(el))reveal(el);else{el.classList.add(el.getAttribute('animation')==='heading'?'latera-heading-hidden':'latera-reveal-pending');io.observe(el)}});
  }
  // IX3 source progress trigger: [Workline="blue"], top/top to bottom/bottom, scrub 1.5s.
- const workTrigger=document.querySelector('[workline="blue"]')||document.querySelector('.work-wrap');
+ const workTrigger=document.querySelector('.section.works .find-round-wrap');
  const progressBar=document.querySelector('.find-color-bg');
  // IX3 source horizontal trigger: .techo-wrapper, top/0 to bottom/bottom, scrub 1.5s.
  const techWrapper=document.querySelector('.section.techo .techo-wrapper');
@@ -342,7 +342,8 @@ function boot(){
  let previous=0,pending=false,running=false;
  function readTargets(){
   if(reduced)return;
-  targetWork=scrollProgress(workTrigger);
+  // Advance the timeline while its actual bar crosses the viewport (not the earlier cards).
+  if(workTrigger){const rect=workTrigger.getBoundingClientRect();const start=innerHeight*.83;const end=innerHeight*.23;targetWork=clamp((start-rect.top)/Math.max(1,start-end))}
   targetTech=scrollProgress(techWrapper);
   targetCase=scrollProgress(cases);
   if(!running){running=true;previous=performance.now();requestAnimationFrame(animate)}
@@ -350,7 +351,7 @@ function boot(){
  function animate(now){
   const dt=Math.min(.08,Math.max(0,(now-previous)/1000));previous=now;
   const smooth=(current,target,seconds)=>current+(target-current)*(1-Math.exp(-dt/seconds));
-  currentWork=smooth(currentWork,targetWork,1.5);
+  currentWork=smooth(currentWork,targetWork,.18);
   currentTech=smooth(currentTech,targetTech,1.5);
   currentCase=smooth(currentCase,targetCase,.8);
   if(progressBar)progressBar.style.setProperty('width',(currentWork*100).toFixed(2)+'%','important');
