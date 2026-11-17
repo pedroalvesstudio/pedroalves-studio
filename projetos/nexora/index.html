@@ -491,5 +491,68 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 .news-card:hover .blog-icon,.news-card:hover .blog-icon-hover{transform:translateX(20px)!important}
 .news-card .news-image-wrap,.case-study-card .case-study-image-wrapper{overflow:hidden}
 @media(prefers-reduced-motion:reduce){#equipos .testimonial-card-wrap.nx-auto-marquee{animation:none!important}.news-card .news-image,.case-study-card .case-study-image,.news-card .blog-icon,.news-card .blog-icon-hover{transition:none!important}}
-</style></body></html>
+</style><style id="nx-testimonial-running-fix-20261117">
+/* Prevent previous animations, hover pauses and Webflow inline transforms from freezing this track. */
+#equipos .testimonial-card-block{overflow:hidden!important}
+#equipos .testimonial-card-wrap,
+#equipos .testimonial-card-wrap.nx-auto-marquee{
+ display:flex!important;flex-wrap:nowrap!important;width:max-content!important;max-width:none!important;
+ gap:24px!important;translate:none!important;animation:none!important;animation-play-state:running!important;
+ transition:none!important;will-change:transform!important;
+}
+#equipos .testimonial-card-wrap>.testimonial-card{flex:0 0 auto!important}
+</style>
+<script id="nx-testimonial-running-fix-20261117">
+(function(){
+'use strict';
+function start(){
+ var block=document.querySelector('#equipos .testimonial-card-block');
+ if(!block)return;
+ var track=block.querySelector('.testimonial-card-wrap');
+ if(!track)return;
+ if(track.dataset.nxRafLoop==='1')return;
+ track.dataset.nxRafLoop='1';
+ /* Normalize any server-captured duplicate cards, then make exactly two matching sets. */
+ var cards=Array.from(track.children).filter(function(n){return n.classList.contains('testimonial-card')});
+ if(cards.length<2)return;
+ var initialCount=cards.length===10?5:(cards.length===9?5:(cards.length%2===0?cards.length/2:cards.length));
+ cards.slice(initialCount).forEach(function(n){n.remove()});
+ cards=cards.slice(0,initialCount);
+ cards.forEach(function(n){
+  var clone=n.cloneNode(true);
+  clone.setAttribute('aria-hidden','true');
+  clone.querySelectorAll('a,button,[tabindex]').forEach(function(c){c.setAttribute('tabindex','-1')});
+  track.appendChild(clone);
+ });
+ track.classList.add('nx-auto-marquee');
+ track.style.setProperty('animation','none','important');
+ track.style.setProperty('transition','none','important');
+ track.style.setProperty('translate','none','important');
+ var distance=0,position=0,last=0,speed=40;
+ function measure(){
+  var first=cards[0], copy=track.children[initialCount];
+  if(!first||!copy)return;
+  var a=first.getBoundingClientRect(),b=copy.getBoundingClientRect();
+  /* Rect difference remains correct even if another script has set transform. */
+  distance=Math.max(1,b.left-a.left);
+  if(position>=distance)position=position%distance;
+ }
+ function tick(now){
+  if(!document.hidden){
+   if(last){
+    position+=(Math.min((now-last)/1000,.05)*speed);
+    if(distance>0)position=position%distance;
+   }
+   track.style.setProperty('transform','translate3d('+(-position).toFixed(2)+'px,0,0)','important');
+  }
+  last=now;
+  requestAnimationFrame(tick);
+ }
+ requestAnimationFrame(function(){measure();requestAnimationFrame(tick)});
+ window.addEventListener('resize',measure,{passive:true});
+ if(typeof ResizeObserver!=='undefined'){new ResizeObserver(measure).observe(block)}
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script></body></html>
 <!-- Cloudflare production redeploy trigger: no visual changes. -->
