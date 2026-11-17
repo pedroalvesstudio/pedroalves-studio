@@ -416,5 +416,66 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+</script><style id="nx-faq-news-marquee-fix-20261117">
+/* FAQ interactive affordance */
+#faq .single-faq,.faq-wrapper .single-faq{cursor:pointer}
+.faq-wrapper .single-faq:focus-visible{outline:2px solid #6d61ff;outline-offset:4px}
+.faq-wrapper .faq-answer-wrapper{overflow:hidden;transition:height .5s ease,opacity .3s ease}
+.faq-wrapper .single-faq:not(.w--current) .faq-answer-wrapper{pointer-events:none}
+/* Article call-to-actions share a common baseline */
+.blog-collection-list{align-items:stretch!important}
+.blog-collection-list .news-card{height:100%!important;display:flex!important;flex-direction:column!important;align-items:stretch}
+.blog-collection-list .news-title-wrapper{flex:1 1 auto!important}
+.blog-collection-list .news-card .blog-button{margin-top:auto!important;align-self:flex-start}
+/* Continuous, slow right-to-left testimonials loop */
+#equipos .testimonial-card-block{overflow:hidden!important}
+#equipos .testimonial-card-wrap.nx-auto-marquee{display:flex!important;flex-wrap:nowrap!important;width:max-content!important;max-width:none!important;gap:24px!important;transform:none!important;translate:none!important;animation:nxTestimonialMarquee 75s linear infinite!important;will-change:transform}
+#equipos .testimonial-card-wrap.nx-auto-marquee>.testimonial-card{flex:0 0 auto!important}
+@keyframes nxTestimonialMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 12px))}}
+@media(prefers-reduced-motion:reduce){#equipos .testimonial-card-wrap.nx-auto-marquee{animation:none!important}}
+</style>
+<script id="nx-faq-news-marquee-fix-20261117">
+(function(){
+'use strict';
+function init(){
+ var links=Array.from(document.querySelectorAll('.faq-wrapper .single-faq'));
+ if(links.length){
+  function show(index){
+   links.forEach(function(link,i){
+    var open=i===index,answer=link.querySelector('.faq-answer-wrapper');
+    link.classList.toggle('w--current',open);
+    link.setAttribute('aria-selected',String(open));
+    link.setAttribute('aria-expanded',String(open));
+    link.setAttribute('tabindex','0');
+    var plus=link.querySelector('.faq-icon'),minus=link.querySelector('.faq-icon-minus');
+    if(plus)plus.style.display=open?'none':'block';
+    if(minus)minus.style.display=open?'block':'none';
+    if(answer){
+     answer.style.display='block';
+     answer.style.opacity=open?'1':'0';
+     answer.style.height=open?answer.scrollHeight+'px':'0px';
+     answer.setAttribute('aria-hidden',String(!open));
+    }
+   });
+  }
+  links.forEach(function(link,i){
+   link.addEventListener('click',function(event){event.preventDefault();event.stopImmediatePropagation();show(i);},true);
+   link.addEventListener('keydown',function(event){if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopImmediatePropagation();show(i);}},true);
+  });
+  show(Math.max(0,links.findIndex(function(l){return l.classList.contains('w--current')})));
+  window.addEventListener('resize',function(){var i=links.findIndex(function(l){return l.classList.contains('w--current')});show(Math.max(0,i));},{passive:true});
+ }
+ var track=document.querySelector('#equipos .testimonial-card-wrap');
+ if(track&&!track.classList.contains('nx-auto-marquee')){
+  var originals=Array.from(track.children).filter(function(el){return el.classList.contains('testimonial-card')});
+  if(originals.length>1){
+   originals.forEach(function(card){var copy=card.cloneNode(true);copy.setAttribute('aria-hidden','true');copy.querySelectorAll('a,button,[tabindex]').forEach(function(el){el.setAttribute('tabindex','-1')});track.appendChild(copy)});
+   track.style.transform='none';track.style.translate='none';
+   track.classList.add('nx-auto-marquee');
+  }
+ }
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
 </script></body></html>
 <!-- Cloudflare production redeploy trigger: no visual changes. -->
