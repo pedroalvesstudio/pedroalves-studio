@@ -278,6 +278,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #7564E8;outline-offset:4p
         <div class="benefits-card-wrapper nx-benefits-grid">
           <div class="benefits-card-list nx-benefits-row">
             <article class="benefits-card nx-benefit-photo nx-agent-card">
+              <div class="nx-agent-stack" aria-hidden="true"><div class="nx-agent-stack-middle"></div><div class="nx-agent-stack-back"></div></div>
               <div class="nx-agent-ui">
                 <div class="nx-agent-top"><span class="nx-agent-avatar"></span><strong>Agente inteligente</strong><span class="nx-dots">•••</span></div>
                 <div class="nx-agent-task"><i>✓</i> Lee los mensajes entrantes</div>
@@ -554,5 +555,31 @@ function start(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
-</script></body></html>
+</script><style id="nx-agent-original-geometry-20261117">
+/* Match Ninelabs layered agent card: 402x171 face, 370px and 330px staggered plates. */
+.nx-benefits .nx-agent-card{position:relative!important;padding-top:26px!important;isolation:isolate!important;overflow:hidden!important;align-items:stretch!important}
+.nx-benefits .nx-agent-card .nx-agent-ui{
+ position:relative!important;z-index:3!important;flex:0 0 auto!important;
+ width:min(100%,402px)!important;max-width:402px!important;min-height:171px!important;
+ margin:0 auto!important;padding:20px 20px 18px!important;
+ border-radius:16px!important;box-shadow:none!important;background:#fff!important;
+}
+.nx-benefits .nx-agent-card .nx-agent-ui:before,
+.nx-benefits .nx-agent-card .nx-agent-ui:after{content:none!important;display:none!important}
+.nx-benefits .nx-agent-card .nx-agent-stack{position:absolute;top:26px;left:50%;width:min(calc(100% - 64px),402px);height:171px;transform:translateX(-50%);z-index:2;pointer-events:none}
+.nx-benefits .nx-agent-stack-middle,.nx-benefits .nx-agent-stack-back{
+ position:absolute;left:50%;height:171px;border-radius:16px;
+ -webkit-backdrop-filter:blur(25px);backdrop-filter:blur(25px)
+}
+.nx-benefits .nx-agent-stack-middle{z-index:2;top:12px;width:min(92%,370px);transform:translateX(-50%);background:rgba(255,255,255,.70)}
+.nx-benefits .nx-agent-stack-back{z-index:1;top:24px;width:min(82%,330px);transform:translateX(-50%);background:rgba(255,255,255,.40)}
+.nx-benefits .nx-agent-card .nx-agent-top{margin-bottom:20px!important}
+.nx-benefits .nx-agent-card .nx-agent-avatar{background:linear-gradient(135deg,#f3b064 3%,#9c3b20 48%,#30231b 85%)!important}
+.nx-benefits .nx-agent-card .nx-agent-task{margin:10px 0!important}
+@media(max-width:479px){
+.nx-benefits .nx-agent-card{padding-left:16px!important;padding-right:16px!important}
+.nx-benefits .nx-agent-card .nx-agent-stack{width:calc(100% - 32px)}
+.nx-benefits .nx-agent-card .nx-agent-ui{padding:18px!important}
+}
+</style></body></html>
 <!-- Cloudflare production redeploy trigger: no visual changes. -->
