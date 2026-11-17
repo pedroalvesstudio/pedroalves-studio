@@ -322,7 +322,7 @@ function boot(){
   [...fading,...headingWrappers].forEach(function(el){if(ready(el))reveal(el);else{el.classList.add(el.getAttribute('animation')==='heading'?'latera-heading-hidden':'latera-reveal-pending');io.observe(el)}});
  }
  // IX3 source progress trigger: [Workline="blue"], top/top to bottom/bottom, scrub 1.5s.
- const workTrigger=document.querySelector('[workline="blue"]');
+ const workTrigger=document.querySelector('[workline="blue"] .find-wrapper');
  const progressBar=document.querySelector('.find-color-bg');
  // IX3 source horizontal trigger: .techo-wrapper, top/0 to bottom/bottom, scrub 1.5s.
  const techWrapper=document.querySelector('.section.techo .techo-wrapper');
@@ -343,7 +343,7 @@ function boot(){
  function readTargets(){
   if(reduced)return;
   // Scroll-scrubbed source interaction: progress follows the entire [workline=blue] section.
-  if(workTrigger){const rect=workTrigger.getBoundingClientRect();targetWork=clamp((innerHeight-rect.top)/Math.max(1,innerHeight+rect.height))}
+  if(workTrigger){const rect=workTrigger.getBoundingClientRect();const start=innerHeight*.84;const end=innerHeight*.20;targetWork=clamp((start-rect.top)/(start-end))}
   targetTech=scrollProgress(techWrapper);
   targetCase=scrollProgress(cases);
   if(!running){running=true;previous=performance.now();requestAnimationFrame(animate)}
