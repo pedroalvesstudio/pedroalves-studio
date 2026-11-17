@@ -41,9 +41,17 @@ function ready(){
   hero.dataset.lateraPlayed='yes';
   const src=hero.getAttribute('data-src');
   try{
+   const fallbackSvg=hero.querySelector('svg');
    const player=window.lottie.loadAnimation({container:hero,renderer:'svg',loop:!reduced,autoplay:!reduced,path:src,rendererSettings:{preserveAspectRatio:'xMidYMid meet'}});
-   player.addEventListener('DOMLoaded',function(){hero.classList.add('latera-lottie-live')});
-   if(reduced){player.addEventListener('DOMLoaded',function(){player.goToAndStop(0,true)})}
+   player.addEventListener('DOMLoaded',function(){
+     if(fallbackSvg && fallbackSvg.parentElement===hero)fallbackSvg.remove();
+     hero.classList.add('latera-lottie-live');
+     if(reduced)player.goToAndStop(0,true);
+   });
+   player.addEventListener('data_failed',function(){
+     hero.removeAttribute('data-latera-played');
+     if(fallbackSvg&&!hero.contains(fallbackSvg))hero.prepend(fallbackSvg);
+   });
   }catch(err){hero.removeAttribute('data-latera-played');}
  }
  if(!reduced && window.Lenis && innerWidth>=768 && !window.__lateraLenis){
