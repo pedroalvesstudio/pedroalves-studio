@@ -3,8 +3,10 @@
 /* FOCO QA: keep decorative circles behind the original hero content */
 .hero-section{isolation:isolate}
 .hero-section>.container{position:relative;z-index:2}
-.hero-section>.hero-circle-shapes{z-index:0;pointer-events:none}
-.hero-section>.hero-circle-shapes img{display:block;max-width:100%;height:auto}
+.hero-section .hero-top-wrapper{position:relative;z-index:10}
+.hero-section .hero-image-wrapper{position:relative;isolation:isolate}
+.hero-section .hero-image-wrapper>.hero-circle-shapes{position:absolute!important;left:50%!important;bottom:0!important;transform:translateX(-50%)!important;z-index:-1!important;width:min(100%,800px)!important;height:240px!important;overflow:hidden!important;pointer-events:none!important;opacity:.25!important}
+.hero-section .hero-image-wrapper>.hero-circle-shapes img{display:block;max-width:100%;height:auto}
 .remove-this-button-2,.purchase-area,.get-this-template{display:none!important}.fade-in-in-view{opacity:1!important}
 :root{--primary-color:#d6ff61!important;--primary-01:#d6ff61!important;--accent-color:#d6ff61!important}
 body{scroll-behavior:smooth}
