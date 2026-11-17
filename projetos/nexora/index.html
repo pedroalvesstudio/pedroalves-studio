@@ -429,7 +429,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 .blog-collection-list .news-card .blog-button{margin-top:auto!important;align-self:flex-start}
 /* Continuous, slow right-to-left testimonials loop */
 #equipos .testimonial-card-block{overflow:hidden!important}
-#equipos .testimonial-card-wrap.nx-auto-marquee{display:flex!important;flex-wrap:nowrap!important;width:max-content!important;max-width:none!important;gap:24px!important;transform:none!important;translate:none!important;animation:nxTestimonialMarquee 75s linear infinite!important;will-change:transform}
+#equipos .testimonial-card-wrap.nx-auto-marquee{display:flex!important;flex-wrap:nowrap!important;width:max-content!important;max-width:none!important;gap:24px!important;translate:none!important;animation:nxSourceTestimonialLoop 30s linear infinite!important;will-change:transform}
 #equipos .testimonial-card-wrap.nx-auto-marquee>.testimonial-card{flex:0 0 auto!important}
 @keyframes nxTestimonialMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 12px))}}
 @media(prefers-reduced-motion:reduce){#equipos .testimonial-card-wrap.nx-auto-marquee{animation:none!important}}
