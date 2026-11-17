@@ -87,4 +87,59 @@ function start(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();
 })();
+</script><style id="nexora-source-motion-spec">
+/* Motion behavior translated from the supplied interaction inventory */
+.hero-main-content-wrapper{transition:filter .5s ease}
+.hero-main-content-wrapper.nx-hero-scrolled{filter:blur(2px);opacity:.72}
+.service-card-primary{transition:background-color .5s ease,color .3s ease,filter .3s ease}
+.service-card-primary .service-bg-shape{opacity:0;transition:opacity .5s ease}
+.service-card-primary .service-title,.service-card-primary .service-paragraph{transition:color .3s ease}
+.service-card-primary .service-main-icon{transition:filter .3s ease}
+@media(hover:hover) and (pointer:fine){
+.service-card-primary:hover .service-bg-shape{opacity:1!important}
+.service-card-primary:hover .service-title,.service-card-primary:hover .service-paragraph{color:#fff!important}
+.service-card-primary:hover .service-main-icon{filter:brightness(0) invert(1)}
+.dropdown-toggle-main .icon-3{transition:transform .5s ease,opacity .3s ease}
+.dropdoen-menu:hover .dropdown-toggle-main .icon-3{transform:rotate(180deg)!important;opacity:.65}
+.hero-button,.blog-button{transition:transform .32s ease}
+.hero-button:hover,.blog-button:hover{transform:translateY(-4px)}
+}
+.faq-answer-wrapper{height:0;overflow:hidden;opacity:0;transition:height .5s ease,opacity .3s ease}
+.single-faq .faq-icon{transform:rotate(0deg);transition:transform .3s ease}
+.single-faq.w--current .faq-icon{transform:rotate(45deg)}
+.single-faq .faq-icon-minus{transition:opacity .3s ease}
+.why-us-tabs-link .why-us-description-wrap{overflow:hidden;transition:height .5s ease}
+.nx-source-scroll{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.215,.61,.355,1),transform 1s cubic-bezier(.215,.61,.355,1)}
+.nx-source-scroll.nx-source-visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.hero-main-content-wrapper,.service-card-primary,.service-card-primary .service-bg-shape,.service-card-primary .service-title,.service-card-primary .service-paragraph,.service-card-primary .service-main-icon,.dropdown-toggle-main .icon-3,.hero-button,.blog-button,.faq-answer-wrapper,.single-faq .faq-icon,.single-faq .faq-icon-minus,.why-us-tabs-link .why-us-description-wrap,.nx-source-scroll{transition:none!important;transform:none!important;filter:none!important}.nx-source-scroll{opacity:1!important}}
+</style><script id="nexora-source-motion-spec">
+(function(){
+"use strict";
+function init(){
+var doc=document,reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* Scroll into view: 1000ms outQuart, matching the supplied interaction list. */
+var scrollTargets=doc.querySelectorAll(".hero-section,.service-card-primary,.why-us-tabs,.counter-card,.case-study-card,.testimonial-card,.benefits-card,.benefits-card-v2,.benefits-card-v3,.benefits-card-v4,.faq-wrapper,.news-card,.cta-buttons,.footer-content-wrapper");
+if(reduce||!("IntersectionObserver"in window)){scrollTargets.forEach(function(el){el.classList.add("nx-source-visible")})}
+else{var io=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add("nx-source-visible");io.unobserve(entry.target)}})},{threshold:.08});scrollTargets.forEach(function(el){el.classList.add("nx-source-scroll");io.observe(el)})}
+/* Hero filter responds while the hero is in the viewport. */
+var heroContent=doc.querySelector(".hero-main-content-wrapper");
+if(heroContent&&!reduce){var hero=doc.querySelector(".hero-section");if(hero&&"IntersectionObserver"in window){var hi=new IntersectionObserver(function(entries){entries.forEach(function(e){heroContent.classList.toggle("nx-hero-scrolled",!e.isIntersecting)})},{threshold:.05});hi.observe(hero)}}
+/* FAQ: tab active/inactive expands/collapses content and rotates the plus icon. */
+doc.querySelectorAll(".single-faq").forEach(function(link){
+var answer=link.querySelector(".faq-answer-wrapper"),plus=link.querySelector(".faq-icon"),minus=link.querySelector(".faq-icon-minus");if(!answer)return;
+function sync(){var active=link.classList.contains("w--current");answer.style.height=active?answer.scrollHeight+"px":"0px";answer.style.opacity=active?"1":"0";if(plus)plus.style.display=active?"none":"block";if(minus)minus.style.display=active?"block":"none"}
+sync();link.addEventListener("click",function(){requestAnimationFrame(sync)});link.addEventListener("keydown",function(){requestAnimationFrame(sync)});
+});
+/* How we work: animate the active tab description height. Preserve Webflow tab switching. */
+doc.querySelectorAll(".why-us-tabs-link").forEach(function(link){
+var desc=link.querySelector(".why-us-description-wrap");if(!desc)return;
+function sync(){var active=link.classList.contains("w--current");desc.style.height=active?desc.scrollHeight+"px":"0px"}
+sync();link.addEventListener("click",function(){requestAnimationFrame(function(){doc.querySelectorAll(".why-us-tabs-link .why-us-description-wrap").forEach(function(el){var owner=el.closest(".why-us-tabs-link");el.style.height=owner&&owner.classList.contains("w--current")?el.scrollHeight+"px":"0px"})})});
+});
+/* Dropdown menu open/close rotates its chevron on hover and keyboard focus. */
+doc.querySelectorAll(".dropdoen-menu").forEach(function(menu){var toggle=menu.querySelector(".dropdown-toggle-main");if(!toggle)return;menu.addEventListener("mouseenter",function(){toggle.setAttribute("data-nx-open","true")});menu.addEventListener("mouseleave",function(){toggle.removeAttribute("data-nx-open")});toggle.addEventListener("focus",function(){toggle.setAttribute("data-nx-open","true")});toggle.addEventListener("blur",function(){toggle.removeAttribute("data-nx-open")})});
+window.addEventListener("resize",function(){doc.querySelectorAll(".single-faq.w--current .faq-answer-wrapper,.why-us-tabs-link.w--current .why-us-description-wrap").forEach(function(el){el.style.height=el.scrollHeight+"px"})},{passive:true});
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
+})();
 </script></body></html>
