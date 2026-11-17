@@ -323,6 +323,7 @@ function boot(){
  }
  // IX3 source progress trigger: [Workline="blue"], top/top to bottom/bottom, scrub 1.5s.
  const workTrigger=document.querySelector('.section.works .find-round-wrap');
+ // Ensure the progress track is the only scroll target for this effect.
  const progressBar=document.querySelector('.find-color-bg');
  // IX3 source horizontal trigger: .techo-wrapper, top/0 to bottom/bottom, scrub 1.5s.
  const techWrapper=document.querySelector('.section.techo .techo-wrapper');
@@ -354,7 +355,7 @@ function boot(){
   currentWork=smooth(currentWork,targetWork,.18);
   currentTech=smooth(currentTech,targetTech,1.5);
   currentCase=smooth(currentCase,targetCase,.8);
-  if(progressBar)progressBar.style.setProperty('width',(currentWork*100).toFixed(2)+'%','important');
+  if(progressBar){progressBar.style.setProperty('width',(currentWork*100).toFixed(2)+'%','important');progressBar.setAttribute('aria-valuenow',String(Math.round(currentWork*100)))}
   if(techTrack&&techViewport&&innerWidth>=992){
    const travel=Math.max(0,techTrack.scrollWidth-techViewport.clientWidth);
    techTrack.style.setProperty('transform','translate3d('+(-currentTech*travel).toFixed(2)+'px,0,0)','important');
