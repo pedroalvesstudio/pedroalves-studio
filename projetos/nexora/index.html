@@ -469,7 +469,7 @@ function init(){
  if(track&&!track.classList.contains('nx-auto-marquee')){
   var originals=Array.from(track.children).filter(function(el){return el.classList.contains('testimonial-card')});
   if(originals.length>1){
-   originals.forEach(function(card){var copy=card.cloneNode(true);copy.setAttribute('aria-hidden','true');copy.querySelectorAll('a,button,[tabindex]').forEach(function(el){el.setAttribute('tabindex','-1')});track.appendChild(copy)});
+   originals.slice(5).forEach(function(card){card.remove()}); originals.slice(0,5).forEach(function(card){var copy=card.cloneNode(true);copy.setAttribute('aria-hidden','true');copy.querySelectorAll('a,button,[tabindex]').forEach(function(el){el.setAttribute('tabindex','-1')});track.appendChild(copy)});
    track.style.transform='none';track.style.translate='none';
    track.classList.add('nx-auto-marquee');
   }
@@ -483,7 +483,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  animation:nxSourceTestimonialLoop 30s linear infinite!important;
 }
 #equipos .testimonial-card-wrap.nx-auto-marquee:hover{animation-play-state:paused!important}
-@keyframes nxSourceTestimonialLoop{from{transform:translateX(0)}to{transform:translateX(-60%)}}
+@keyframes nxSourceTestimonialLoop{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 12px))}}
 /* Original hover interactions: 400ms image zoom, 400ms arrow movement */
 .news-card .news-image,.case-study-card .case-study-image{transition:transform .4s cubic-bezier(.22,1,.36,1)!important;transform-origin:center}
 .news-card:hover .news-image,.case-study-card:hover .case-study-image{transform:scale(1.1)!important}
