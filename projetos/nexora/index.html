@@ -477,5 +477,19 @@ function init(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
-</script></body></html>
+</script><style id="nx-source-animations-20261117">
+/* Ninelabs source: testimony track 0 to -60%, linear, 30 seconds, repeats; stop on hover */
+#equipos .testimonial-card-wrap.nx-auto-marquee{
+ animation:nxSourceTestimonialLoop 30s linear infinite!important;
+}
+#equipos .testimonial-card-wrap.nx-auto-marquee:hover{animation-play-state:paused!important}
+@keyframes nxSourceTestimonialLoop{from{transform:translateX(0)}to{transform:translateX(-60%)}}
+/* Original hover interactions: 400ms image zoom, 400ms arrow movement */
+.news-card .news-image,.case-study-card .case-study-image{transition:transform .4s cubic-bezier(.22,1,.36,1)!important;transform-origin:center}
+.news-card:hover .news-image,.case-study-card:hover .case-study-image{transform:scale(1.1)!important}
+.news-card .blog-icon,.news-card .blog-icon-hover{transition:transform .4s cubic-bezier(.22,1,.36,1)!important}
+.news-card:hover .blog-icon,.news-card:hover .blog-icon-hover{transform:translateX(20px)!important}
+.news-card .news-image-wrap,.case-study-card .case-study-image-wrapper{overflow:hidden}
+@media(prefers-reduced-motion:reduce){#equipos .testimonial-card-wrap.nx-auto-marquee{animation:none!important}.news-card .news-image,.case-study-card .case-study-image,.news-card .blog-icon,.news-card .blog-icon-hover{transition:none!important}}
+</style></body></html>
 <!-- Cloudflare production redeploy trigger: no visual changes. -->
