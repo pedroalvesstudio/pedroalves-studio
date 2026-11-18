@@ -76,3 +76,4 @@ jobs:
           done
           echo "Thaíse portrait asset could not be downloaded from the deployed site." >&2
           exit 1
+# Trigger publish after approved PayNex brand update.
