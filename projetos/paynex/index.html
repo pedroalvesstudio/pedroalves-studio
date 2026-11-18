@@ -643,6 +643,58 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
  #beneficios .capability-grid .capability:nth-child(n){transition-delay:0s}
  #beneficios .capability-grid .capability.reveal{transition-duration:1.05s}
 }
+
+/* SECTION 03 — mobile app product demonstration, triggered on scroll */
+.gateway-motion-stage .gateway-app-phone{
+ opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1);
+ transition:transform 1.8s cubic-bezier(.2,.68,.22,1),box-shadow 1.8s ease;
+}
+.gateway-motion-stage .gateway-app-phone .gateway-app-top,
+.gateway-motion-stage .gateway-app-phone .gateway-app-date,
+.gateway-motion-stage .gateway-app-phone .gateway-app-greeting,
+.gateway-motion-stage .gateway-app-phone .gateway-app-subtitle,
+.gateway-motion-stage .gateway-app-phone .gateway-app-balance-card,
+.gateway-motion-stage .gateway-app-phone .gateway-app-section-title,
+.gateway-motion-stage .gateway-app-phone .gateway-app-actions,
+.gateway-motion-stage .gateway-app-phone .gateway-app-row,
+.gateway-motion-stage .gateway-app-phone .gateway-app-bottom-nav{
+ opacity:0;transform:translate3d(0,12px,0);
+ transition:opacity 1.15s cubic-bezier(.2,.68,.22,1),transform 1.15s cubic-bezier(.2,.68,.22,1);
+}
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-top,
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-date,
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-greeting,
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-subtitle,
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-balance-card,
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-section-title,
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-actions,
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-row,
+.gateway-motion-stage.is-live .gateway-app-phone .gateway-app-bottom-nav{opacity:1;transform:translate3d(0,0,0)}
+.gateway-motion-stage.is-live .gateway-app-phone{box-shadow:0 32px 70px rgba(0,0,0,.42),0 0 58px rgba(22,143,156,.18)}
+.gateway-motion-stage.is-live .gateway-app-date{transition-delay:.2s}
+.gateway-motion-stage.is-live .gateway-app-top{transition-delay:.45s}
+.gateway-motion-stage.is-live .gateway-app-greeting{transition-delay:.75s}
+.gateway-motion-stage.is-live .gateway-app-subtitle{transition-delay:.95s}
+.gateway-motion-stage.is-live .gateway-app-balance-card{transition-delay:1.2s}
+.gateway-motion-stage.is-live .gateway-app-section-title:not(.activity-title){transition-delay:1.7s}
+.gateway-motion-stage.is-live .gateway-app-actions{transition-delay:1.95s}
+.gateway-motion-stage.is-live .gateway-app-section-title.activity-title{transition-delay:2.35s}
+.gateway-motion-stage.is-live .gateway-app-row:nth-of-type(1){transition-delay:2.55s}
+.gateway-motion-stage.is-live .gateway-app-row:nth-of-type(2){transition-delay:2.85s}
+.gateway-motion-stage.is-live .gateway-app-row:nth-of-type(3){transition-delay:3.15s}
+.gateway-motion-stage.is-live .gateway-app-bottom-nav{transition-delay:3.45s}
+.gateway-motion-stage .gateway-app-spark i{transform:scaleY(.08);transform-origin:bottom;transition:transform 1.55s cubic-bezier(.2,.68,.22,1)}
+.gateway-motion-stage.is-live .gateway-app-spark i{transform:scaleY(1)}
+.gateway-motion-stage.is-live .gateway-app-spark i:nth-child(2n){transition-delay:.18s}
+.gateway-motion-stage.is-live .gateway-app-spark i:nth-child(3n){transition-delay:.34s}
+.gateway-motion-stage .gateway-app-balance{font-variant-numeric:tabular-nums}
+@media(hover:hover){
+.gateway-motion-stage .gateway-app-phone{transition:transform .7s ease,box-shadow .7s ease}
+.gateway-motion-stage .gateway-app-phone:hover{transform:translate3d(0,-5px,0) rotate(-.35deg);box-shadow:0 38px 80px rgba(0,0,0,.48),0 0 65px rgba(22,143,156,.2)}
+}
+@media(prefers-reduced-motion:reduce){
+.gateway-motion-stage .gateway-app-phone,.gateway-motion-stage .gateway-app-phone *{opacity:1!important;transform:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
@@ -718,7 +770,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <section class="section" id="gateway">
 <div class="wrap split gateway-phone-layout">
 <div class="split-copy"><span class="eyebrow">PayNex　›　Quem somos</span><h2>O gateway de pagamento mais completo do mercado.</h2><p>Escala sua operação usando a PayNex, oferecemos soluções integradas e seguras.</p><p>Suporte personalizado e relatórios detalhados, garantimos uma experiência de pagamento eficiente.</p><p>Escolha PayNex e simplifique suas transações financeiras!</p><div class="split-actions"><a class="pill" href="#ativacao">Quero vender <span>›</span></a><a class="pill ghost" href="#beneficios">Saiba mais <span>›</span></a></div></div>
-<div class="gateway-app-stage" aria-label="Prévia do aplicativo PayNex em smartphone">
+<div class="gateway-app-stage gateway-motion-stage" aria-label="Prévia animada do aplicativo PayNex em smartphone">
 <div class="gateway-app-phone gateway-app-phone-premium">
 <div class="gateway-app-notch"></div>
 <div class="gateway-app-screen">
@@ -861,6 +913,28 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
  [dashboard,phone].forEach(el=>{if(el){el.classList.add('is-live');countUp(el)}});
 }
 
+
+
+const appStage=document.querySelector('.gateway-motion-stage');
+if(appStage&&'IntersectionObserver'in window){
+ const appObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;
+  appStage.classList.add('is-live');
+  const balance=appStage.querySelector('.gateway-app-balance');
+  if(balance&&!balance.dataset.countDone){
+   balance.dataset.countDone='1';
+   const target=12840.90,start=performance.now(),duration=2800;
+   const tick=now=>{
+    const t=Math.min(1,(now-start)/duration),ease=1-Math.pow(1-t,3);
+    balance.textContent='R$ '+new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}).format(target*ease);
+    if(t<1)requestAnimationFrame(tick);else balance.textContent='R$ 12.840,90';
+   };
+   requestAnimationFrame(tick);
+  }
+  appObserver.unobserve(appStage);
+ }),{threshold:.22,rootMargin:'0px 0px -8% 0px'});
+ appObserver.observe(appStage);
+}else if(appStage){appStage.classList.add('is-live')}
 
 document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
 })();
