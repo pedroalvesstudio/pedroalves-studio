@@ -172,6 +172,11 @@ for link in styles:
         link['href']='./assets/kodara-original.css'
     except Exception as exc:
         print('CSS vendor fallback:',exc)
+# Flowbase carousel ticker was loaded twice (v1 and v1.3.3) in the source.
+# Retain the later original version only to avoid competing animation loops.
+for tag in soup.select('script[src*="boosters-carousel-ticker"]'):
+    if '1.3.3' not in tag.get('src',''):
+        tag.decompose()
 # Keep original Webflow scripts to preserve native interactions and GSAP/Flowbase.
 style=soup.new_tag('style',id='kodara-brand-palette')
 style.string='''
@@ -215,19 +220,34 @@ body{color:#F7FBFC!important}
 .nav-logo{display:inline-flex;align-items:center}
 .text-color-gradient-brand{background-image:linear-gradient(110deg,#167D8D 20%,#72C0CC 85%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
 .badge-primary,.banner-badge{border-color:rgba(22,125,141,.5)!important;color:#82CED8!important}
-.hero-background,.bg-lights{filter:hue-rotate(184deg) saturate(.83)}
+/* Fade the source hero SVG's opaque rectangular canvas into pure black.
+   Keep the original artwork and Webflow's animation hooks unchanged. */
+.hero-background{
+ filter:hue-rotate(184deg) saturate(.83);
+ -webkit-mask-image:radial-gradient(ellipse 67% 72% at 50% 53%,#000 34%,rgba(0,0,0,.82) 63%,transparent 99%);
+ mask-image:radial-gradient(ellipse 67% 72% at 50% 53%,#000 34%,rgba(0,0,0,.82) 63%,transparent 99%);
+ -webkit-mask-repeat:no-repeat;
+ mask-repeat:no-repeat;
+}
+.bg-lights{filter:hue-rotate(184deg) saturate(.83)}
 /* Original rotating hero button border; remap the pink accent, keep its motion. */
 .hero-button{background-color:rgba(22,125,141,.48)!important}
 .hero-button-border{background-image:linear-gradient(112deg,#167D8D,#73C3CF 33%,rgba(115,195,207,.08) 46%)!important}
 .hero-button-inner{background-color:#000000!important}
 /* The original decorative graphics remain in place, with their warm hue shifted
    to Kodara petrol-blue; no icon/card is replaced or removed. */
+/* Do not put a hue-rotate filter on giant Webflow/GSAP-animated rings.
+   Those elements are 800–1500px and filtering them on each frame causes jank.
+   Their gradients already use the rebranded --background--brand CSS token. */
+.circle-gradient{filter:none!important}
+.circle-gradient{background-image:linear-gradient(180deg,transparent 25%,#167D8D 44%,#167D8D 62%,transparent 77%)}
 .statistic-icon,.statistic-light,.pricing-light,
 .light-front,.light-back,.integration-light,.testimonial-light,
-.cta-icon,.cta-bg-light,.footer-light,
-.section-large img.image-cover{filter:hue-rotate(184deg) saturate(.76)}
-
-.circle-gradient{filter:hue-rotate(184deg) saturate(.8)}
+.cta-icon,.cta-bg-light,.footer-light{
+ filter:hue-rotate(184deg) saturate(.76)
+}
+/* Drop expensive color filters on generic scrolling images. */
+.section-large img.image-cover{filter:none!important}
 ::selection{background:#167D8D;color:#0B1116}
 .w-webflow-badge{display:none!important}
 @media(max-width:479px){.kodara-wordmark{font-size:21px}.kodara-wordmark svg{width:32px;height:32px}}
