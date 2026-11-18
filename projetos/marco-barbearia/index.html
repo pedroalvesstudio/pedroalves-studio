@@ -30,6 +30,111 @@
 @media(max-width:700px){.shell,.header-inner,.hero-content{width:calc(100% - 38px)}.site-header{height:60px}.brand{font-size:14px}.menu-toggle{display:grid;place-items:center}.nav{display:none;position:absolute;top:60px;left:0;right:0;padding:14px 20px 20px;background:#090a0af5;border-bottom:1px solid #ffffff18;flex-direction:column;align-items:stretch;gap:0}.nav.open{display:flex}.nav a{padding:13px 2px;border-bottom:1px solid #ffffff12;font-size:12px}.header-cta{display:none}.hero{height:760px;min-height:680px;max-height:92svh;align-items:end}.hero:before{background:linear-gradient(0deg,#080909 0%,#080909dd 22%,#08090940 72%,#08090988 100%)}.hero-photo{object-position:57% center}.hero-content{padding:0 0 65px}.hero-kicker{font-size:8px;margin-bottom:18px}.hero h1{font-size:clamp(45px,12vw,66px);max-width:450px;margin-bottom:18px}.hero-bottom{display:block}.hero-bottom p{font-size:12px;max-width:330px;margin-bottom:20px}.section{padding:70px 0}.section-head{display:block;margin-bottom:24px}.section-head .section-copy{margin-top:12px}.services{grid-template-columns:1fr;gap:11px}.service-card{min-height:225px;padding:23px}.service-card h3{font-size:23px}.work-section{padding-top:15px}.work-heading{grid-template-columns:1fr;gap:10px;margin-bottom:23px}.work-heading p{max-width:380px}.video-grid{grid-template-columns:repeat(2,1fr);gap:10px}.video-card{height:255px;border-radius:13px}.video-meta{font-size:8px;top:9px;left:9px;right:9px}.video-meta span:last-child{font-size:7px}.play{width:48px;height:48px}.play:after{border-left-width:14px;border-top-width:8px;border-bottom-width:8px}.video-tag{font-size:8px;bottom:12px;padding:5px 10px}.rings{height:62px;margin:10px auto 25px}.rings i{width:35px;height:35px}.team-grid{grid-template-columns:repeat(2,1fr);gap:10px}.team-info{padding:12px}.team-info h3{font-size:15px}.team-card img{height:175px}.clients-row{grid-template-columns:repeat(2,1fr);gap:10px}.client-card img{height:155px}.client-caption strong{font-size:9px}.story-panel{grid-template-columns:1fr;padding:17px;gap:22px}.story-image{height:340px}.story-copy{padding:0 5px 7px}.story-copy h2{font-size:29px}.gallery-section{padding:25px 0 55px}.gallery-strip{grid-template-columns:repeat(2,1fr);gap:8px}.gallery-strip img{height:160px}.locations-wrap{grid-template-columns:1fr;gap:30px}.locations-wrap h2{font-size:42px}.location-list{gap:22px}.footer-inner{align-items:flex-start;flex-direction:column;gap:10px}}
 @media(max-width:380px){.video-card{height:225px}.team-card img{height:145px}.client-card img{height:130px}.hero h1{font-size:43px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rings-track{animation:none}.reveal{opacity:1;transform:none;transition:none}*{transition-duration:.01ms!important}}
+
+/* Reference-alignment pass: proportions and hierarchy from the approved Marco capture */
+:root{--max:1060px;--yellow:#f2ed00;--bg:#080a0a;--panel:#0d1010}
+.site-header{height:64px;background:linear-gradient(180deg,#070808e8,#0708089c);border-bottom:1px solid #ffffff0b}
+.header-inner{width:min(1060px,calc(100% - 52px))}
+.brand{gap:4px;font-size:12px;letter-spacing:-.07em}.brand-mark{width:23px;height:23px;font-size:8px}.brand span:last-child{font-size:6px}
+.nav{gap:28px}.nav a{font-size:9px}.header-cta{font-size:8px;padding:8px 15px;background:#ffffff0b
+}
+.hero{height:500px;min-height:500px;max-height:none;align-items:stretch;background:#090b0b}
+.hero-photo{object-position:center 48%;filter:brightness(.47) saturate(.65)}
+.hero:before{background:linear-gradient(90deg,#050606a8 0%,#05060640 55%,#05060675 100%),linear-gradient(0deg,#080909 0%,transparent 25%,#08090935 100%)}
+.hero-content{width:min(1060px,calc(100% - 52px));padding:0;display:flex;flex-direction:column;justify-content:flex-end;position:relative;padding-bottom:100px}
+.hero-kicker{display:none}
+.hero h1{font:500 clamp(42px,5vw,68px)/1.02 Manrope,sans-serif;letter-spacing:-.065em;max-width:560px;margin:0 0 0 0}
+.hero h1 span{display:block}
+.hero-bottom{position:absolute;right:0;bottom:102px;max-width:390px;align-items:end}
+.hero-bottom p{font-size:11px;line-height:1.35;max-width:320px;text-shadow:0 2px 8px #000}
+.hero-bottom .btn{display:none}
+.shell{width:min(1060px,calc(100% - 52px))}
+.section{padding:66px 0}
+.section-head.center .eyebrow{display:none}
+.section-head.center .section-title{margin-top:0;font-size:25px;line-height:1.12}
+.services{gap:14px}
+.service-card{min-height:235px;padding:22px 22px 18px;border-radius:7px;background:#0d0f0f;border-color:#ffffff09}
+.service-top small{display:none}
+.service-top{height:2px}
+.service-card h3{font-size:21px;margin-bottom:10px}
+.service-card p{font-size:10px;line-height:1.5;color:#c1c2bc}
+.service-bottom{margin-top:18px}
+.service-number{font-size:34px}
+.service-bottom .btn{font-size:8px;padding:7px 11px}
+.work-section{padding-top:12px}
+.work-heading{width:min(850px,100%);grid-template-columns:1fr 1fr;gap:38px;margin-bottom:28px}
+.work-heading .section-title{font-size:24px;line-height:1.12}
+.work-heading p{font-size:10px;line-height:1.45}
+.video-grid{gap:12px}
+.video-card{height:300px;border-radius:14px}
+.video-card img{filter:brightness(.58)}
+.video-meta{top:10px;left:10px;right:10px;font-size:8px}
+.play{width:48px;height:48px;background:#a80008}
+.video-tag{font-size:8px;padding:5px 11px;bottom:13px}
+.center-cta{margin-top:24px}
+.rings{height:58px;margin:4px auto 25px}
+.rings i{width:39px;height:39px;margin-left:-10px}
+.team-section{padding-top:18px}
+.team-section .section-head{margin-bottom:26px}
+.team-section .section-head.center .section-title{font-size:24px}
+.team-grid{gap:14px}
+.team-card{border-radius:7px;background:#0d0f0f}
+.team-info{padding:13px 15px 10px}
+.team-info:before{font-size:12px;margin-bottom:5px}
+.team-info h3{font-size:16px}
+.team-info p{font-size:9px}
+.team-info:after{margin-top:8px;width:22px}
+.team-card img{height:185px;object-position:center 34%}
+.clients-section{padding-top:65px}
+.clients-section .work-heading{margin-bottom:26px}
+.clients-row{gap:10px}
+.client-card{border-radius:7px}
+.client-card img{height:170px}
+.client-card .client-caption{padding:9px 8px 11px}
+.client-caption strong{font-size:9px}
+.client-caption span{font-size:8px}
+.story-section{padding-top:55px}
+.story-panel{width:min(850px,100%);padding:30px;grid-template-columns:.9fr 1fr;gap:36px;border-radius:8px}
+.story-image{height:340px}
+.story-copy .eyebrow{display:none}
+.story-copy h2{font-size:27px;margin-bottom:15px}
+.story-copy p{font-size:9px;line-height:1.65;margin-bottom:10px}
+.story-copy .btn{font-size:8px;padding:9px 13px}
+.gallery-section{padding:0 0 55px}
+.gallery-strip{gap:9px}
+.gallery-strip img{height:190px;border-radius:7px}
+.locations-section{padding:25px 0 65px}
+.locations-wrap{gap:45px}
+.locations-wrap h2{font-size:42px}
+.location-list{gap:20px}
+.location-item h3{font-size:16px}
+.location-item p{font-size:10px}
+.location-item .btn{font-size:8px;padding:7px 12px}
+.footer{padding:20px 0 25px;font-size:8px}
+@media(max-width:700px){
+ .site-header{height:58px}.header-inner{width:calc(100% - 36px)}
+ .hero{height:570px;min-height:570px;max-height:none}
+ .hero:before{background:linear-gradient(0deg,#080909 0%,#080909c9 20%,#08090938 72%,#08090970 100%)}
+ .hero-photo{object-position:58% center}
+ .hero-content{width:calc(100% - 38px);padding-bottom:82px}
+ .hero h1{font-size:clamp(42px,11vw,58px);max-width:360px}
+ .hero-bottom{left:0;right:auto;bottom:28px;max-width:280px}
+ .hero-bottom p{font-size:10px}
+ .shell{width:calc(100% - 38px)}
+ .section{padding:54px 0}
+ .services{gap:10px}.service-card{min-height:200px;padding:18px}
+ .service-card h3{font-size:19px}.service-card p{font-size:10px}
+ .work-heading{grid-template-columns:1fr;gap:9px;width:100%}
+ .work-heading .section-title{font-size:23px}
+ .video-grid{gap:9px}.video-card{height:230px}
+ .team-grid{gap:9px}.team-info{padding:10px}.team-info h3{font-size:13px}.team-card img{height:145px}
+ .clients-row{gap:8px}.client-card img{height:135px}
+ .story-panel{padding:15px;gap:18px}.story-image{height:280px}
+ .gallery-strip img{height:140px}
+ .locations-wrap{gap:25px}.locations-wrap h2{font-size:37px}
+}
+@media(max-width:380px){.video-card{height:205px}.team-card img{height:125px}}
+
 </style>
 </head>
 <body>
