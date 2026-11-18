@@ -848,6 +848,80 @@ body{background:#000!important}
  .client-caption span{font-size:9px}
 }
 
+
+/* CLIENTS — match the user's exact desktop reference composition */
+.clients-section{background:#080a0b!important;padding:26px 0 22px!important}
+.clients-inner{width:calc(100% - 24px)!important;max-width:none!important;margin:0 auto!important}
+.clients-heading{
+  width:min(850px,calc(100% - 36px))!important;
+  margin:0 auto 56px!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:48px!important;
+  align-items:start!important;
+}
+.clients-heading h2{font:500 30px/1.14 Manrope,sans-serif!important;letter-spacing:-.035em!important}
+.clients-heading p{font:400 16px/1.12 "DM Sans",sans-serif!important;color:#ecece8!important;margin:2px 0 0!important;max-width:430px!important}
+.clients-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+.client-card{
+  height:305px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:12px!important;
+  background:#0b0d0e!important;
+}
+.client-card img{
+  width:100%!important;
+  height:235px!important;
+  flex:0 0 235px!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+}
+.client-caption{
+  position:relative!important;
+  left:auto!important;right:auto!important;bottom:auto!important;
+  flex:1!important;
+  min-height:68px!important;
+  padding:8px 30px!important;
+  margin:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:center!important;
+  gap:0!important;
+  border-radius:0!important;
+  background:#0b0d0e!important;
+  color:#080909!important;
+}
+.client-caption strong,.client-caption span{
+  display:block!important;
+  width:100%!important;
+  padding:9px 8px!important;
+  border-radius:999px!important;
+  background:var(--yellow)!important;
+  color:#080909!important;
+  text-align:center!important;
+  font:500 12px/1.15 "DM Sans",sans-serif!important;
+}
+.client-caption strong{padding-bottom:2px!important;border-radius:999px 999px 0 0!important}
+.client-caption span{padding-top:2px!important;border-radius:0 0 999px 999px!important}
+@media(max-width:760px){
+ .clients-section{padding:38px 0 44px!important}
+ .clients-inner{width:calc(100% - 28px)!important}
+ .clients-heading{width:100%!important;grid-template-columns:1fr!important;gap:12px!important;margin:0 auto 24px!important}
+ .clients-heading h2{font-size:25px!important}
+ .clients-heading p{font-size:13px!important;line-height:1.5!important}
+ .clients-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .client-card{height:220px!important;border-radius:9px!important}
+ .client-card img{height:164px!important;flex:0 0 164px!important}
+ .client-caption{min-height:56px!important;padding:6px 8px!important}
+ .client-caption strong,.client-caption span{font-size:9px!important;padding:5px 4px!important}
+}
 </style>
 </head>
 <body>
@@ -940,10 +1014,10 @@ body{background:#000!important}
       <p>Não importa qual a sua necessidade, a Marco Barbearia conta com os profissionais mais qualificados da região!</p>
     </div>
     <div class="clients-grid">
-      <article class="client-card"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85" alt="Grupo de amigos e clientes"><div class="client-caption"><strong>Arthur Aguiar</strong><span>Ator e empreendedor</span></div></article>
-      <article class="client-card"><img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd47?auto=format&fit=crop&w=900&q=85" alt="Artista em momento descontraído"><div class="client-caption"><strong>Leo Foguete</strong><span>Cantor</span></div></article>
-      <article class="client-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=85" alt="Amigos reunidos"><div class="client-caption"><strong>Victor Hugo</strong><span>Cliente Marco Barbearia</span></div></article>
-      <article class="client-card"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85" alt="Retrato de cliente"><div class="client-caption"><strong>Gabriel Brazão</strong><span>Cliente Marco Barbearia</span></div></article>
+      <article class="client-card"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85" alt="Arthur Aguiar com a equipe da Marco Barbearia"><div class="client-caption"><strong>Arthur Aguiar</strong><span>Ator e Empresário</span></div></article>
+      <article class="client-card"><img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd47?auto=format&fit=crop&w=900&q=85" alt="Leo Foguete"><div class="client-caption"><strong>Leo Foguete</strong><span>Cantor</span></div></article>
+      <article class="client-card"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=85" alt="Victor Hugo com cliente"><div class="client-caption"><strong>Victor Hugo | Dupla</strong><span>Diego e Victor Hugo</span></div></article>
+      <article class="client-card"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85" alt="Gabriel Brazão"><div class="client-caption"><strong>Gabriel Brazão</strong><span>Goleiro do Santos</span></div></article>
     </div>
   </div>
 </section>
