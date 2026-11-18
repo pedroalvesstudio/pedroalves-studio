@@ -970,6 +970,28 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
  #negocio .checkout-motion-preview .checkout-confirm{align-items:flex-start;flex-direction:column;gap:9px}
  #negocio .checkout-motion-preview .checkout-button{width:100%!important;min-width:0!important}
 }
+
+/* Checkout confirmation control — crisp vector icon and readable status */
+#negocio .checkout-motion-preview .checkout-button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ gap:14px!important;color:#fff!important;letter-spacing:.005em;
+}
+#negocio .checkout-motion-preview .checkout-button .checkout-button-icon{
+ display:block!important;width:17px!important;height:17px!important;min-width:17px!important;
+ color:#fff!important;stroke:currentColor;opacity:1!important;flex:none!important;
+ overflow:visible;
+}
+#negocio .checkout-motion-preview .checkout-button .checkout-button-spinner{
+ display:block;width:14px;height:14px;min-width:14px;border:2px solid rgba(255,255,255,.35);
+ border-top-color:#fff;border-radius:50%;animation:checkoutButtonSpin .85s linear infinite;flex:none;
+}
+@keyframes checkoutButtonSpin{to{transform:rotate(360deg)}}
+#negocio .checkout-motion-preview .checkout-status{
+ color:#244f55!important;font-size:11px!important;font-weight:600!important;
+ line-height:1.4!important;opacity:1!important;
+}
+#negocio .checkout-motion-preview.demo-processing .checkout-status{color:#075f69!important}
+#negocio .checkout-motion-preview.demo-success .checkout-status{color:#126b4b!important}
 </style>
 </head>
 <body>
@@ -1093,7 +1115,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <button class="checkout-method" type="button" data-method="Boleto" aria-pressed="false"><i></i>Boleto</button>
 </div>
 <div class="checkout-demo-progress" aria-hidden="true"><span></span></div>
-<div class="checkout-confirm"><button class="checkout-button" type="button">Confirmar pagamento <b>→</b></button><small class="checkout-status" aria-live="polite">Pagamento processado pela PayNex</small></div>
+<div class="checkout-confirm"><button class="checkout-button" type="button"><span>Confirmar pagamento</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.5 10h12M10 4.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><small class="checkout-status" aria-live="polite">Pagamento processado pela PayNex</small></div>
 </div>
 </div>
 <div class="benefit-row business-motion-benefits">
@@ -1273,7 +1295,7 @@ if(checkout){
   checkout.classList.add('demo-reset');
   checkout.classList.remove('demo-running');
   if(progressFill){progressFill.style.transition='none';progressFill.style.transform='scaleX(0)'}
-  confirm.disabled=false;confirm.innerHTML='Confirmar pagamento <b>→</b>';
+  confirm.disabled=false;confirm.innerHTML='<span>Confirmar pagamento</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 10h12M10 4.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   status.textContent='Pagamento processado pela PayNex';status.classList.remove('is-success');
   selectMethod('Pix');
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
@@ -1293,14 +1315,14 @@ if(checkout){
   schedule(()=>{
    if(!loopActive)return;
    checkout.classList.add('demo-processing');
-   confirm.disabled=true;confirm.innerHTML='Processando pagamento <b>…</b>';
+   confirm.disabled=true;confirm.innerHTML='<span>Processando pagamento</span><span class="checkout-button-spinner" aria-hidden="true"></span>';
    status.textContent='Validando pagamento de demonstração…';
    if(progressFill){progressFill.style.transition='transform 2.1s cubic-bezier(.2,.65,.2,1)';progressFill.style.transform='scaleX(1)'}
   },3400);
   schedule(()=>{
    if(!loopActive)return;
    checkout.classList.remove('demo-processing');checkout.classList.add('demo-success');
-   confirm.disabled=false;confirm.innerHTML='Pagamento confirmado <b>✓</b>';
+   confirm.disabled=false;confirm.innerHTML='<span>Pagamento confirmado</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10.5 4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
    status.textContent='Demonstração concluída · Pix';status.classList.add('is-success');
   },6200);
   schedule(()=>{
@@ -1330,7 +1352,7 @@ if(checkout){
  confirm?.addEventListener('click',()=>{
   userTookControl=true;stopLoop();
   checkout.classList.add('demo-processing');
-  confirm.disabled=true;confirm.innerHTML='Processando <b>…</b>';
+  confirm.disabled=true;confirm.innerHTML='<span>Processando</span><span class="checkout-button-spinner" aria-hidden="true"></span>';
   status.textContent='Validando pagamento de demonstração…';
   if(progressFill){progressFill.style.transition='transform 2.1s cubic-bezier(.2,.65,.2,1)';progressFill.style.transform='scaleX(1)'}
   window.setTimeout(()=>{
