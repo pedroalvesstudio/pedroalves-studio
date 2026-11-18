@@ -757,6 +757,57 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
   opacity:.12;
  }
 }
+
+/* SECTION 05 — scroll-led checkout demo and benefit cards */
+#negocio .business-motion-heading,#negocio .business-motion-copy,#negocio .checkout-motion-preview{
+ opacity:0;transform:translate3d(0,24px,0);
+ transition:opacity 1.45s cubic-bezier(.2,.68,.22,1),transform 1.45s cubic-bezier(.2,.68,.22,1);
+}
+#negocio.is-live .business-motion-heading{opacity:1;transform:translate3d(0,0,0);transition-delay:.1s}
+#negocio.is-live .business-motion-copy{opacity:1;transform:translate3d(0,0,0);transition-delay:.45s}
+#negocio.is-live .checkout-motion-preview{opacity:1;transform:translate3d(0,0,0);transition-delay:.75s}
+#negocio .checkout-motion-preview{transition:opacity 1.45s cubic-bezier(.2,.68,.22,1),transform 1.45s cubic-bezier(.2,.68,.22,1),box-shadow .7s ease,border-color .7s ease}
+#negocio .checkout-motion-preview .checkout-head,
+#negocio .checkout-motion-preview .checkout-order,
+#negocio .checkout-motion-preview .checkout-label,
+#negocio .checkout-motion-preview .checkout-methods,
+#negocio .checkout-motion-preview .checkout-confirm{opacity:0;transform:translate3d(0,9px,0);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.68,.22,1)}
+#negocio.is-live .checkout-motion-preview .checkout-head{opacity:1;transform:none;transition-delay:1s}
+#negocio.is-live .checkout-motion-preview .checkout-order{opacity:1;transform:none;transition-delay:1.25s}
+#negocio.is-live .checkout-motion-preview .checkout-label{opacity:1;transform:none;transition-delay:1.5s}
+#negocio.is-live .checkout-motion-preview .checkout-methods{opacity:1;transform:none;transition-delay:1.75s}
+#negocio.is-live .checkout-motion-preview .checkout-confirm{opacity:1;transform:none;transition-delay:2s}
+#negocio .checkout-methods{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+#negocio .checkout-method{appearance:none;border:0;background:transparent;color:#456c72!important;font:inherit;display:inline-flex;align-items:center;gap:10px;padding:2px 0;cursor:pointer;text-align:left;transition:color .3s ease,transform .3s ease}
+#negocio .checkout-method i{width:10px;height:10px;border:1px solid #71969a;border-radius:50%;display:inline-block;position:relative;flex:none}
+#negocio .checkout-method.selected i:after{content:"";position:absolute;inset:2px;border-radius:50%;background:#168f9c}
+#negocio .checkout-method.selected{color:#174b53!important;font-weight:700}
+#negocio .checkout-method:hover{transform:translateX(3px)}
+#negocio .checkout-button{border:0;cursor:pointer;color:#fff!important;font:inherit;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:transform .3s ease,filter .3s ease,box-shadow .3s ease}
+#negocio .checkout-button:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 8px 22px rgba(22,143,156,.2)}
+#negocio .checkout-button:disabled{cursor:default;opacity:.85}
+#negocio .checkout-status{display:inline-block;min-height:1.4em;transition:color .3s ease}
+#negocio .checkout-status.is-success{color:#168f75!important;font-weight:700}
+#negocio .business-motion-benefits .benefit{transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.2,.68,.22,1),border-color .5s ease,box-shadow .5s ease}
+#negocio .business-motion-benefits .benefit:nth-child(1){transition-delay:.1s}
+#negocio .business-motion-benefits .benefit:nth-child(2){transition-delay:.35s}
+#negocio .business-motion-benefits .benefit:nth-child(3){transition-delay:.6s}
+@media(hover:hover){
+ #negocio .business-motion-benefits .benefit:hover{transform:translateY(-4px);border-color:rgba(88,199,201,.4);box-shadow:0 16px 32px rgba(0,0,0,.2)}
+ #negocio .checkout-motion-preview:hover{border-color:rgba(88,199,201,.4);box-shadow:0 22px 48px rgba(0,0,0,.2),0 0 30px rgba(22,143,156,.08)}
+}
+@media(max-width:760px){
+ #negocio .business-motion-heading,#negocio .business-motion-copy,#negocio .checkout-motion-preview{transition-duration:1.15s}
+ #negocio.is-live .checkout-motion-preview .checkout-head,
+ #negocio.is-live .checkout-motion-preview .checkout-order,
+ #negocio.is-live .checkout-motion-preview .checkout-label,
+ #negocio.is-live .checkout-motion-preview .checkout-methods,
+ #negocio.is-live .checkout-motion-preview .checkout-confirm{transition-delay:.2s}
+}
+@media(prefers-reduced-motion:reduce){
+ #negocio .business-motion-heading,#negocio .business-motion-copy,#negocio .checkout-motion-preview,
+ #negocio .checkout-motion-preview *{opacity:1!important;transform:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
@@ -867,18 +918,22 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <!-- Layout 05-A aprovado: checkout PayNex em mockup claro; animações ficam para etapa posterior. -->
 <section class="section business" id="negocio">
 <div class="wrap">
-<header class="section-head"><span class="eyebrow">PayNex</span><h2>Benefícios para elevar seu negócio</h2><p>PayNex, a plataforma focada em fazer você vender mais</p></header>
-<div class="business-feature-layout">
-<div class="business-copy"><h3>Na compra, seu lead realiza o pagamento para PayNex.</h3><p>Garanta uma experiência de pagamento simples para seu cliente.</p><a class="pill" href="#ativacao">Quero vender <span>›</span></a></div>
-<div class="checkout-preview" aria-label="Prévia ilustrativa do checkout PayNex">
+<header class="section-head business-motion-heading"><span class="eyebrow">PayNex</span><h2>Benefícios para elevar seu negócio</h2><p>PayNex, a plataforma focada em fazer você vender mais</p></header>
+<div class="business-feature-layout business-motion-layout">
+<div class="business-copy business-motion-copy"><h3>Na compra, seu lead realiza o pagamento para PayNex.</h3><p>Garanta uma experiência de pagamento simples para seu cliente.</p><a class="pill" href="#ativacao">Quero vender <span>›</span></a></div>
+<div class="checkout-preview checkout-motion-preview" aria-label="Prévia interativa do checkout PayNex">
 <div class="checkout-head"><strong>Finalizar compra</strong><b>PayNex</b></div>
 <div class="checkout-order"><span>Pedido #PN-2048</span><strong>R$ 9.700</strong></div>
 <h3 class="checkout-label">Forma de pagamento</h3>
-<div class="checkout-methods"><span class="selected"><i></i>Pix</span><span><i></i>Cartão de crédito</span><span><i></i>Boleto</span></div>
-<div class="checkout-confirm"><span class="checkout-button">Confirmar pagamento <b>→</b></span><small>Pagamento processado pela PayNex</small></div>
+<div class="checkout-methods" role="group" aria-label="Escolha a forma de pagamento">
+<button class="checkout-method selected" type="button" data-method="Pix" aria-pressed="true"><i></i>Pix</button>
+<button class="checkout-method" type="button" data-method="Cartão de crédito" aria-pressed="false"><i></i>Cartão de crédito</button>
+<button class="checkout-method" type="button" data-method="Boleto" aria-pressed="false"><i></i>Boleto</button>
+</div>
+<div class="checkout-confirm"><button class="checkout-button" type="button">Confirmar pagamento <b>→</b></button><small class="checkout-status" aria-live="polite">Pagamento processado pela PayNex</small></div>
 </div>
 </div>
-<div class="benefit-row">
+<div class="benefit-row business-motion-benefits">
 <article class="benefit reveal"><span class="mini-icon">♙</span><h3>98% de Conversão</h3><p>Com um checkout focado em facilitar o processo de pagamento e reduzir etapas desnecessárias.</p></article>
 <article class="benefit reveal"><span class="mini-icon">🛒</span><h3>Checkout Interno</h3><p>O checkout interno permite que o cliente conclua a compra dentro do seu site ou aplicativo.</p></article>
 <article class="benefit reveal"><span class="mini-icon">↧</span><h3>Melhores taxas</h3><p>Nossas condições ajudam a manter lucros e uma operação mais eficiente para seu negócio.</p></article>
@@ -1018,6 +1073,46 @@ if(activationSection&&'IntersectionObserver'in window){
   activationObserver.unobserve(activationSection);
  }),{threshold:.18,rootMargin:'0px 0px -7% 0px'});
  activationObserver.observe(activationSection);
+}
+
+
+const businessSection=document.querySelector('#negocio');
+if(businessSection&&'IntersectionObserver'in window){
+ const businessObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;
+  businessSection.classList.add('is-live');
+  businessObserver.unobserve(businessSection);
+ }),{threshold:.16,rootMargin:'0px 0px -6% 0px'});
+ businessObserver.observe(businessSection);
+}else if(businessSection){businessSection.classList.add('is-live')}
+const checkout=businessSection?.querySelector('.checkout-motion-preview');
+if(checkout){
+ const methods=[...checkout.querySelectorAll('.checkout-method')];
+ const status=checkout.querySelector('.checkout-status');
+ const confirm=checkout.querySelector('.checkout-button');
+ let chosen='Pix',processing=false;
+ methods.forEach(button=>button.addEventListener('click',()=>{
+  if(processing)return;
+  chosen=button.dataset.method;
+  methods.forEach(item=>{
+   const selected=item===button;
+   item.classList.toggle('selected',selected);
+   item.setAttribute('aria-pressed',String(selected));
+  });
+  status.textContent='Forma selecionada: '+chosen;
+  status.classList.remove('is-success');
+ }));
+ confirm?.addEventListener('click',()=>{
+  if(processing)return;
+  processing=true;confirm.disabled=true;confirm.innerHTML='Processando <b>…</b>';
+  status.classList.remove('is-success');status.textContent='Validando pagamento de demonstração…';
+  window.setTimeout(()=>{
+   confirm.innerHTML='Pagamento confirmado <b>✓</b>';
+   status.textContent='Demonstração concluída · '+chosen;
+   status.classList.add('is-success');
+   processing=false;confirm.disabled=false;
+  },1500);
+ });
 }
 
 document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
