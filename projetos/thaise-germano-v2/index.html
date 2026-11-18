@@ -75,6 +75,39 @@ body{min-height:100vh;overflow-x:hidden}
 }
 @media(prefers-reduced-motion:reduce){.hero-portrait img,.hero-portrait:before{animation:none}}
 
+
+/* Hero copy — image intentionally reserved for a later pass */
+.hero-copy{position:relative;z-index:2;grid-column:1;grid-row:1;width:min(100%,540px);padding:22px 0 36px 2px;color:#f5efed;animation:hero-copy-in .85s .18s both}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 25px;color:rgba(245,239,237,.72);font:600 10px/1.5 "DM Sans",sans-serif;letter-spacing:.32em;text-transform:uppercase}
+.hero-eyebrow:before{content:"";width:22px;height:1px;background:#dc1423;box-shadow:0 0 12px rgba(220,20,35,.8)}
+.hero-title{max-width:550px;margin:0 0 20px;font:600 clamp(35px,4vw,56px)/1.08 "Playfair Display",Georgia,serif;letter-spacing:-.035em;color:#f4efed}
+.hero-title .accent{color:#e01a29}
+.hero-description{max-width:425px;margin:0 0 28px;color:rgba(238,229,226,.7);font:400 14px/1.75 "DM Sans",sans-serif}
+.hero-action{display:inline-flex;align-items:center;justify-content:center;gap:15px;min-height:46px;padding:0 20px;border:1px solid rgba(255,255,255,.13);border-radius:3px;background:linear-gradient(100deg,#a90816,#d71928 70%,#a80816);box-shadow:0 8px 28px rgba(180,0,20,.2);color:white;text-decoration:none;font:700 9px/1 "DM Sans",sans-serif;letter-spacing:.1em;transition:transform .25s,box-shadow .25s,filter .25s}
+.hero-action:hover{transform:translateY(-3px);box-shadow:0 13px 34px rgba(190,0,24,.32);filter:brightness(1.08)}
+.hero-action svg{width:13px;height:13px}
+.hero-note{margin:18px 0 0;color:rgba(226,215,212,.42);font:500 9px/1.5 "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase}
+@keyframes hero-copy-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.brand-ticker{position:relative;z-index:2;display:flex;align-items:center;height:43px;overflow:hidden;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);background:rgba(12,10,10,.58);transform:rotate(-.7deg) scale(1.01);backdrop-filter:blur(8px)}
+.brand-ticker-track{display:flex;align-items:center;gap:15px;width:max-content;white-space:nowrap;animation:brand-loop 32s linear infinite}
+.brand-ticker-track span{color:rgba(235,226,223,.68);font:400 12px/1 "DM Sans",sans-serif}
+.brand-ticker-track b{color:#e11a28;font:800 15px/1 "DM Sans",sans-serif;letter-spacing:-.1em}
+.brand-ticker:hover .brand-ticker-track{animation-play-state:paused}
+@keyframes brand-loop{to{transform:translateX(-50%)}}
+@media(max-width:700px){
+ .hero-stage{min-height:calc(100svh - 90px);padding:100px 24px 38px;justify-content:flex-end}
+ .hero-copy{width:100%;padding:0 0 14px}
+ .hero-eyebrow{font-size:8px;letter-spacing:.23em;margin-bottom:18px}
+ .hero-title{font-size:clamp(34px,9vw,45px);line-height:1.08;max-width:520px}
+ .hero-description{font-size:12px;line-height:1.7;max-width:360px;margin-bottom:22px}
+ .hero-action{min-height:44px;padding:0 17px;font-size:8px}
+ .hero-note{font-size:8px;margin-top:14px}
+ .brand-ticker{height:37px}
+ .brand-ticker-track{gap:12px;animation-duration:26s}
+ .brand-ticker-track span{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.hero-copy{animation:none}.brand-ticker-track{animation:none}}
+
 </style>
 </head>
 <body>
@@ -92,8 +125,19 @@ body{min-height:100vh;overflow-x:hidden}
 
 <main class="background-stage" id="inicio" aria-label="Estudo de fundo visual dark com iluminação vermelha">
 <section class="hero-stage" id="hero" aria-label="Apresentação da mentoria Contadora Elite">
-<div class="hero-portrait"><img src="assets/thaise-hero-cutout.webp" alt="Retrato profissional de uma mulher com blazer escuro" fetchpriority="high"></div>
+<div class="hero-copy">
+<p class="hero-eyebrow">Thaíse Germano <span>|</span> Contadora</p>
+<h1 class="hero-title"><span class="accent">Contadora,</span> faça parte do grupo de contadores que já conhecem o Método Contadora Elite e faturam de 40 a 150 mil reais por mês no próprio escritório.</h1>
+<p class="hero-description">Sem se matar de trabalhar, sem deixar de lado sua família, tendo tempo para cuidar de si, sem abrir mão dos seus resultados.</p>
+<a class="hero-action" href="#solucoes">EU JÁ ESTOU DECIDIDA
+<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<p class="hero-note">Método Contadora Elite · Cresça com estratégia</p>
+</div>
 </section>
+<div class="brand-ticker" aria-label="Contadora Elite em movimento"><div class="brand-ticker-track" aria-hidden="true">
+<span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b>
+</div></div>
 <div class="light-beam"></div><div class="light-orb one"></div><div class="light-orb two"></div>
 </main>
 <script>
