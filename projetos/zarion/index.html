@@ -191,8 +191,10 @@ html{scroll-behavior:auto!important}
 [animation="fade-three"]{transition-delay:.2s!important}
 [animation="fade-four"]{transition-delay:.3s!important}
 [animation="fade-five"]{transition-delay:.4s!important}
-[animation^="fade-"].latera-reveal-pending{opacity:0!important;transform:translate3d(0,60px,0)!important}
-[animation^="fade-"].latera-reveal-shown{opacity:1!important;transform:translate3d(0,0,0)!important}
+[animation^="fade-"]:not(.techo-wrap).latera-reveal-pending{opacity:0!important;transform:translate3d(0,60px,0)!important}
+.section.techo .techo-wrap.latera-reveal-pending{opacity:0!important}
+[animation^="fade-"]:not(.techo-wrap).latera-reveal-shown{opacity:1!important;transform:translate3d(0,0,0)!important}
+.section.techo .techo-wrap.latera-reveal-shown{opacity:1!important}
 [animation="heading"] .latera-word{display:inline-block;white-space:nowrap;vertical-align:baseline}
 [animation="heading"] .latera-letter{display:inline-block;opacity:1;transform:translateX(0);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.7,.22,1)!important;transition-delay:calc(var(--idx) * 25ms)!important}
 [animation="heading"].latera-heading-hidden .latera-letter{opacity:0!important;transform:translateX(100%)!important}
