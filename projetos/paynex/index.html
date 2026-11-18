@@ -63,6 +63,26 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .footer-compact .copyright{margin:0;text-align:right;font-size:9px}
 .footer-compact .signature{margin-top:14px}
 @media(max-width:760px){.footer-compact .footer-line{align-items:flex-start}.footer-compact .footer-nav{order:3;width:100%;justify-content:flex-start;gap:14px}.footer-compact .footer-meta{align-items:flex-start}.footer-compact .copyright{width:100%;text-align:left}}
+
+/* Approved section 05-A: e-commerce checkout mockup */
+.business-feature-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:34px;align-items:center}
+.business-feature-layout .business-copy{max-width:390px}
+.business-feature-layout .business-copy h3{font-size:clamp(21px,2.3vw,29px);line-height:1.18}
+.checkout-preview{position:relative;z-index:1;background:#eff5fb;color:#185b9b;border-radius:13px;padding:24px 25px 21px;box-shadow:0 22px 55px rgba(0,0,0,.22);min-width:0}
+.checkout-head{display:flex;justify-content:space-between;align-items:center;gap:15px;padding-bottom:17px;border-bottom:1px solid #9ba9b8}
+.checkout-head strong,.checkout-head b{font-size:16px;font-weight:700;color:#155a9e}
+.checkout-order{display:flex;gap:18px;align-items:center;padding:14px 0 17px;font-size:11px;color:#3c5e7f}
+.checkout-order strong{font-weight:500}
+.checkout-label{font-size:16px;color:#155a9e;margin:3px 0 12px}
+.checkout-methods{display:grid;gap:8px;color:#385c7e;font-size:11px}
+.checkout-methods span{display:flex;align-items:center;gap:10px;min-height:21px}
+.checkout-methods i{width:9px;height:9px;border:1px solid #6585a4;border-radius:50%;display:inline-block;position:relative}
+.checkout-methods .selected i:after{content:"";position:absolute;inset:2px;border-radius:50%;background:#42698c}
+.checkout-confirm{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:17px}
+.checkout-button{display:inline-flex;align-items:center;gap:6px;background:#207de0;color:#fff;border-radius:22px;padding:11px 16px;font-size:10px;font-weight:700;white-space:nowrap}
+.checkout-confirm small{font-size:10px;color:#185b9b}
+@media(max-width:800px){.business-feature-layout{grid-template-columns:1fr;gap:22px}.business-feature-layout .business-copy{max-width:100%}.checkout-preview{padding:22px}}
+@media(max-width:480px){.checkout-preview{padding:19px 16px}.checkout-head strong,.checkout-head b,.checkout-label{font-size:14px}.checkout-order,.checkout-methods{font-size:10px}.checkout-button{padding:10px 13px}.checkout-confirm small{font-size:9px}}
 </style>
 </head>
 <body>
@@ -133,10 +153,15 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <section class="section business" id="negocio">
 <div class="wrap">
 <header class="section-head"><span class="eyebrow">PayNex</span><h2>Benefícios para elevar seu negócio</h2><p>PayNex, a plataforma focada em fazer você vender mais</p></header>
-<div class="business-banner">
+<div class="business-feature-layout">
 <div class="business-copy"><h3>Na compra, seu lead realiza o pagamento para PayNex.</h3><p>Garanta uma experiência de pagamento simples para seu cliente.</p><a class="pill" href="#ativacao">Quero vender <span>›</span></a></div>
-<div class="paying-phone"><small>Pagamento</small><strong>R$ 9.700</strong><small>PAYNEX</small></div>
-<svg class="paynex-mark" viewBox="0 0 140 110" aria-hidden="true"><path fill="#218cff" d="M8 4 49 27 49 51 8 28Z M58 29 131 70 131 96 58 55Z M8 43 36 59 36 83 8 67Z M49 70 131 116 80 116 49 98Z"/></svg>
+<div class="checkout-preview" aria-label="Prévia ilustrativa do checkout PayNex">
+<div class="checkout-head"><strong>Finalizar compra</strong><b>PayNex</b></div>
+<div class="checkout-order"><span>Pedido #PN-2048</span><strong>R$ 9.700</strong></div>
+<h3 class="checkout-label">Forma de pagamento</h3>
+<div class="checkout-methods"><span class="selected"><i></i>Pix</span><span><i></i>Cartão de crédito</span><span><i></i>Boleto</span></div>
+<div class="checkout-confirm"><span class="checkout-button">Confirmar pagamento <b>→</b></span><small>Pagamento processado pela PayNex</small></div>
+</div>
 </div>
 <div class="benefit-row">
 <article class="benefit reveal"><span class="mini-icon">♙</span><h3>98% de Conversão</h3><p>Com um checkout focado em facilitar o processo de pagamento e reduzir etapas desnecessárias.</p></article>
