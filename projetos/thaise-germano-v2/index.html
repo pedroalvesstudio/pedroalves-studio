@@ -376,6 +376,82 @@ html{scroll-behavior:smooth}
   .hero-portrait { width: 56%; height: 88%; }
 }
 
+
+/* HERO IMAGE: use the exact approved composite artwork as the full hero backdrop.
+   The image already contains the red/black lighting and the portrait; copy remains HTML. */
+@media (min-width: 701px) {
+  .hero-stage {
+    width: 100%;
+    min-height: calc(100svh - 66px);
+    padding: 145px max(4%, calc((100vw - 1180px) / 2)) 54px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .hero-portrait {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    right: auto;
+    bottom: auto;
+    display: block;
+    overflow: hidden;
+  }
+  .hero-portrait:before { display: none; }
+  .hero-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    mask-image: none;
+    -webkit-mask-image: none;
+    filter: none;
+    animation: portrait-enter 1.15s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .hero-copy {
+    width: min(100%, 560px);
+    max-width: 560px;
+    padding-top: 24px;
+    padding-bottom: 36px;
+  }
+  .hero-title { max-width: 560px; }
+}
+@media (max-width: 700px) {
+  .hero-stage {
+    width: 100%;
+    min-height: 100svh;
+    padding: 105px 22px 34px;
+    justify-content: flex-end;
+  }
+  .hero-portrait {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    right: auto;
+    bottom: auto;
+    opacity: 1;
+    overflow: hidden;
+  }
+  .hero-portrait:before { display: none; }
+  .hero-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 58% center;
+    mask-image: none;
+    -webkit-mask-image: none;
+    filter: none;
+  }
+  .hero-copy {
+    width: 100%;
+    max-width: 520px;
+    padding: 0 0 14px;
+    text-shadow: 0 1px 16px rgba(0,0,0,.45);
+  }
+  .hero-title { max-width: 15ch; }
+}
+
 </style>
 </head>
 <body>
@@ -393,7 +469,7 @@ html{scroll-behavior:smooth}
 
 <main class="background-stage" id="inicio" aria-label="Estudo de fundo visual dark com iluminação vermelha">
 <section class="hero-stage" id="hero" aria-label="Apresentação da mentoria Contadora Elite">
-<div class="hero-portrait"><img src="/projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp?v=202611181255" alt="Thaíse Germano, mentora da Contadora Elite" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/pedroalvesstudio/pedroalves-studio/main/projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp'"></div>
+<div class="hero-portrait" aria-hidden="true"><img src="/projetos/thaise-germano-v2/assets/thaise-hero-background.webp?v=202611181400" alt="" fetchpriority="high" decoding="async"></div>
 <div class="hero-copy">
 <p class="hero-eyebrow">Thaíse Germano <span>|</span> Contadora</p>
 <h1 class="hero-title"><span class="accent">Contadora,</span> faça parte do grupo de contadores que já conhecem o Método Contadora Elite e faturam de 40 a 150 mil reais por mês no próprio escritório.</h1>
