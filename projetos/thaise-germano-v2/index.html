@@ -59,6 +59,22 @@ body{min-height:100vh;overflow-x:hidden}
 }
 @media(prefers-reduced-motion:reduce){.site-header{animation:none}}
 
+
+/* Hero portrait stage — independent image layer */
+.hero-stage{position:relative;z-index:1;min-height:calc(100svh - 92px);width:min(1180px,92%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:70px 0 34px}
+.hero-portrait{position:absolute;z-index:-1;right:-2%;bottom:0;width:min(58%,700px);height:88%;display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
+.hero-portrait:before{content:"";position:absolute;inset:10% -12% 0 2%;background:radial-gradient(ellipse at 52% 55%,rgba(198,0,24,.38),rgba(122,0,15,.19) 42%,transparent 72%);filter:blur(38px);animation:portrait-glow 8s ease-in-out infinite alternate}
+.hero-portrait img{position:relative;width:100%;height:100%;object-fit:cover;object-position:center 25%;mask-image:linear-gradient(to bottom,#000 0%,#000 78%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 78%,transparent 100%);filter:contrast(1.03) saturate(.88);animation:portrait-enter 1.15s cubic-bezier(.2,.7,.2,1) both}
+@keyframes portrait-enter{from{opacity:0;transform:translate3d(28px,18px,0) scale(1.025)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes portrait-glow{from{opacity:.55;transform:scale(.94)}to{opacity:1;transform:scale(1.08)}}
+@media(max-width:700px){
+ .hero-stage{width:100%;min-height:calc(100svh - 70px);display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;padding:80px 22px 34px}
+ .hero-portrait{right:-12%;bottom:auto;top:58px;width:100%;height:58%;opacity:.92}
+ .hero-portrait:before{inset:12% -10% 0;background:radial-gradient(ellipse,rgba(198,0,24,.34),transparent 70%);filter:blur(30px)}
+ .hero-portrait img{object-position:center 22%;mask-image:linear-gradient(to bottom,#000 0%,#000 68%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 68%,transparent 100%)}
+}
+@media(prefers-reduced-motion:reduce){.hero-portrait img,.hero-portrait:before{animation:none}}
+
 </style>
 </head>
 <body>
@@ -75,6 +91,9 @@ body{min-height:100vh;overflow-x:hidden}
 </header>
 
 <main class="background-stage" id="inicio" aria-label="Estudo de fundo visual dark com iluminação vermelha">
+<section class="hero-stage" id="hero" aria-label="Apresentação da mentoria Contadora Elite">
+<div class="hero-portrait"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=1200&auto=format&fit=crop&q=85" alt="Retrato profissional de uma mulher com blazer escuro" fetchpriority="high"></div>
+</section>
 <div class="light-beam"></div><div class="light-orb one"></div><div class="light-orb two"></div>
 </main>
 <script>
