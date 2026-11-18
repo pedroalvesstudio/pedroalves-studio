@@ -952,4 +952,60 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  width:1.6em;height:1.6em;border-radius:5px;font-size:.85em;
 }
 </style>
+<style id="latera-typography-and-spacing-20261118">
+/* Compact the benefits-to-cases transition; keep horizontal slide mechanics unchanged. */
+@media(min-width:992px){
+ .section.techo .techo-wrapper{height:92vh!important;min-height:0!important}
+ .section.techo .techo-sticky-wrap{height:70vh!important;top:2vh!important}
+ .section.techo{padding-bottom:0!important;margin-bottom:0!important}
+ .section.casesh{padding-top:0!important;margin-top:0!important}
+ .section.casesh .case-top-wrap{margin-top:0!important}
+ /* Pack comparison cards directly underneath the copy, rather than stretching them apart. */
+ .section.back{padding-top:64px!important;padding-bottom:64px!important}
+ .section.back .back-left-wrap{justify-content:flex-start!important;gap:32px!important}
+ .section.back .back-btm-wrap{margin-top:4px!important}
+}
+@media(max-width:991px){
+ .section.back .back-left-wrap{justify-content:flex-start!important;gap:26px!important}
+}
+/* Only actual headings should carry bold weights. */
+.section.techo .techo-card-title,
+.section.casesh .case-card-title-wrap,
+.section.casesh .common-title,
+.section.back .section-title,
+.section.pricing-c .pricing-a-single-title,
+.section.faq .section-title,
+.section.cta .section-title{font-weight:700!important}
+.section.techo .techo-card-details,
+.section.casesh .global-details,
+.section.casesh .case-single-list-text,
+.section.back .global-details,
+.section.pricing-c .pricing-a-card-details,
+.section.pricing-c .pricing-a-list-text,
+.section.pricing-c .balance-title,
+.section.faq .global-details,
+.section.cta .global-details,
+.section.works .find-duration-text,
+.section.works .tab-single-details,
+.section.works .tap-card .tab-single-details,
+.section.footer .footer-details{
+ font-weight:400!important;
+ font-size:clamp(14px,1.05vw,16px)!important;
+ line-height:1.48!important
+}
+.section.techo .techo-card-title{font-size:21px!important;line-height:1.2!important}
+.section.casesh .common-title{font-size:clamp(24px,2.2vw,34px)!important}
+.section.back .section-title{font-size:clamp(32px,3.3vw,48px)!important;line-height:1.12!important}
+.section.pricing-c .pricing-a-list-text{font-size:15px!important}
+.section.pricing-c .balance-title{font-weight:600!important}
+/* Timeline time pills, which still inherited Zarion's pale-blue color. */
+.section.works .find-duration-time,
+.section.find .find-duration-time,
+.find-duration-time{
+ background-color:#f4ddd1!important;
+ color:#a94e30!important;
+ border-color:#f4ddd1!important
+}
+.section.works .find-duration-time{font-weight:500!important}
+</style>
 <style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
