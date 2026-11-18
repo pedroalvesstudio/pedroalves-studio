@@ -506,7 +506,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
      const index=Math.min(maxIndex,Math.max(0,Math.round(self.progress*maxIndex)));
      if(index===lastIndex)return;
      lastIndex=index;
-     GS.to(rail,{x:-index*step,duration:1.35,ease:'power2.inOut',overwrite:true});
+     GS.to(rail,{x:-index*step,duration:2.4,ease:'power1.inOut',overwrite:true});
     },
     onRefresh:self=>{
      measure();
@@ -682,8 +682,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     }
     // Use the same inset on each side to avoid exposing white source edges.
     if(right>left && bottom>top){
-     const cutLeft=Math.max(0,left-2),cutTop=Math.max(0,top-2);
-     const cutRight=Math.min(sw,right+stride+2),cutBottom=Math.min(sh,bottom+stride+2);
+     const horizontalInset=Math.max(0,Math.min(left,sw-right-stride)-2);
+     const verticalInset=Math.max(0,Math.min(top,sh-bottom-stride)-2);
+     const cutLeft=horizontalInset,cutTop=verticalInset;
+     const cutRight=sw-horizontalInset,cutBottom=sh-verticalInset;
      const result=document.createElement('canvas');
      result.width=cutRight-cutLeft;result.height=cutBottom-cutTop;
      result.getContext('2d').drawImage(cvs,cutLeft,cutTop,result.width,result.height,0,0,result.width,result.height);
@@ -837,43 +839,35 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 <style id="latera-case-centering-slow-carousel-20261118">
+/* Original Zarion case-study scrollytelling: each image sticks until
+   the following image takes its place, while copy remains sticky left. */
 @media(min-width:992px){
- /* Give each step more wheel travel without recreating the huge blank gap. */
- .section.techo .techo-wrapper{height:190vh!important}
- /* Keep all six case mockups in one straight, centered vertical column. */
+ .section.techo .techo-wrapper{height:245vh!important}
+ .section.casesh .case-wrap{margin-top:42px!important}
+ .section.casesh .case-flex-wrap{align-items:flex-start!important}
+ .section.casesh .case-left-wrap{
+  position:sticky!important;top:80px!important;align-self:flex-start!important
+ }
  .section.casesh .case-right-wrap{
-  width:100%!important;
-  max-width:694px!important;
-  margin:0 auto!important;
-  min-width:0!important;
+  width:100%!important;max-width:694px!important;
+  min-width:0!important;margin:50px 0 0 auto!important;
  }
  .section.casesh .case-right-flex-wrap{
-  display:flex!important;
-  flex-flow:column nowrap!important;
-  align-items:center!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:stretch!important;
   justify-content:flex-start!important;
-  gap:48px!important;
-  width:100%!important;
+  width:100%!important;gap:80px!important;
  }
  .section.casesh .case-image-wrap{
-  position:relative!important;
-  top:auto!important;
-  width:100%!important;
-  max-width:694px!important;
-  height:auto!important;
-  margin:0 auto!important;
-  padding:0!important;
-  border-radius:24px!important;
-  overflow:hidden!important;
-  flex:0 0 auto!important;
+  position:sticky!important;top:80px!important;
+  width:100%!important;max-width:694px!important;
+  height:auto!important;flex:0 0 auto!important;
+  margin:0 auto!important;padding:0!important;
+  border-radius:24px!important;overflow:hidden!important;
  }
  .section.casesh .case-image{
-  display:block!important;
-  width:100%!important;
-  max-width:100%!important;
-  height:auto!important;
-  margin:0 auto!important;
-  object-fit:contain!important;
+  display:block!important;width:100%!important;max-width:100%!important;
+  height:auto!important;margin:0 auto!important;object-fit:contain!important;
  }
 }
 </style>
