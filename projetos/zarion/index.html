@@ -37,23 +37,79 @@ a[href*="webflow.com"],a[href*="ozen-studio"]{display:none!important}
 function ready(){
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  const hero=document.querySelector('.hero-image-lottie-two[data-animation-type="lottie"]');
+
  if(hero && window.lottie && !hero.dataset.lateraPlayed){
   hero.dataset.lateraPlayed='yes';
   const src=hero.getAttribute('data-src');
-  try{
-   const fallbackSvg=hero.querySelector('svg');
-   const player=window.lottie.loadAnimation({container:hero,renderer:'svg',loop:!reduced,autoplay:!reduced,path:src,rendererSettings:{preserveAspectRatio:'xMidYMid meet'}});
+  const fallbackSvg=hero.querySelector('svg');
+  function transformColor(c){
+   if(!Array.isArray(c)||c.length<3||c.length>4||!c.slice(0,3).every(n=>typeof n==='number'&&n>=0&&n<=1))return;
+   const R=c[0],G=c[1],B=c[2];
+   // Only the strongly blue/cyan components of the template palette.
+   const vivid=Math.max(0,Math.min(1,((B-R)*2.8+(B-G)*.8)));
+   if(vivid<.18)return;
+   const alpha=Math.min(1,vivid);
+   const light=.25*R+.65*G+.1*B;
+   const target=[Math.min(1,.65+light*.4),Math.min(1,.26+light*.30),Math.min(1,.14+light*.23)];
+   for(let i=0;i<3;i++)c[i]=c[i]*(1-alpha)+target[i]*alpha;
+  }
+  function recolorLottie(obj,depth){
+   if(!obj||depth>90||typeof obj!=='object')return;
+   if(Array.isArray(obj)){obj.forEach(item=>recolorLottie(item,depth+1));return}
+   if(obj.c&&typeof obj.c==='object'&&Array.isArray(obj.c.k)){
+    let k=obj.c.k;
+    if(k.length===3||k.length===4)transformColor(k);
+    else k.forEach(frame=>{if(frame&&frame.s)transformColor(frame.s);if(frame&&frame.e)transformColor(frame.e)});
+   }
+   if(obj.g&&typeof obj.g==='object'&&obj.g.k&&Array.isArray(obj.g.k.k)){
+    // Color stops in Lottie gradients: offset,R,G,B repeated.
+    const stops=obj.g.k.k;
+    for(let i=0;i+3<stops.length&&i<Number(obj.g.p||0)*4;i+=4){
+     const colors=stops.slice(i+1,i+4);transformColor(colors);
+     for(let j=0;j<3;j++)stops[i+j+1]=colors[j];
+    }
+   }
+   if(obj.t&&obj.t.d&&Array.isArray(obj.t.d.k)){
+    obj.t.d.k.forEach(fr=>{
+     if(fr.s&&typeof fr.s.t==='string'){
+      fr.s.t=fr.s.t.replace(/zarion/gi,'latera').replace(/with latera/gi,'con Latera');
+     }
+    });
+   }
+   Object.keys(obj).forEach(key=>recolorLottie(obj[key],depth+1));
+  }
+  function addBrand(){
+   if(hero.querySelector('.latera-hero-brand'))return;
+   const brand=document.createElement('div');
+   brand.className='latera-hero-brand';
+   brand.setAttribute('aria-label','latera');
+   brand.innerHTML='<span class="latera-hero-brand-icon" aria-hidden="true">✦</span><span>latera</span>';
+   hero.appendChild(brand);
+  }
+  function play(data){
+   const settings={container:hero,renderer:'svg',loop:!reduced,autoplay:!reduced,rendererSettings:{preserveAspectRatio:'xMidYMid meet'}};
+   if(data)settings.animationData=data;else settings.path=src;
+   const player=window.lottie.loadAnimation(settings);
    player.addEventListener('DOMLoaded',function(){
-     if(fallbackSvg && fallbackSvg.parentElement===hero)fallbackSvg.remove();
-     hero.classList.add('latera-lottie-live');
-     if(reduced)player.goToAndStop(0,true);
+    if(fallbackSvg&&fallbackSvg.parentElement===hero)fallbackSvg.remove();
+    hero.classList.add('latera-lottie-live');
+    addBrand();
+    if(reduced)player.goToAndStop(0,true);
    });
    player.addEventListener('data_failed',function(){
-     hero.removeAttribute('data-latera-played');
-     if(fallbackSvg&&!hero.contains(fallbackSvg))hero.prepend(fallbackSvg);
+    if(data){try{player.destroy()}catch(e){};play(null)}
+    else {hero.removeAttribute('data-latera-played');if(fallbackSvg&&!hero.contains(fallbackSvg))hero.prepend(fallbackSvg)}
    });
-  }catch(err){hero.removeAttribute('data-latera-played');}
+  }
+  if(src&&window.fetch){
+   fetch(src).then(response=>{if(!response.ok)throw Error('Lottie HTTP '+response.status);return response.json()})
+   .then(data=>{
+    recolorLottie(data,0);
+    play(data);
+   }).catch(()=>play(null));
+  }else play(null);
  }
+
  if(!reduced && window.Lenis && innerWidth>=768 && !window.__lateraLenis){
   try{
    const lenis=new window.Lenis({duration:.9,easing:function(t){return 1-Math.pow(1-t,3)},smoothWheel:true,smoothTouch:false});
@@ -878,6 +934,22 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  .section.techo .techo-sticky-wrap{height:78vh!important;top:2vh!important}
  .section.casesh{padding-top:0!important;margin-top:0!important}
  .section.casesh .case-top-wrap{margin-top:0!important}
+}
+</style>
+<style id="latera-hero-lottie-brand-20261118">
+.hero-image-lottie-two{position:relative!important;isolation:isolate}
+.hero-image-lottie-two .latera-hero-brand{
+ position:absolute;z-index:5;top:5.35%;left:8.5%;
+ height:5.5%;min-height:20px;min-width:28%;
+ display:flex;align-items:center;gap:6px;
+ background:#fff;color:#251b16;
+ font-family:inherit;font-size:clamp(11px,1.1vw,18px);font-weight:800;
+ letter-spacing:-.04em;line-height:1;
+ pointer-events:none;
+}
+.hero-image-lottie-two .latera-hero-brand-icon{
+ display:grid;place-items:center;background:#cd6840;color:white;
+ width:1.6em;height:1.6em;border-radius:5px;font-size:.85em;
 }
 </style>
 <style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
