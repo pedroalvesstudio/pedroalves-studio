@@ -1,0 +1,85 @@
+name: PayNex preview validation
+
+on:
+  push:
+    branches: [build/paynex-page]
+    paths:
+      - 'projetos/paynex/**'
+      - '.github/workflows/paynex-preview.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  browser-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          playwright install --with-deps chromium
+      - name: Run desktop and mobile browser checks
+        run: |
+          python -m http.server 8080 --directory . >/tmp/paynex-server.log 2>&1 &
+          python - <<'PY'
+          import asyncio
+          from pathlib import Path
+          from playwright.async_api import async_playwright
+
+          async def main():
+              async with async_playwright() as p:
+                  browser = await p.chromium.launch()
+                  errors = []
+                  desktop = await browser.new_page(viewport={"width": 1440, "height": 1000}, device_scale_factor=1)
+                  desktop.on("pageerror", lambda error: errors.append(str(error)))
+                  response = await desktop.goto("http://127.0.0.1:8080/projetos/paynex/", wait_until="networkidle")
+                  assert response and response.status == 200, "PayNex route did not return HTTP 200"
+                  assert await desktop.title() == "PayNex — Gateway de Pagamentos"
+                  assert await desktop.locator("h1").count() == 1
+                  assert await desktop.locator(".feature").count() == 6
+                  assert await desktop.locator(".faq-list details").count() == 6
+                  assert await desktop.locator("#beneficios").count() == 1
+                  assert await desktop.locator("#gateway").count() == 1
+                  assert await desktop.locator("#ativacao").count() == 1
+                  assert await desktop.locator("#negocio").count() == 1
+                  await desktop.evaluate("document.fonts.ready")
+                  await desktop.screenshot(path="/tmp/paynex-desktop.png", full_page=True)
+                  desktop_width = await desktop.evaluate("({scroll:document.documentElement.scrollWidth, client:document.documentElement.clientWidth})")
+                  assert desktop_width["scroll"] <= desktop_width["client"] + 1, f"Desktop horizontal overflow: {desktop_width}"
+                  await desktop.locator(".faq-list details").nth(1).locator("summary").click()
+                  assert await desktop.locator(".faq-list details").nth(1).get_attribute("open") is not None
+                  mobile = await browser.new_page(viewport={"width": 390, "height": 844}, device_scale_factor=1)
+                  mobile.on("pageerror", lambda error: errors.append(str(error)))
+                  mobile_response = await mobile.goto("http://127.0.0.1:8080/projetos/paynex/", wait_until="networkidle")
+                  assert mobile_response and mobile_response.status == 200
+                  await mobile.evaluate("document.fonts.ready")
+                  await mobile.locator(".menu-toggle").click()
+                  assert "open" in (await mobile.locator(".nav").get_attribute("class") or ""), "Mobile menu did not open"
+                  await mobile.locator(".nav a[href='#beneficios']").click()
+                  assert await mobile.locator(".menu-toggle").get_attribute("aria-expanded") == "false", "Mobile menu did not close after navigation"
+                  mobile_width = await mobile.evaluate("""() => {
+                    const offenders = [...document.querySelectorAll("body *")].map(el => ({tag:el.tagName, cls:el.className?.baseVal || el.className, left:Math.round(el.getBoundingClientRect().left), right:Math.round(el.getBoundingClientRect().right), width:Math.round(el.getBoundingClientRect().width)})).filter(x => x.right > innerWidth + 1 || x.left < -1).slice(0,15);
+                    return {scroll:document.documentElement.scrollWidth, client:document.documentElement.clientWidth, offenders};
+                  }""")
+                  assert mobile_width["scroll"] <= mobile_width["client"] + 1, f"Mobile horizontal overflow: {mobile_width}"
+                  await mobile.evaluate("window.scrollTo(0,0)")
+                  await mobile.screenshot(path="/tmp/paynex-mobile.png", full_page=True)
+                  assert not errors, "Browser JavaScript errors: " + " | ".join(errors)
+                  await browser.close()
+                  print("PayNex desktop/mobile browser checks passed.")
+          asyncio.run(main())
+          PY
+      - name: Upload visual previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: paynex-browser-previews
+          path: |
+            /tmp/paynex-desktop.png
+            /tmp/paynex-mobile.png
+          if-no-files-found: error
+          retention-days: 7

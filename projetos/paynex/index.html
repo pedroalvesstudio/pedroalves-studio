@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070c11">
+<title>PayNex — Gateway de Pagamentos</title>
+<meta name="description" content="PayNex — gateway de pagamentos com integração, acompanhamento e ferramentas para seu negócio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#070c11;--bg2:#09121b;--panel:#0b1722;--panel2:#0e2132;--blue:#1684ff;--blue2:#287cff;--cyan:#27a8ff;--text:#edf5ff;--muted:#8292a5;--line:rgba(157,188,218,.16);--glow:rgba(17,111,231,.28);--max:1160px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selection{background:#167fff;color:#fff}
+.wrap{width:min(var(--max),calc(100% - 64px));margin-inline:auto}
+.ambient{position:absolute;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.ambient:before,.ambient:after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.65}
+.ambient:before{width:620px;height:620px;left:50%;top:110px;transform:translateX(-50%);background:rgba(0,93,211,.23)}
+.ambient:after{width:520px;height:520px;right:-220px;top:1050px;background:rgba(0,111,255,.19)}
+.site-header{position:relative;z-index:20;width:min(1080px,calc(100% - 48px));height:72px;margin:28px auto 0;padding:0 28px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:12px;background:rgba(10,18,27,.76);backdrop-filter:blur(18px);box-shadow:0 12px 38px rgba(0,0,0,.18)}
+.brand{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font:700 25px/1 Manrope,sans-serif;letter-spacing:-1.3px}.brand span{font-weight:400;color:#c9d4df}.brand svg{width:24px;height:24px;flex:none}
+.nav{display:flex;align-items:center;gap:clamp(18px,2.6vw,36px)}.nav a{font-size:12px;color:#aab8c7;transition:color .2s}.nav a:hover{color:#fff}
+.header-actions{display:flex;align-items:center;gap:10px}.login{font-size:11px;color:#c7d4e2;border:1px solid var(--line);border-radius:30px;padding:8px 14px}.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:30px;padding:10px 17px;background:linear-gradient(100deg,#218bff,#1464e7);color:white;font-size:11px;font-weight:600;box-shadow:0 6px 20px rgba(22,116,255,.2);transition:transform .22s,filter .22s,box-shadow .22s;cursor:pointer}.pill:hover{transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 9px 25px rgba(22,116,255,.32)}.pill.ghost{background:rgba(12,29,46,.72);border:1px solid var(--line);box-shadow:none;color:#d7e5f4}
+.menu-toggle{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer}
+.hero{text-align:center;padding:82px 0 0;position:relative;isolation:isolate}.eyebrow{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(151,184,218,.2);border-radius:30px;padding:5px 17px;color:#8298b0;font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+.hero h1{max-width:790px;margin:23px auto 14px;font:800 clamp(38px,5.3vw,68px)/1.02 Manrope,sans-serif;letter-spacing:-2.8px;color:#3291ff;text-wrap:balance}
+.hero-copy{margin:0 auto;color:#8192a7;font-size:15px;line-height:1.7;max-width:620px}
+.hero-actions{display:flex;justify-content:center;gap:10px;margin:24px 0 42px}
+.dashboard-shell{position:relative;width:min(820px,90%);margin:0 auto;aspect-ratio:1.78/1;padding:14px 14px 0;border:8px solid #020508;border-bottom:0;border-radius:24px 24px 0 0;background:#03080e;box-shadow:0 0 0 1px rgba(255,255,255,.04),0 0 100px 26px rgba(0,104,230,.24);overflow:hidden}
+.dashboard-shell:before{content:"";position:absolute;z-index:4;top:0;left:50%;transform:translateX(-50%);width:82px;height:9px;background:#020508;border-radius:0 0 6px 6px}
+.dash{height:100%;display:grid;grid-template-columns:24% 1fr;background:#071523;border:1px solid rgba(110,168,223,.15);border-bottom:0;border-radius:10px 10px 0 0;overflow:hidden;text-align:left}
+.dash-side{background:#081522;border-right:1px solid rgba(125,170,210,.17);padding:25px 16px}.dash-logo{font:700 20px Manrope,sans-serif;letter-spacing:-.8px;margin-bottom:44px}.dash-logo span{font-weight:400;color:#d4e2f0}.dash-menu{display:grid;gap:9px}.dash-menu span{font-size:11px;color:#b7c7d8;padding:10px 12px;border-radius:5px}.dash-menu span:first-child{background:#174d86;color:#fff}.dash-main{padding:28px 24px}.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;color:#c7d7e8;font-size:11px}.dash-mark{width:82px;height:66px;margin:0 auto 18px;opacity:.55}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{position:relative;min-height:57px;border:1px solid rgba(106,155,206,.13);border-radius:6px;background:linear-gradient(135deg,#0c2b49,#0a1d31);padding:11px 12px;color:#a7bad0;font-size:9px}.stat strong{display:block;color:#fff;font-size:14px;margin-top:4px}.stat:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:#1686ff}.stat.green:before{background:#13d58a}.stat.red:before{background:#f23e55}.dash-bottom{display:grid;grid-template-columns:1.4fr .7fr;gap:12px;margin-top:16px}.dash-bottom div{height:43px;border-radius:5px;background:#0b2135;border:1px solid rgba(106,155,206,.1);padding:9px;color:#b9cadd;font-size:9px}
+.section{position:relative;padding:92px 0}.section-head{text-align:center;margin:0 auto 34px}.section-head .eyebrow{font-size:9px;padding:4px 13px}.section-head h2{font:800 clamp(28px,3.1vw,42px)/1.13 Manrope,sans-serif;letter-spacing:-1.2px;color:#238cff;margin:13px 0 8px}.section-head p{margin:0;color:#8191a3;font-size:14px;line-height:1.6}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{min-height:150px;padding:22px 23px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(145deg,rgba(10,21,31,.92),rgba(8,17,26,.84));transition:transform .25s,border-color .25s,background .25s}.feature:hover{transform:translateY(-4px);border-color:rgba(41,139,255,.55);background:linear-gradient(145deg,rgba(13,37,60,.96),rgba(8,17,26,.9))}.feature-icon{width:27px;height:27px;border-radius:7px;display:grid;place-items:center;background:#137df4;color:#fff;margin-bottom:12px}.feature-icon svg{width:15px;height:15px}.feature h3{font:700 14px Manrope,sans-serif;color:#2991ff;margin:0 0 7px}.feature p{margin:0;color:#8798aa;font-size:10px;line-height:1.6}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.split-copy .eyebrow{margin-bottom:20px}.split-copy h2{font:800 clamp(30px,3.4vw,45px)/1.15 Manrope,sans-serif;letter-spacing:-1.4px;color:#278cff;margin:0 0 20px}.split-copy p{max-width:490px;color:#94a4b5;font-size:14px;line-height:1.8;margin:0 0 17px}.split-actions{display:flex;gap:10px;margin-top:25px}
+.phones-stage{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;isolation:isolate}.phones-stage:before{content:"";position:absolute;z-index:-1;width:420px;height:420px;border-radius:50%;background:rgba(0,103,255,.27);filter:blur(70px)}.phone{position:absolute;width:190px;height:380px;border:5px solid #172334;border-radius:31px;background:linear-gradient(155deg,#526cff,#153cbd 65%,#101f63);box-shadow:0 20px 50px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.3);padding:24px 13px 14px;overflow:hidden}.phone:before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:62px;height:15px;background:#111827;border-radius:12px}.phone.back{transform:translate(64px,12px) rotate(15deg);z-index:0}.phone.front{transform:translate(-32px,0) rotate(-1deg);z-index:1}.phone-time{font:500 38px Manrope,sans-serif;text-align:center;margin:26px 0 2px}.phone-date{text-align:center;font-size:8px;color:#d4e0ff;margin-bottom:22px}.phone-row{display:flex;align-items:center;gap:8px;padding:9px 7px;margin:7px 0;border-radius:6px;background:rgba(220,235,255,.22);font-size:7px;color:#eef5ff}.phone-row i{width:17px;height:17px;border-radius:4px;background:rgba(255,255,255,.24);display:block;flex:none}.phone-home{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:55px;height:4px;border-radius:5px;background:rgba(255,255,255,.65)}
+.activation{padding-top:55px}.activation .section-head{margin-bottom:38px}.activation-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:stretch}.activation-main{position:relative;min-height:340px;display:flex;align-items:flex-start;justify-content:center;flex-direction:column;padding:34px 48px;overflow:hidden}.activation-main:before{content:"";position:absolute;z-index:-1;inset:-40px;background:radial-gradient(ellipse at 25% 80%,rgba(0,102,255,.34),transparent 60%)}.price-card{width:100%;max-width:460px;padding:28px 30px;background:#f5f8fc;color:#1672d9;border-radius:12px;box-shadow:0 18px 42px rgba(0,0,0,.25);font-size:12px}.price-card strong{display:block;font:700 16px Manrope,sans-serif;margin-bottom:10px}.price-card ul{padding-left:17px;margin:10px 0 0;color:#506b88;line-height:1.9}.brand-watermark{position:absolute;left:8%;bottom:-55px;width:70%;opacity:.16}.activation-side{display:grid;gap:12px}.activation-card{padding:23px 24px;border:1px solid var(--line);border-radius:12px;background:rgba(9,19,29,.9);min-height:105px}.activation-card b{display:inline-block;background:#167df0;border-radius:20px;padding:5px 12px;font-size:9px;margin-bottom:9px}.activation-card p{margin:0;color:#9baabc;font-size:13px;line-height:1.5}
+.business{padding-top:70px}.business-banner{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:220px;align-items:center;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:linear-gradient(110deg,#091522,#0c2034 70%,#07111d);padding:28px 9%}.business-banner:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 70% 50%,rgba(0,113,255,.25),transparent 50%)}.business-copy{position:relative;z-index:2;max-width:350px}.business-copy h3{font:800 23px/1.15 Manrope,sans-serif;color:#2690ff;margin:0 0 12px}.business-copy p{color:#94a5b8;font-size:11px;line-height:1.55;margin:0 0 15px}.paying-phone{position:absolute;z-index:1;right:21%;bottom:-60px;width:160px;height:270px;border:5px solid #253a62;border-radius:25px;background:linear-gradient(150deg,#4b64f6,#1839b5);padding:35px 14px;box-shadow:0 12px 30px rgba(0,0,0,.4);transform:rotate(-2deg)}.paying-phone:before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:52px;height:12px;background:#121a36;border-radius:10px}.paying-phone small{display:block;color:#cbd8ff;font-size:8px}.paying-phone strong{display:block;font:700 24px Manrope;margin-top:8px}.paynex-mark{position:absolute;right:4%;top:20%;width:190px;opacity:.95}
+.benefit-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}.benefit{border:1px solid var(--line);border-radius:11px;padding:21px;background:rgba(10,21,32,.9);min-height:115px}.benefit .mini-icon{color:#248dff;font-size:18px}.benefit h3{font:700 14px Manrope;color:#268cff;margin:8px 0 6px}.benefit p{font-size:10px;color:#8d9eaf;line-height:1.55;margin:0}
+.faq{padding-top:80px}.faq-list{width:min(900px,100%);margin:auto;display:grid;gap:8px}.faq-list details{border:1px solid var(--line);border-radius:10px;background:rgba(9,18,27,.88);overflow:hidden}.faq-list summary{list-style:none;cursor:pointer;padding:15px 22px;color:#288fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:18px}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary:after{content:"+";font-size:18px;color:#7da9d6;transition:transform .2s}.faq-list details[open] summary:after{content:"−"}.faq-list details p{margin:0;padding:0 22px 17px;color:#a3b0bd;font-size:12px;line-height:1.7}
+.site-footer{margin:30px auto 0;width:calc(100% - 2px);border:1px solid var(--line);border-radius:12px 12px 0 0;background:rgba(9,17,25,.92);padding:36px 0 22px}.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:30px;align-items:start}.footer-brand{font:700 27px Manrope;letter-spacing:-1.2px}.footer-brand span{font-weight:400;color:#c7d3df}.footer-actions{display:flex;gap:8px;margin-top:13px}.footer-col h4{font-size:12px;margin:4px 0 12px}.footer-col p{font-size:10px;line-height:1.8;color:#8d9eae;margin:0}.socials{display:flex;gap:10px;color:#278cff;font-weight:700}.copyright{text-align:center;color:#b2c0cf;font-size:10px;margin:25px 0 0}.signature{border-top:1px solid rgba(150,180,210,.08);padding:13px 0;text-align:center;color:#248cff;font-size:10px;margin-top:16px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}.feature:nth-child(2),.benefit:nth-child(2){transition-delay:.08s}.feature:nth-child(3),.benefit:nth-child(3){transition-delay:.16s}
+@media(max-width:800px){.wrap{width:min(100% - 40px,var(--max))}.site-header{width:calc(100% - 32px);height:62px;margin-top:16px;padding:0 16px}.brand{font-size:22px}.brand svg{width:22px;height:22px}.nav{display:none;position:absolute;top:calc(100% + 9px);left:0;right:0;transform:none;padding:13px;border:1px solid var(--line);border-radius:12px;background:rgba(7,16,25,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:stretch;gap:0}.nav.open{display:flex}.nav a{padding:14px 9px;border-bottom:1px solid var(--line);font-size:13px}.nav a:last-child{border:0}.header-actions .login{display:none}.menu-toggle{display:grid;place-items:center}.hero{padding-top:72px}.hero h1{font-size:clamp(35px,8vw,54px);letter-spacing:-1.8px}.hero-copy{font-size:13px;padding:0 12px}.dashboard-shell{width:96%;padding:9px 9px 0;border-width:6px;border-radius:17px 17px 0 0}.dash-side{padding:17px 9px}.dash-logo{font-size:14px;margin-bottom:24px}.dash-menu{gap:4px}.dash-menu span{font-size:8px;padding:8px 5px}.dash-main{padding:19px 12px}.dash-top{font-size:8px;margin-bottom:16px}.dash-mark{width:55px;height:45px;margin-bottom:12px}.stats{gap:6px}.stat{min-height:44px;padding:7px;font-size:6px}.stat strong{font-size:9px}.dash-bottom{gap:6px;margin-top:8px}.dash-bottom div{font-size:6px;height:34px;padding:6px}.section{padding:70px 0}.section-head{margin-bottom:25px}.section-head p{font-size:12px}.features{grid-template-columns:repeat(2,1fr);gap:9px}.feature{min-height:142px;padding:17px}.feature h3{font-size:12px}.feature p{font-size:9px}.split{grid-template-columns:1fr;gap:15px}.split-copy h2{font-size:34px}.split-copy p{font-size:13px}.phones-stage{min-height:350px;max-width:460px;margin:auto;width:100%}.phone{width:165px;height:330px}.phone.back{transform:translate(55px,9px) rotate(15deg)}.phone.front{transform:translate(-25px,0) rotate(-1deg)}.activation-grid{grid-template-columns:1fr}.activation-main{min-height:270px;padding:20px}.price-card{max-width:none}.activation-side{grid-template-columns:repeat(2,1fr)}.activation-card{padding:17px;min-height:115px}.activation-card p{font-size:11px}.business-banner{padding:25px 22px;min-height:210px;grid-template-columns:1fr}.business-copy{max-width:58%}.business-copy h3{font-size:18px}.paying-phone{right:12%;width:125px;height:235px}.paynex-mark{right:1%;width:120px;top:25%}.benefit-row{gap:8px}.benefit{padding:15px;min-height:130px}.benefit h3{font-size:12px}.benefit p{font-size:9px}.footer-grid{grid-template-columns:1fr 1fr;gap:24px}.footer-col:last-child{grid-column:1/-1}}
+@media(max-width:480px){.phones-stage:before{width:calc(100vw - 34px)}.wrap{width:calc(100% - 34px)}.site-header{height:56px}.brand{font-size:20px}.header-actions .pill{padding:9px 12px;font-size:10px}.hero{padding-top:62px}.hero h1{font-size:36px;letter-spacing:-1.6px}.hero-actions{margin:20px 0 28px}.dashboard-shell{width:calc(100% - 24px);border-width:5px;padding:6px 6px 0}.dash-side{padding:13px 6px}.dash-logo{font-size:11px;margin-bottom:19px}.dash-menu span{font-size:6px;padding:7px 4px}.dash-main{padding:14px 7px}.dash-top{font-size:6px;margin-bottom:10px}.dash-mark{width:42px;height:34px;margin-bottom:8px}.stats{gap:4px}.stat{min-height:34px;padding:5px;font-size:5px}.stat strong{font-size:7px;margin-top:2px}.dash-bottom{margin-top:5px;gap:4px}.dash-bottom div{height:27px;font-size:5px;padding:4px}.section{padding:58px 0}.section-head h2{font-size:28px}.section-head p{font-size:11px}.features{gap:8px}.feature{padding:14px 12px;min-height:135px}.feature-icon{width:24px;height:24px;margin-bottom:9px}.feature h3{font-size:11px}.feature p{font-size:8px}.split-copy h2{font-size:30px}.split-copy p{font-size:12px}.phones-stage{min-height:315px}.phone{width:145px;height:300px;padding:20px 10px 12px}.phone-time{font-size:32px}.phone.back{transform:translate(43px,8px) rotate(15deg)}.phone.front{transform:translate(-23px,0) rotate(-1deg)}.activation-main{padding:12px;min-height:235px}.price-card{padding:20px 18px;font-size:10px}.price-card strong{font-size:14px}.activation-side{grid-template-columns:1fr 1fr;gap:8px}.activation-card{padding:13px 12px;min-height:115px}.activation-card b{font-size:8px;padding:4px 8px}.activation-card p{font-size:10px}.business-banner{min-height:200px;padding:20px 17px}.business-copy{max-width:62%}.business-copy h3{font-size:16px}.business-copy p{font-size:9px}.paying-phone{right:8%;width:105px;height:210px;padding:30px 10px}.paying-phone strong{font-size:20px}.paynex-mark{width:90px}.benefit-row{grid-template-columns:1fr;gap:8px}.benefit{min-height:0;padding:15px}.benefit h3{margin:5px 0}.faq-list summary{font-size:11px;padding:14px 15px}.faq-list details p{font-size:10px;padding:0 15px 14px}.footer-grid{grid-template-columns:1fr 1fr;gap:20px}.footer-brand{font-size:22px}.footer-col h4{font-size:11px}.footer-col p{font-size:9px}.copyright{font-size:9px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"></div>
+<header class="site-header">
+<a class="brand" href="#inicio" aria-label="PayNex — início">
+<svg viewBox="0 0 40 40" aria-hidden="true"><path fill="#168cff" d="M2 5 15 12 15 20 2 13Z M18 13 38 24 38 33 18 22Z M2 18 11 23 11 31 2 26Z M15 25 38 38 24 38 15 33Z"/></svg>
+Pay<span>Nex</span>
+</a>
+<nav class="nav" id="main-nav" aria-label="Navegação principal">
+<a href="#inicio">Quem Somos</a><a href="#beneficios">Benefícios</a><a href="#negocio">Promoções</a><a href="#gateway">Integrações</a><a href="#faq">FAQ</a>
+</nav>
+<div class="header-actions"><a class="login" href="#faq">Login</a><a class="pill" href="#ativacao">Criar Conta</a><button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">☰</button></div>
+</header>
+<main id="inicio">
+<section class="hero">
+<div class="wrap">
+<span class="eyebrow">Gateway de pagamentos</span>
+<h1>Aumente suas vendas<br>com a PayNex</h1>
+<p class="hero-copy">O Gateway mais completo do mercado com soluções que aumentam seu ROI.</p>
+<div class="hero-actions"><a class="pill" href="#ativacao">Quero vender <span aria-hidden="true">›</span></a><a class="pill ghost" href="#beneficios">Saiba mais <span aria-hidden="true">›</span></a></div>
+<div class="dashboard-shell" aria-label="Prévia do painel de controle PayNex">
+<div class="dash">
+<aside class="dash-side"><div class="dash-logo"><span style="color:#168cff">▰</span> Pay<span style="font-weight:400">Nex</span></div><div class="dash-menu"><span>◆ &nbsp; Dashboard</span><span>▣ &nbsp; Financeiro　‹</span><span>◉ &nbsp; Produtos　‹</span><span>▤ &nbsp; Clientes</span><span>⚙ &nbsp; Configurações</span></div></aside>
+<div class="dash-main"><div class="dash-top"><span></span><span>● &nbsp; João Paulo　⌄</span></div>
+<svg class="dash-mark" viewBox="0 0 140 110" aria-hidden="true"><path fill="#247fe8" d="M8 4 49 27 49 51 8 28Z M58 29 131 70 131 96 58 55Z M8 43 36 59 36 83 8 67Z M49 70 131 116 80 116 49 98Z"/></svg>
+<div class="stats"><div class="stat green">Vendas hoje<strong>1.996</strong></div><div class="stat">Ticket médio<strong>R$ 26,90</strong></div><div class="stat red">Alertas de Charge<strong>0</strong></div><div class="stat">Vendas no Pix<strong>R$ 43.542,00</strong></div><div class="stat">Vendas no cartão<strong>R$ 66.563,52</strong></div><div class="stat">Vendas boleto<strong>R$ 38.223</strong></div></div>
+<div class="dash-bottom"><div>Histórico de faturamento<br><small>Acompanhe mês a mês o histórico de faturamento</small></div><div>Minha Carteira</div></div>
+</div></div></div>
+</div>
+</section>
+<section class="section" id="beneficios">
+<div class="wrap">
+<header class="section-head"><span class="eyebrow">PayNex</span><h2>Benefícios e Funcionalidades</h2><p>Entenda o porquê somos o melhor gateway</p></header>
+<div class="features">
+<article class="feature reveal"><span class="feature-icon">⌘</span><h3>API pronta para escalar com você</h3><p>Integração simplificada com documentação clara e recursos para sua operação crescer.</p></article>
+<article class="feature reveal"><span class="feature-icon">♜</span><h3>Segurança em primeiro lugar</h3><p>Criptografia avançada e camadas de proteção para manter suas transações seguras.</p></article>
+<article class="feature reveal"><span class="feature-icon">▤</span><h3>Taxas que fazem sentido</h3><p>Pix, boleto e cartão com condições pensadas para sua operação.</p></article>
+<article class="feature reveal"><span class="feature-icon">⇄</span><h3>Múltiplas moedas por operação</h3><p>Mais possibilidades para negociar e receber em diferentes mercados.</p></article>
+<article class="feature reveal"><span class="feature-icon">⌘</span><h3>Dashboard intuitivo para acompanhar tudo em tempo real</h3><p>Tenha uma visão clara dos resultados e acompanhe seus indicadores.</p></article>
+<article class="feature reveal"><span class="feature-icon">▣</span><h3>Gestão em um só lugar</h3><p>Organize pagamentos, clientes e informações em uma única plataforma.</p></article>
+</div>
+<div class="hero-actions"><a class="pill" href="#ativacao">Quero vender <span>›</span></a><a class="pill ghost" href="#gateway">Saiba mais <span>›</span></a></div>
+</div>
+</section>
+<section class="section" id="gateway">
+<div class="wrap split">
+<div class="split-copy"><span class="eyebrow">PayNex　›　Quem somos</span><h2>O gateway de pagamento mais completo do mercado.</h2><p>Escala sua operação usando a PayNex, oferecemos soluções integradas e seguras.</p><p>Suporte personalizado e relatórios detalhados, garantimos uma experiência de pagamento eficiente.</p><p>Escolha PayNex e simplifique suas transações financeiras!</p><div class="split-actions"><a class="pill" href="#ativacao">Quero vender <span>›</span></a><a class="pill ghost" href="#beneficios">Saiba mais <span>›</span></a></div></div>
+<div class="phones-stage" aria-label="Prévia do aplicativo PayNex em smartphones">
+<div class="phone back"><div class="phone-time">09:00</div><div class="phone-date">SEGUNDA, 07 MAIO</div><div class="phone-row"><i></i> Nova venda aprovada</div><div class="phone-row"><i></i> Transferência realizada</div><div class="phone-row"><i></i> Pagamento recebido</div><div class="phone-row"><i></i> Saldo atualizado</div><div class="phone-home"></div></div>
+<div class="phone front"><div class="phone-time">09:00</div><div class="phone-date">SEGUNDA, 07 MAIO</div><div class="phone-row"><i></i> Nova venda aprovada</div><div class="phone-row"><i></i> Nova venda aprovada</div><div class="phone-row"><i></i> Transferência realizada</div><div class="phone-row"><i></i> Pagamento recebido</div><div class="phone-row"><i></i> Saldo atualizado</div><div class="phone-home"></div></div>
+</div>
+</div>
+</section>
+<section class="section activation" id="ativacao">
+<div class="wrap">
+<header class="section-head"><span class="eyebrow">Com a PayNex, você só tem a ganhar</span><h2>Ao ativar sua conta agora, você garante</h2></header>
+<div class="activation-grid">
+<div class="activation-main">
+<div class="price-card"><strong>Taxas abaixo do mercado<br>desde o início</strong><ul><li>Pix: a partir de 0,85%</li><li>Cartão: taxas competitivas para sua operação</li><li>Boleto: condições especiais</li></ul></div>
+<svg class="brand-watermark" viewBox="0 0 420 300" aria-hidden="true"><path fill="#147eff" d="M15 15 130 78 130 145 15 80Z M155 85 405 225 405 295 155 155Z M15 120 95 165 95 232 15 187Z M130 195 405 350 235 350 130 290Z"/></svg>
+</div>
+<div class="activation-side">
+<article class="activation-card"><p style="color:#258dff;font-size:10px">Nós pagamos no seu mês</p><p>Acompanhamento técnico para a primeira integração via API</p></article>
+<article class="activation-card"><b>Monitoramento da ponte</b><p>Dashboard de gestão e operação incluso</p></article>
+<article class="activation-card"><b>Custo totalmente zero!</b><p>Múltiplos métodos liberados sem custo adicional</p></article>
+</div>
+</div>
+</div>
+</section>
+<section class="section business" id="negocio">
+<div class="wrap">
+<header class="section-head"><span class="eyebrow">PayNex</span><h2>Benefícios para elevar seu negócio</h2><p>PayNex, a plataforma focada em fazer você vender mais</p></header>
+<div class="business-banner">
+<div class="business-copy"><h3>Na compra, seu lead realiza o pagamento para PayNex.</h3><p>Garanta uma experiência de pagamento simples para seu cliente.</p><a class="pill" href="#ativacao">Quero vender <span>›</span></a></div>
+<div class="paying-phone"><small>Pagamento</small><strong>R$ 9.700</strong><small>PAYNEX</small></div>
+<svg class="paynex-mark" viewBox="0 0 140 110" aria-hidden="true"><path fill="#218cff" d="M8 4 49 27 49 51 8 28Z M58 29 131 70 131 96 58 55Z M8 43 36 59 36 83 8 67Z M49 70 131 116 80 116 49 98Z"/></svg>
+</div>
+<div class="benefit-row">
+<article class="benefit reveal"><span class="mini-icon">♙</span><h3>98% de Conversão</h3><p>Com um checkout focado em facilitar o processo de pagamento e reduzir etapas desnecessárias.</p></article>
+<article class="benefit reveal"><span class="mini-icon">🛒</span><h3>Checkout Interno</h3><p>O checkout interno permite que o cliente conclua a compra dentro do seu site ou aplicativo.</p></article>
+<article class="benefit reveal"><span class="mini-icon">↧</span><h3>Melhores taxas</h3><p>Nossas condições ajudam a manter lucros e uma operação mais eficiente para seu negócio.</p></article>
+</div>
+</div>
+</section>
+<section class="section faq" id="faq">
+<div class="wrap"><header class="section-head"><span class="eyebrow">FAQ</span><h2>Perguntas Frequentes</h2></header>
+<div class="faq-list">
+<details open><summary>Como funciona a ativação da conta?</summary><p>Você preenche seus dados, nossa equipe faz a validação básica e libera o acesso. Em até 24h.</p></details>
+<details><summary>Preciso pagar algo para começar?</summary><p>Consulte as condições de ativação e as taxas aplicáveis diretamente com a equipe PayNex.</p></details>
+<details><summary>Quais métodos de pagamento são suportados?</summary><p>A apresentação do PayNex destaca Pix, cartão e boleto. Consulte a equipe para confirmar as condições da sua operação.</p></details>
+<details><summary>Posso usar múltiplas moedas?</summary><p>A plataforma apresenta suporte a múltiplas moedas. As moedas disponíveis e condições devem ser confirmadas com a equipe.</p></details>
+<details><summary>Existe painel para acompanhar as transações?</summary><p>Sim. O painel PayNex reúne informações de vendas, indicadores e histórico para acompanhar a operação.</p></details>
+<details><summary>Como faço a integração via API?</summary><p>A PayNex apresenta integração via API e acompanhamento técnico na primeira integração. Entre em contato para receber a documentação.</p></details>
+</div></div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="wrap"><div class="footer-grid">
+<div><a class="footer-brand" href="#inicio"> <svg style="width:23px;height:23px;vertical-align:-3px" viewBox="0 0 40 40" aria-hidden="true"><path fill="#168cff" d="M2 5 15 12 15 20 2 13Z M18 13 38 24 38 33 18 22Z M2 18 11 23 11 31 2 26Z M15 25 38 38 24 38 15 33Z"/></svg> Pay<span>Nex</span></a><div class="footer-actions"><a class="login" href="#faq">Login</a><a class="pill" href="#ativacao">Criar Conta</a></div></div>
+<div class="footer-col"><h4>Acompanhe</h4><div class="socials"><span>◎</span><span>f</span><span>in</span></div></div>
+<div class="footer-col"><h4>Horários de Atendimento</h4><p>Segunda a sexta das 8h às 12h<br>14h às 18h</p></div>
+</div><p class="copyright">© 2026 PayNex. Todos os direitos reservados.</p></div>
+<div class="signature">⌕ &nbsp; Feito por Pedro Alves.</div>
+</footer>
+<script>
+(()=>{const b=document.querySelector('.menu-toggle'),n=document.querySelector('.nav');if(b&&n){b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');n.classList.toggle('open',open)});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');b.setAttribute('aria-expanded','false')}));}
+const items=document.querySelectorAll('.reveal');if(!('IntersectionObserver'in window)){items.forEach(x=>x.classList.add('visible'));return;}const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});items.forEach(x=>io.observe(x));
+document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
+})();
+</script>
+</body>
+</html>
