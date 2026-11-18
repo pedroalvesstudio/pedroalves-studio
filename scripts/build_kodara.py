@@ -115,7 +115,7 @@ for meta in soup.select('meta[name="description"],meta[property="og:description"
 for meta in soup.select('meta[property="og:title"],meta[name="twitter:title"]'):
     meta['content']='kodara — Desarrollo inteligente'
 # Distinct original symbol: interlocking code chevrons inside an open ring.
-symbol='''<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="2" width="44" height="44" rx="13" fill="#6BE7BD"/><path d="M19 15L10 24L19 33M29 15L38 24L29 33M27 11L21 37" fill="none" stroke="#0A1720" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/></svg>'''
+symbol='''<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="2" width="44" height="44" rx="13" fill="#167D8D"/><path d="M19 15L10 24L19 33M29 15L38 24L29 33M27 11L21 37" fill="none" stroke="#0B1116" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/></svg>'''
 brand='<span class="kodara-wordmark">'+symbol+'<span>kodara</span></span>'
 for navimg in soup.select('a.nav-logo img'):
     navimg.replace_with(BeautifulSoup(brand,'html.parser'))
@@ -148,8 +148,8 @@ def transform_hex(m):
         h,s,v=colorsys.rgb_to_hsv(*[x/255 for x in rgb])
         # Transform only oranges/reds of the original palette; neutral contrast preserved.
         if (h<.13 or h>.975) and s>.47 and v>.22:
-            nh=.443 # mint-green teal
-            ns=min(.90,max(.50,s))
+            nh=.524 # petrol-blue
+            ns=min(.84,max(.55,s))
             nrgb=colorsys.hsv_to_rgb(nh,ns,v)
             result='#'+''.join(f'{int(x*255):02x}' for x in nrgb)
             if len(raw)==8:result+=raw[6:]
@@ -168,22 +168,23 @@ for link in styles:
 # Keep original Webflow scripts to preserve native interactions and GSAP/Flowbase.
 style=soup.new_tag('style',id='kodara-brand-palette')
 style.string='''
-:root{--kodara-primary:#6BE7BD;--kodara-muted:#9AF4D6}
+:root{--kodara-primary:#167D8D;--kodara-muted:#73C3CF}
+html,body,.page-wrapper{background-color:#0B1116!important}
 .kodara-wordmark{display:inline-flex;gap:10px;align-items:center;color:#F7FBFC;font-family:Parkinsans,Inter,sans-serif;font-weight:700;letter-spacing:-.055em;font-size:25px;white-space:nowrap}
 .kodara-wordmark svg{width:37px;height:37px;display:block;flex-shrink:0}
 .nav-logo{display:inline-flex;align-items:center}
-.text-color-gradient-brand{background-image:linear-gradient(110deg,#6BE7BD 20%,#B1FCE6 85%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
-.badge-primary,.banner-badge{border-color:rgba(107,231,189,.5)!important;color:#85F4D1!important}
-.hero-background,.bg-lights{filter:hue-rotate(118deg) saturate(.83)}
+.text-color-gradient-brand{background-image:linear-gradient(110deg,#167D8D 20%,#72C0CC 85%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+.badge-primary,.banner-badge{border-color:rgba(22,125,141,.5)!important;color:#82CED8!important}
+.hero-background,.bg-lights{filter:hue-rotate(151deg) saturate(.83)}
 /* The original decorative graphics remain in place, with their warm hue shifted
-   to Kodara mint; no icon/card is replaced or removed. */
+   to Kodara petrol-blue; no icon/card is replaced or removed. */
 .statistic-icon,.statistic-light,.pricing-light,
 .light-front,.light-back,.integration-light,.testimonial-light,
 .cta-icon,.cta-bg-light,.footer-light,
-.section-large img.image-cover{filter:hue-rotate(118deg) saturate(.88)}
+.section-large img.image-cover{filter:hue-rotate(151deg) saturate(.88)}
 
-.hero-button-border,.circle-gradient{filter:hue-rotate(120deg)}
-::selection{background:#6BE7BD;color:#071820}
+.hero-button-border,.circle-gradient{filter:hue-rotate(151deg)}
+::selection{background:#167D8D;color:#0B1116}
 .w-webflow-badge{display:none!important}
 @media(max-width:479px){.kodara-wordmark{font-size:21px}.kodara-wordmark svg{width:32px;height:32px}}
 '''
