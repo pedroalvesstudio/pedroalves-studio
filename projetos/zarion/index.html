@@ -965,21 +965,33 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </style>
 
 
-<style id="latera-safari-work-icon-anchor-20261118">
-/* Anchor the four-step decorative mark to the grid intersection.
-   Safari and Chromium calculate static positions of absolute flex children differently. */
+<style id="latera-work-grid-center-fix-20261118">
+/* Keep the four-step badge centered in the cross between the cards.
+   The source SVG has a 135x244 viewBox, but its orange badge occupies
+   the first 135px; crop the decorative overflow so it cannot drift down. */
 @media (min-width: 992px) {
-  .section.works .work-wrap { position: relative !important; }
+  .section.works .work-wrap {
+    position: relative !important;
+  }
   .section.works .work-short-icon-wrap {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
     right: auto !important;
     bottom: auto !important;
+    width: 135px !important;
+    height: 135px !important;
     margin: 0 !important;
+    overflow: hidden !important;
     transform: translate(-50%, -50%) !important;
-    z-index: 3 !important;
+    z-index: 5 !important;
     pointer-events: none !important;
+  }
+  .section.works .work-short-icon-wrap img {
+    display: block !important;
+    width: 135px !important;
+    height: 244px !important;
+    max-width: none !important;
   }
 }
 </style>
