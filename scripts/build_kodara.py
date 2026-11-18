@@ -169,7 +169,32 @@ for link in styles:
 style=soup.new_tag('style',id='kodara-brand-palette')
 style.string='''
 :root{--kodara-primary:#167D8D;--kodara-muted:#73C3CF}
-html,body,.page-wrapper{background-color:#0B1116!important}
+html,body,.page-wrapper,section.section-large{background-color:#000000!important}
+body{color:#F7FBFC!important}
+/* Use a dark enough petrol-blue fill for white button lettering to remain readable. */
+.button-primary,.button-primary-large,.button-primary-small{
+ background-color:#167D8D!important;
+ color:#FFFFFF!important;
+ text-shadow:none!important;
+}
+.button-primary:hover,.button-primary-large:hover,.button-primary-small:hover{
+ background-color:#126575!important;
+ color:#FFFFFF!important;
+}
+.button-primary *,.button-primary-large *,.button-primary-small *,
+.button-primary:hover *,.button-primary-large:hover *,.button-primary-small:hover *{
+ color:#FFFFFF!important;
+ -webkit-text-fill-color:#FFFFFF!important;
+}
+.button-secondary,.button-tertiary,.button-secondary *,.button-tertiary *{
+ color:#F5FAFC!important
+}
+.hero-button-inner .subheading-small,.hero-button-inner .paragraph-small{
+ color:#FFFFFF!important;
+ -webkit-text-fill-color:#FFFFFF!important;
+ background:none!important;
+}
+
 .kodara-wordmark{display:inline-flex;gap:10px;align-items:center;color:#F7FBFC;font-family:Parkinsans,Inter,sans-serif;font-weight:700;letter-spacing:-.055em;font-size:25px;white-space:nowrap}
 .kodara-wordmark svg{width:37px;height:37px;display:block;flex-shrink:0}
 .nav-logo{display:inline-flex;align-items:center}
