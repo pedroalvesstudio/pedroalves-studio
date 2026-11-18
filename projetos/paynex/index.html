@@ -1048,6 +1048,99 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
   column-gap:0!important;
  }
 }
+
+/* Final checkout correction: restore the approved first screen and original compact card height */
+#negocio .checkout-motion-preview{
+ display:block!important;
+ min-height:0!important;
+ height:auto!important;
+ padding:24px 26px 22px!important;
+}
+#negocio .checkout-form-view{
+ display:block!important;
+ width:100%!important;
+ min-height:0!important;
+ padding:0!important;
+ opacity:1;
+}
+#negocio .checkout-form-view > *{grid-area:auto!important}
+#negocio .checkout-motion-preview .checkout-head{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ padding:0 0 14px!important;
+ margin:0 0 14px!important;
+ min-height:0!important;
+ border-bottom:1px solid #b8ccce!important;
+}
+#negocio .checkout-motion-preview .checkout-order{
+ display:flex!important;
+ flex-direction:row!important;
+ align-items:center!important;
+ justify-content:flex-start!important;
+ gap:18px!important;
+ flex-wrap:wrap!important;
+ min-height:0!important;
+ margin:0 0 18px!important;
+ padding:0!important;
+ border:0!important;
+ border-radius:0!important;
+ background:transparent!important;
+ box-shadow:none!important;
+}
+#negocio .checkout-motion-preview .checkout-order span{font-size:12px!important}
+#negocio .checkout-motion-preview .checkout-order strong{font-size:14px!important;font-weight:650!important}
+#negocio .checkout-motion-preview .checkout-label{
+ margin:0 0 10px!important;
+ font-size:16px!important;
+ line-height:1.25!important;
+}
+#negocio .checkout-motion-preview .checkout-methods{
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:flex-start!important;
+ gap:7px!important;
+ margin:0 0 14px!important;
+}
+#negocio .checkout-motion-preview .checkout-method{
+ min-height:22px!important;
+ padding:2px 0!important;
+ font-size:12px!important;
+}
+#negocio .checkout-motion-preview .checkout-demo-progress{
+ margin:0 0 12px!important;
+}
+#negocio .checkout-motion-preview .checkout-confirm{
+ display:flex!important;
+ flex-direction:row!important;
+ align-items:center!important;
+ justify-content:flex-start!important;
+ gap:12px!important;
+ flex-wrap:wrap!important;
+ min-height:0!important;
+ margin:0!important;
+}
+#negocio .checkout-motion-preview .checkout-button{
+ min-width:0!important;
+ min-height:40px!important;
+ padding:0 18px!important;
+ border-radius:9px!important;
+ font-size:12px!important;
+}
+#negocio .checkout-motion-preview .checkout-status{font-size:11px!important}
+#negocio .checkout-success-view{
+ padding:20px 24px!important;
+}
+@media(max-width:600px){
+ #negocio .checkout-motion-preview{min-height:0!important;padding:20px 18px!important}
+ #negocio .checkout-motion-preview .checkout-head{padding-bottom:12px!important;margin-bottom:12px!important}
+ #negocio .checkout-motion-preview .checkout-order{gap:8px 14px!important;margin-bottom:14px!important}
+ #negocio .checkout-motion-preview .checkout-label{font-size:15px!important}
+ #negocio .checkout-motion-preview .checkout-methods{gap:6px!important;margin-bottom:12px!important}
+ #negocio .checkout-motion-preview .checkout-confirm{align-items:flex-start!important;flex-direction:column!important;gap:9px!important}
+ #negocio .checkout-motion-preview .checkout-button{width:auto!important;min-width:0!important}
+ #negocio .checkout-success-view{padding:18px 14px!important}
+}
 </style>
 </head>
 <body>
