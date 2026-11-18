@@ -62,7 +62,10 @@ jobs:
                   assert "open" in (await mobile.locator(".nav").get_attribute("class") or ""), "Mobile menu did not open"
                   await mobile.locator(".nav a[href='#beneficios']").click()
                   assert await mobile.locator(".menu-toggle").get_attribute("aria-expanded") == "false", "Mobile menu did not close after navigation"
-                  mobile_width = await mobile.evaluate("({scroll:document.documentElement.scrollWidth, client:document.documentElement.clientWidth})")
+                  mobile_width = await mobile.evaluate("""() => {
+                    const offenders = [...document.querySelectorAll("body *")].map(el => ({tag:el.tagName, cls:el.className?.baseVal || el.className, left:Math.round(el.getBoundingClientRect().left), right:Math.round(el.getBoundingClientRect().right), width:Math.round(el.getBoundingClientRect().width)})).filter(x => x.right > innerWidth + 1 || x.left < -1).slice(0,15);
+                    return {scroll:document.documentElement.scrollWidth, client:document.documentElement.clientWidth, offenders};
+                  }""")
                   assert mobile_width["scroll"] <= mobile_width["client"] + 1, f"Mobile horizontal overflow: {mobile_width}"
                   await mobile.evaluate("window.scrollTo(0,0)")
                   await mobile.screenshot(path="/tmp/paynex-mobile.png", full_page=True)
