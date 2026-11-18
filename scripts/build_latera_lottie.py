@@ -51,16 +51,31 @@ for asset in obj.get("assets",[]):
         prefix,payload=p.split(",",1)
         im=Image.open(io.BytesIO(base64.b64decode(payload))).convert("RGBA")
         pixels=im.load();w,h=im.size
-        for yy in range(h):
-            for xx in range(w):
-                r,g,b,a=pixels[xx,yy]
-                if a==0:continue
-                d=max(b-r,b-g)
-                if d>12 and b>70:
-                    amount=min(1,(d-12)/52)
-                    lum=(r+g+b)/3
-                    tr=min(255,int(153+lum*.27));tg=min(255,int(50+lum*.30));tb=min(255,int(25+lum*.28))
-                    pixels[xx,yy]=(int(r+(tr-r)*amount),int(g+(tg-g)*amount),int(b+(tb-b)*amount),a)
+        if asset.get("id")=="image_22":
+            # Replace the *actual baked logo image* inside the Lottie,
+            # rather than overlaying a second brand outside the animation.
+            im=Image.new("RGBA",(136,40),(0,0,0,0))
+            draw=ImageDraw.Draw(im)
+            draw.rounded_rectangle((0,5,30,35),radius=9,fill=(205,104,64,255))
+            draw.line([(15,10),(15,30)],fill="white",width=2)
+            draw.line([(5,20),(25,20)],fill="white",width=2)
+            draw.polygon([(15,12),(18,17),(24,20),(18,23),(15,28),(12,23),(6,20),(12,17)],fill="white")
+            try:
+                font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",20)
+            except OSError:
+                font=ImageFont.load_default()
+            draw.text((36,7),"latera",font=font,fill=(33,26,23,255))
+        else:
+            for yy in range(h):
+                for xx in range(w):
+                    r,g,b,a=pixels[xx,yy]
+                    if a==0:continue
+                    d=max(b-r,b-g)
+                    if d>6 and b>45 and (b>r*1.07 or b>g*1.1):
+                        amount=min(1,(d-6)/33)
+                        lum=(r+g+b)/3
+                        tr=min(255,int(155+lum*.24));tg=min(255,int(51+lum*.27));tb=min(255,int(27+lum*.22))
+                        pixels[xx,yy]=(int(r+(tr-r)*amount),int(g+(tg-g)*amount),int(b+(tb-b)*amount),a)
         out=io.BytesIO();im.save(out,format="PNG",optimize=True)
         asset["p"]="data:image/png;base64,"+base64.b64encode(out.getvalue()).decode()
         stats["assets"]+=1
