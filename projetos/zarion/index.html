@@ -562,4 +562,61 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 .section.techo .techo-card-details{font-size:15px!important}
 }
 </style>
+<style id="latera-fullbleed-and-badges-20261118">
+/* Desktop carousel: viewport-edge to viewport-edge (no page gutters). */
+@media(min-width:992px){
+ .section.techo .techo-sticky-wrap{
+  width:100vw!important;
+  max-width:100vw!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:0!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+ }
+ .section.techo .techo-wrap,
+ .section.techo .techo-flex-wrap{
+  margin-left:0!important;
+  padding-left:0!important;
+  margin-right:0!important;
+  padding-right:0!important;
+  max-width:none!important;
+ }
+ .section.techo .techo-card{box-sizing:border-box!important}
+}
+/* Correct the actual second tap-card Webflow variant. */
+.tap-card.w-variant-d9a8e831-8dde-fe5a-1f95-a934f4274de9{
+ background-color:#f4ddd1!important;
+}
+.tap-card.w-variant-d9a8e831-8dde-fe5a-1f95-a934f4274de9 .work-card-dot{
+ background-color:#e9c3ad!important;
+}
+/* Bigger price labels. Second badge has no colored pill. */
+.section.pricing-c .popular-tag{
+ padding:10px 18px!important;
+ gap:9px!important;
+}
+.section.pricing-c .popular-tag .popular-text{
+ font-size:15px!important;
+ line-height:1.25!important;
+ font-weight:700!important;
+ background:none!important;
+}
+.section.pricing-c .popular-tag:not(.black){
+ background-color:#cd6840!important;
+}
+.section.pricing-c .popular-tag.black{
+ background:transparent!important;
+ box-shadow:none!important;
+ border:0!important;
+ padding:10px 2px!important;
+}
+.section.pricing-c .popular-tag.black .popular-text{
+ color:#703c2f!important;
+}
+.section.pricing-c .popular-tag.black .popular-icon{
+ filter:brightness(0) saturate(100%) invert(27%) sepia(21%) saturate(1262%) hue-rotate(330deg) brightness(90%)!important;
+}
+.section.pricing-c .pricing-a-single-title{font-size:34px!important;line-height:1.1!important}
+.section.pricing-c .pricing-a-card-details{font-size:18px!important;line-height:1.35!important}
+</style>
 <style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
