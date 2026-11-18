@@ -142,6 +142,26 @@ body{min-height:100vh;overflow-x:hidden}
 }
 @media(prefers-reduced-motion:reduce){.reforma-card.reveal{opacity:1;transform:none;transition:none}}
 
+
+/* Performance pass: replace expensive full-screen blur/compositing with static gradients */
+.background-stage:before{filter:none!important;animation:none!important;opacity:1;background:
+ radial-gradient(ellipse 34% 25% at 4% 82%,rgba(174,0,18,.19),transparent 72%),
+ radial-gradient(ellipse 28% 20% at 90% 20%,rgba(110,0,16,.13),transparent 74%)}
+.background-stage:after{display:none!important}
+.light-orb{filter:none!important;mix-blend-mode:normal!important}
+.light-orb.one{background:radial-gradient(circle,rgba(192,0,22,.17),transparent 68%)}
+.light-orb.two{background:radial-gradient(circle,rgba(119,0,15,.12),transparent 70%)}
+.light-beam{filter:none!important;box-shadow:0 0 10px 2px rgba(194,0,20,.1)}
+.site-header,.site-nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(9,9,9,.88)!important}
+.brand-ticker{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.reforma-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.reforma-section:before{filter:none!important;opacity:.65}
+.hero-portrait:before{filter:none!important;animation:none!important}
+@media(max-width:700px){
+ .background-stage:before{filter:none!important}
+ .light-orb{filter:none!important}
+}
+
 </style>
 </head>
 <body>
