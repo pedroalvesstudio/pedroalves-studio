@@ -190,6 +190,44 @@ body{min-height:100vh;overflow-x:hidden}
 }
 @media(prefers-reduced-motion:reduce){.mentor-section.reveal-on-scroll .mentor-wrap{opacity:1;transform:none;transition:none}}
 
+
+/* Section 04 — Plano de aceleração */
+.aceleracao-section{position:relative;z-index:1;padding:92px 0 104px;overflow:hidden;background:linear-gradient(180deg,rgba(12,10,10,.5),rgba(8,8,8,.96))}
+.aceleracao-wrap{width:min(1080px,88%);margin:0 auto}
+.aceleracao-head{max-width:660px;margin:0 auto 38px;text-align:center}
+.aceleracao-kicker{margin:0 0 15px;color:#e11a28;font:600 9px/1.6 "DM Sans",sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.aceleracao-head h2{margin:0 auto 15px;color:#f4efed;font:400 clamp(28px,3vw,39px)/1.2 "Manrope",sans-serif;letter-spacing:-.025em;text-wrap:balance}
+.aceleracao-head h2 span{color:#e11a28}
+.aceleracao-intro{max-width:48ch;margin:0 auto;color:rgba(245,237,234,.76);font:400 13px/1.85 "DM Sans",sans-serif;text-wrap:pretty}
+.aceleracao-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.aceleracao-item{position:relative;min-height:148px;padding:24px 24px 22px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(145deg,rgba(26,17,18,.78),rgba(12,11,11,.88));transition:border-color .25s,transform .25s}
+.aceleracao-item:hover{border-color:rgba(225,26,40,.55);transform:translateY(-3px)}
+.aceleracao-index{display:block;margin-bottom:21px;color:#e11a28;font:600 9px/1 "DM Sans",sans-serif;letter-spacing:.16em}
+.aceleracao-item h3{margin:0 0 9px;color:#f4efed;font:500 16px/1.4 "Manrope",sans-serif;letter-spacing:-.01em}
+.aceleracao-item p{margin:0;max-width:38ch;color:rgba(245,237,234,.7);font:400 11px/1.8 "DM Sans",sans-serif}
+.aceleracao-foot{margin:26px auto 0;text-align:center;color:rgba(238,229,226,.48);font:500 9px/1.7 "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase}
+.aceleracao-section.reveal-on-scroll .aceleracao-head,.aceleracao-section.reveal-on-scroll .aceleracao-item{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.aceleracao-section.reveal-on-scroll.is-visible .aceleracao-head,.aceleracao-section.reveal-on-scroll.is-visible .aceleracao-item{opacity:1;transform:translateY(0)}
+.aceleracao-section.reveal-on-scroll.is-visible .aceleracao-item:nth-child(2){transition-delay:.07s}
+.aceleracao-section.reveal-on-scroll.is-visible .aceleracao-item:nth-child(3){transition-delay:.14s}
+.aceleracao-section.reveal-on-scroll.is-visible .aceleracao-item:nth-child(4){transition-delay:.21s}
+.aceleracao-section.reveal-on-scroll.is-visible .aceleracao-item:nth-child(5){transition-delay:.28s}
+.aceleracao-section.reveal-on-scroll.is-visible .aceleracao-item:nth-child(6){transition-delay:.35s}
+@media(max-width:700px){
+ .aceleracao-section{padding:68px 0 78px}
+ .aceleracao-wrap{width:calc(100% - 44px)}
+ .aceleracao-head{margin-bottom:25px;text-align:left}
+ .aceleracao-head h2{font-size:28px;margin-left:0}
+ .aceleracao-intro{font-size:12px;line-height:1.85;margin-left:0}
+ .aceleracao-grid{grid-template-columns:1fr;gap:10px}
+ .aceleracao-item{min-height:0;padding:21px 22px}
+ .aceleracao-index{margin-bottom:13px}
+ .aceleracao-item h3{font-size:16px}
+ .aceleracao-item p{font-size:12px;max-width:52ch}
+ .aceleracao-foot{text-align:left;margin-top:20px}
+}
+@media(prefers-reduced-motion:reduce){.aceleracao-section.reveal-on-scroll .aceleracao-head,.aceleracao-section.reveal-on-scroll .aceleracao-item{opacity:1;transform:none;transition:none}}
+
 </style>
 </head>
 <body>
@@ -249,6 +287,25 @@ body{min-height:100vh;overflow-x:hidden}
 </aside>
 </div>
 </section>
+
+<section class="aceleracao-section reveal-on-scroll" id="solucoes" aria-labelledby="aceleracao-title">
+<div class="aceleracao-wrap">
+<header class="aceleracao-head">
+<p class="aceleracao-kicker">Método Contadora Elite</p>
+<h2 id="aceleracao-title">Um caminho para transformar seu escritório em um negócio <span>mais estratégico.</span></h2>
+<p class="aceleracao-intro">Uma jornada de desenvolvimento para organizar a operação, fortalecer sua atuação consultiva e crescer com mais clareza e consistência.</p>
+</header>
+<div class="aceleracao-grid">
+<article class="aceleracao-item"><span class="aceleracao-index">01 / DIREÇÃO</span><h3>Clareza de posicionamento</h3><p>Entenda o valor que seu escritório entrega e como comunicar seus diferenciais.</p></article>
+<article class="aceleracao-item"><span class="aceleracao-index">02 / GESTÃO</span><h3>Processos mais organizados</h3><p>Estruture rotinas e fluxos para reduzir improvisos e ganhar previsibilidade.</p></article>
+<article class="aceleracao-item"><span class="aceleracao-index">03 / VALOR</span><h3>Precificação estratégica</h3><p>Construa uma visão mais clara sobre custos, entregas e valor dos seus serviços.</p></article>
+<article class="aceleracao-item"><span class="aceleracao-index">04 / CLIENTES</span><h3>Relacionamento consultivo</h3><p>Fortaleça a comunicação com clientes e participe mais das decisões do negócio.</p></article>
+<article class="aceleracao-item"><span class="aceleracao-index">05 / CRESCIMENTO</span><h3>Desenvolvimento comercial</h3><p>Organize ações para atrair oportunidades alinhadas ao perfil do seu escritório.</p></article>
+<article class="aceleracao-item"><span class="aceleracao-index">06 / EVOLUÇÃO</span><h3>Rotina de melhoria contínua</h3><p>Acompanhe resultados, identifique gargalos e evolua com consistência.</p></article>
+</div>
+<p class="aceleracao-foot">Estratégia · Gestão · Posicionamento · Crescimento</p>
+</div>
+</section>
 </main>
 <script>
 (()=>{const b=document.querySelector(".menu-toggle"),n=document.querySelector(".site-nav");if(!b||!n)return;b.addEventListener("click",()=>{const open=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"Fechar menu":"Abrir menu");n.classList.toggle("is-open",open)});n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{n.classList.remove("is-open");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Abrir menu")}));})();
@@ -258,6 +315,9 @@ body{min-height:100vh;overflow-x:hidden}
 </script>
 <script>
 (()=>{const el=document.querySelector(".mentor-section.reveal-on-scroll");if(!el)return;if(!("IntersectionObserver"in window)){el.classList.add("is-visible");return;}const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){el.classList.add("is-visible");io.unobserve(el)}}),{threshold:.12});io.observe(el);})();
+</script>
+<script>
+(()=>{const el=document.querySelector(".aceleracao-section.reveal-on-scroll");if(!el)return;if(!("IntersectionObserver"in window)){el.classList.add("is-visible");return;}const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){el.classList.add("is-visible");io.unobserve(el)}}),{threshold:.1});io.observe(el);})();
 </script>
 </body>
 </html>
