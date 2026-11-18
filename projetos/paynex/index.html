@@ -83,6 +83,52 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .checkout-confirm small{font-size:10px;color:#185b9b}
 @media(max-width:800px){.business-feature-layout{grid-template-columns:1fr;gap:22px}.business-feature-layout .business-copy{max-width:100%}.checkout-preview{padding:22px}}
 @media(max-width:480px){.checkout-preview{padding:19px 16px}.checkout-head strong,.checkout-head b,.checkout-label{font-size:14px}.checkout-order,.checkout-methods{font-size:10px}.checkout-button{padding:10px 13px}.checkout-confirm small{font-size:9px}}
+
+/* Approved section 02-C — capability modules */
+.capability-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.capability{position:relative;min-height:178px;padding:22px 20px 20px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(145deg,rgba(16,39,60,.96),rgba(8,19,30,.96));overflow:hidden}
+.capability:after{content:"";position:absolute;width:100px;height:100px;right:-40px;top:-45px;border-radius:50%;background:rgba(35,140,255,.08);filter:blur(12px)}
+.capability-index{font:800 21px Manrope;color:#3297ff;display:block;margin-bottom:13px}
+.capability-type{font-size:8px;letter-spacing:.15em;color:#7896b2}
+.capability h3{font:700 14px/1.35 Manrope;color:#e6f1fb;margin:9px 0 7px}
+.capability p{font-size:10px;line-height:1.6;color:#91a4b8;margin:0}
+@media(max-width:760px){.capability-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.capability-grid{grid-template-columns:1fr}.capability{min-height:0}}
+
+/* Approved section 03-A — single mobile app mockup */
+.gateway-phone-layout{grid-template-columns:.95fr 1.05fr;gap:35px}
+.gateway-app-stage{display:flex;justify-content:center;align-items:center;min-height:430px;position:relative;background:radial-gradient(ellipse at 50% 55%,rgba(24,105,220,.27),transparent 65%)}
+.gateway-app-phone{position:relative;width:220px;min-height:390px;padding:30px 17px 22px;border:6px solid #334f79;border-radius:32px;background:linear-gradient(155deg,#244dc4 0%,#102b78 58%,#091a3a 100%);box-shadow:0 25px 55px rgba(0,0,0,.4),0 0 55px rgba(26,112,255,.18);color:#f4f8ff}
+.gateway-app-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:66px;height:13px;border-radius:12px;background:#09152d}
+.gateway-app-status{font-size:9px;display:flex;justify-content:space-between;margin:3px 0 20px}
+.gateway-app-date{font-size:8px;letter-spacing:.08em;color:#b6c9f6}
+.gateway-app-greeting{font:700 15px Manrope;margin-top:18px}
+.gateway-app-balance-label{font-size:9px;color:#b6c9f6;margin-top:18px}
+.gateway-app-balance{font:800 24px Manrope;display:block;margin:5px 0 18px}
+.gateway-app-action{font-size:10px;background:rgba(222,237,255,.14);border:1px solid rgba(222,237,255,.12);padding:10px;border-radius:8px;margin:7px 0}
+.gateway-app-activity{font-size:8px;letter-spacing:.13em;color:#b6c9f6;margin:18px 0 7px}
+.gateway-app-row{display:flex;align-items:center;gap:6px;font-size:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.gateway-app-row i{width:6px;height:6px;border-radius:50%;background:#55d6a1;flex:none}
+.gateway-app-row span{flex:1}
+.gateway-app-row b{font-size:8px;color:#a8d9ff}
+.gateway-app-home{width:48px;height:4px;background:rgba(255,255,255,.65);border-radius:5px;margin:13px auto 0}
+@media(max-width:760px){.gateway-phone-layout{grid-template-columns:1fr}.gateway-app-stage{min-height:400px}.gateway-app-phone{width:205px}}
+
+/* Approved section 04-C — asymmetric benefits bento */
+.activation-bento{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:repeat(2,minmax(145px,auto));gap:12px}
+.activation-price-tile{grid-row:span 2;position:relative;overflow:hidden;padding:clamp(22px,3vw,34px);border-radius:13px;background:#f1f6fc;color:#185a98;box-shadow:0 18px 45px rgba(0,0,0,.22)}
+.activation-price-tile:after{content:"";position:absolute;width:210px;height:210px;border:1px solid rgba(29,119,206,.14);border-radius:50%;right:-100px;bottom:-105px;box-shadow:0 0 0 22px rgba(29,119,206,.04),0 0 0 45px rgba(29,119,206,.03)}
+.activation-tile-label{font-size:8px;letter-spacing:.14em;color:#397fb9}
+.activation-price-tile h3{font:700 17px/1.3 Manrope;margin:13px 0 7px;max-width:230px}
+.activation-rate{display:block;font:800 clamp(42px,5vw,58px) Manrope;letter-spacing:-2px;margin:4px 0 12px}
+.activation-price-tile ul{padding-left:15px;margin:0;font-size:10px;line-height:2;color:#416b91}
+.activation-benefit-tile{position:relative;padding:22px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(145deg,#10283e,#0a1724);display:flex;flex-direction:column;justify-content:flex-end;min-height:145px}
+.activation-tile-icon{position:absolute;top:18px;left:20px;font-size:22px;color:#3297ff}
+.activation-benefit-tile h3{font:700 14px Manrope;color:#e6f1fb;margin:0 0 7px}
+.activation-benefit-tile p{font-size:10px;line-height:1.55;color:#91a4b8;margin:0}
+.activation-zero{grid-column:2/4;background:linear-gradient(110deg,#102b43,#0d1c2c)}
+@media(max-width:700px){.activation-bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}.activation-price-tile{grid-column:span 2;grid-row:auto;min-height:260px}.activation-zero{grid-column:span 2}}
+@media(max-width:420px){.activation-bento{grid-template-columns:1fr}.activation-price-tile,.activation-zero{grid-column:auto}}
 </style>
 </head>
 <body>
@@ -114,39 +160,38 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <section class="section" id="beneficios">
 <div class="wrap">
 <header class="section-head"><span class="eyebrow">PayNex</span><h2>Benefícios e Funcionalidades</h2><p>Entenda o porquê somos o melhor gateway</p></header>
-<div class="features">
-<article class="feature reveal"><span class="feature-icon">⌘</span><h3>API pronta para escalar com você</h3><p>Integração simplificada com documentação clara e recursos para sua operação crescer.</p></article>
-<article class="feature reveal"><span class="feature-icon">♜</span><h3>Segurança em primeiro lugar</h3><p>Criptografia avançada e camadas de proteção para manter suas transações seguras.</p></article>
-<article class="feature reveal"><span class="feature-icon">▤</span><h3>Taxas que fazem sentido</h3><p>Pix, boleto e cartão com condições pensadas para sua operação.</p></article>
-<article class="feature reveal"><span class="feature-icon">⇄</span><h3>Múltiplas moedas por operação</h3><p>Mais possibilidades para negociar e receber em diferentes mercados.</p></article>
-<article class="feature reveal"><span class="feature-icon">⌘</span><h3>Dashboard intuitivo para acompanhar tudo em tempo real</h3><p>Tenha uma visão clara dos resultados e acompanhe seus indicadores.</p></article>
-<article class="feature reveal"><span class="feature-icon">▣</span><h3>Gestão em um só lugar</h3><p>Organize pagamentos, clientes e informações em uma única plataforma.</p></article>
+<div class="capability-grid">
+<article class="capability reveal"><span class="capability-index">01</span><span class="capability-type">API</span><h3>API pronta para escalar com você</h3><p>Integração simplificada com documentação clara e recursos para sua operação crescer.</p></article>
+<article class="capability reveal"><span class="capability-index">02</span><span class="capability-type">SECURITY</span><h3>Segurança em primeiro lugar</h3><p>Criptografia avançada e camadas de proteção para manter suas transações seguras.</p></article>
+<article class="capability reveal"><span class="capability-index">03</span><span class="capability-type">PRICING</span><h3>Taxas que fazem sentido</h3><p>Pix, boleto e cartão com condições pensadas para sua operação.</p></article>
+<article class="capability reveal"><span class="capability-index">04</span><span class="capability-type">GLOBAL</span><h3>Múltiplas moedas por operação</h3><p>Mais possibilidades para negociar e receber em diferentes mercados.</p></article>
+<article class="capability reveal"><span class="capability-index">05</span><span class="capability-type">ANALYTICS</span><h3>Dashboard intuitivo para acompanhar tudo em tempo real</h3><p>Tenha uma visão clara dos resultados e acompanhe seus indicadores.</p></article>
+<article class="capability reveal"><span class="capability-index">06</span><span class="capability-type">MANAGEMENT</span><h3>Gestão em um só lugar</h3><p>Organize pagamentos, clientes e informações em uma única plataforma.</p></article>
 </div>
 <div class="hero-actions"><a class="pill" href="#ativacao">Quero vender <span>›</span></a><a class="pill ghost" href="#gateway">Saiba mais <span>›</span></a></div>
 </div>
 </section>
 <section class="section" id="gateway">
-<div class="wrap split">
+<div class="wrap split gateway-phone-layout">
 <div class="split-copy"><span class="eyebrow">PayNex　›　Quem somos</span><h2>O gateway de pagamento mais completo do mercado.</h2><p>Escala sua operação usando a PayNex, oferecemos soluções integradas e seguras.</p><p>Suporte personalizado e relatórios detalhados, garantimos uma experiência de pagamento eficiente.</p><p>Escolha PayNex e simplifique suas transações financeiras!</p><div class="split-actions"><a class="pill" href="#ativacao">Quero vender <span>›</span></a><a class="pill ghost" href="#beneficios">Saiba mais <span>›</span></a></div></div>
-<div class="phones-stage" aria-label="Prévia do aplicativo PayNex em smartphones">
-<div class="phone back"><div class="phone-time">09:00</div><div class="phone-date">SEGUNDA, 07 MAIO</div><div class="phone-row"><i></i> Nova venda aprovada</div><div class="phone-row"><i></i> Transferência realizada</div><div class="phone-row"><i></i> Pagamento recebido</div><div class="phone-row"><i></i> Saldo atualizado</div><div class="phone-home"></div></div>
-<div class="phone front"><div class="phone-time">09:00</div><div class="phone-date">SEGUNDA, 07 MAIO</div><div class="phone-row"><i></i> Nova venda aprovada</div><div class="phone-row"><i></i> Nova venda aprovada</div><div class="phone-row"><i></i> Transferência realizada</div><div class="phone-row"><i></i> Pagamento recebido</div><div class="phone-row"><i></i> Saldo atualizado</div><div class="phone-home"></div></div>
+<div class="gateway-app-stage" aria-label="Prévia do aplicativo PayNex em smartphone">
+<div class="gateway-app-phone">
+<div class="gateway-app-notch"></div><div class="gateway-app-status">09:00 <span>●●●</span></div><div class="gateway-app-date">SEGUNDA, 07 MAIO</div>
+<div class="gateway-app-greeting">Olá, João Paulo</div><div class="gateway-app-balance-label">Saldo disponível</div><strong class="gateway-app-balance">R$ 12.840,90</strong>
+<div class="gateway-app-action">＋　Adicionar saldo</div><div class="gateway-app-action">↗　Transferir</div>
+<div class="gateway-app-activity">ATIVIDADE RECENTE</div><div class="gateway-app-row"><i></i><span>Nova venda aprovada</span><b>+ R$ 390</b></div><div class="gateway-app-row"><i></i><span>Pagamento recebido</span><b>+ R$ 240</b></div><div class="gateway-app-row"><i></i><span>Saldo atualizado</span><b>✓</b></div><div class="gateway-app-home"></div>
+</div>
 </div>
 </div>
 </section>
 <section class="section activation" id="ativacao">
 <div class="wrap">
 <header class="section-head"><span class="eyebrow">Com a PayNex, você só tem a ganhar</span><h2>Ao ativar sua conta agora, você garante</h2></header>
-<div class="activation-grid">
-<div class="activation-main">
-<div class="price-card"><strong>Taxas abaixo do mercado<br>desde o início</strong><ul><li>Pix: a partir de 0,85%</li><li>Cartão: taxas competitivas para sua operação</li><li>Boleto: condições especiais</li></ul></div>
-<svg class="brand-watermark" viewBox="0 0 420 300" aria-hidden="true"><path fill="#147eff" d="M15 15 130 78 130 145 15 80Z M155 85 405 225 405 295 155 155Z M15 120 95 165 95 232 15 187Z M130 195 405 350 235 350 130 290Z"/></svg>
-</div>
-<div class="activation-side">
-<article class="activation-card"><p style="color:#258dff;font-size:10px">Nós pagamos no seu mês</p><p>Acompanhamento técnico para a primeira integração via API</p></article>
-<article class="activation-card"><b>Monitoramento da ponte</b><p>Dashboard de gestão e operação incluso</p></article>
-<article class="activation-card"><b>Custo totalmente zero!</b><p>Múltiplos métodos liberados sem custo adicional</p></article>
-</div>
+<div class="activation-bento">
+<div class="activation-price-tile"><span class="activation-tile-label">CONDIÇÕES ESPECIAIS PAYNEX</span><h3>Taxas abaixo do mercado desde o início</h3><strong class="activation-rate">0,85%</strong><ul><li>Pix: a partir de 0,85%</li><li>Cartão: taxas competitivas para sua operação</li><li>Boleto: condições especiais</li></ul></div>
+<article class="activation-benefit-tile"><span class="activation-tile-icon">↗</span><h3>Nós pagamos no seu mês</h3><p>Acompanhamento técnico para a primeira integração via API</p></article>
+<article class="activation-benefit-tile"><span class="activation-tile-icon">▥</span><h3>Monitoramento da ponte</h3><p>Dashboard de gestão e operação incluso</p></article>
+<article class="activation-benefit-tile activation-zero"><span class="activation-tile-icon">＋</span><h3>Custo totalmente zero!</h3><p>Múltiplos métodos liberados sem custo adicional</p></article>
 </div>
 </div>
 </section>
