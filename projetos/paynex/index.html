@@ -129,6 +129,30 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .activation-zero{grid-column:2/4;background:linear-gradient(110deg,#102b43,#0d1c2c)}
 @media(max-width:700px){.activation-bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}.activation-price-tile{grid-column:span 2;grid-row:auto;min-height:260px}.activation-zero{grid-column:span 2}}
 @media(max-width:420px){.activation-bento{grid-template-columns:1fr}.activation-price-tile,.activation-zero{grid-column:auto}}
+
+/* Approved hero 01-B — product ecosystem: desktop dashboard + mobile app */
+.hero-product-b{text-align:center;padding-bottom:24px;background:radial-gradient(ellipse at 50% 65%,rgba(20,95,170,.12),transparent 58%)}
+.hero-product-b .hero-actions{margin-bottom:28px}
+.product-stage{position:relative;display:flex;align-items:center;justify-content:center;gap:0;width:min(1050px,100%);margin:0 auto;min-height:390px;padding:10px 70px 0 0}
+.product-dashboard{width:100%;max-width:850px;aspect-ratio:1.78/1;margin:0;flex:1;position:relative;z-index:1}
+.product-dashboard .dash{height:100%}
+.product-dashboard .dash-main{height:100%}
+.product-dashboard .dash-bottom{display:flex}
+.product-phone{position:absolute;z-index:3;right:0;top:50%;transform:translateY(-43%);width:190px;min-height:350px;padding:25px 14px 18px;border:5px solid #405b7b;border-radius:28px;background:linear-gradient(155deg,#1d3e83 0%,#10254f 58%,#09172d 100%);box-shadow:0 24px 55px rgba(0,0,0,.52),0 0 38px rgba(31,126,255,.16);text-align:left;color:#f4f8ff}
+.product-phone-notch{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:62px;height:10px;border-radius:0 0 9px 9px;background:#071326}
+.product-phone-status{display:flex;justify-content:space-between;font-size:8px;color:#c5d7f0;margin-bottom:16px}
+.product-phone-brand{font:800 15px Manrope;color:#fff}.product-phone-brand span{font-weight:400;color:#c9d9eb}
+.product-phone-greeting{font:700 13px Manrope;margin:17px 0 5px}
+.product-phone-balance-label{font-size:8px;color:#a9c0dc}
+.product-phone-balance{padding:12px 10px;margin:10px 0;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);border-radius:10px}
+.product-phone-balance small{display:block;font-size:8px;color:#b7cce4}
+.product-phone-balance strong{display:block;font:800 23px Manrope;margin-top:4px}
+.product-phone-item{display:flex;justify-content:space-between;gap:6px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:8px;color:#b9cce0}
+.product-phone-item b{color:#fff;font-size:8px}
+.product-phone-footer{font-size:7px;color:#92afd0;margin-top:12px;text-align:center}
+.product-phone-home{width:43px;height:3px;background:rgba(255,255,255,.65);border-radius:4px;margin:10px auto 0}
+@media(max-width:760px){.product-stage{min-height:0;padding:0 0 0 0;display:block}.product-dashboard{width:100%;aspect-ratio:1.4/1}.product-phone{position:relative;top:auto;right:auto;transform:none;width:180px;min-height:320px;margin:-35px 8px 0 auto}.hero-product-b .hero-actions{margin-bottom:20px}.product-dashboard .dash-side{display:none}}
+@media(max-width:460px){.product-dashboard{aspect-ratio:1.12/1}.product-dashboard .stats{grid-template-columns:repeat(2,1fr)}.product-dashboard .dash-bottom{font-size:8px}}
 </style>
 </head>
 <body>
@@ -141,20 +165,33 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <div class="header-actions"><a class="login" href="#faq">Login</a><a class="pill" href="#ativacao">Criar Conta</a><button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">☰</button></div>
 </header>
 <main id="inicio">
-<section class="hero">
+<section class="hero hero-product-b">
 <div class="wrap">
 <span class="eyebrow">Gateway de pagamentos</span>
 <h1>Aumente suas vendas<br>com a PayNex</h1>
 <p class="hero-copy">O Gateway mais completo do mercado com soluções que aumentam seu ROI.</p>
 <div class="hero-actions"><a class="pill" href="#ativacao">Quero vender <span aria-hidden="true">›</span></a><a class="pill ghost" href="#beneficios">Saiba mais <span aria-hidden="true">›</span></a></div>
-<div class="dashboard-shell" aria-label="Prévia do painel de controle PayNex">
+<div class="product-stage">
+<div class="dashboard-shell product-dashboard" aria-label="Prévia do painel de controle PayNex">
 <div class="dash">
 <aside class="dash-side"><div class="dash-logo"><span style="color:#168cff">▰</span> Pay<span style="font-weight:400">Nex</span></div><div class="dash-menu"><span>◆ &nbsp; Dashboard</span><span>▣ &nbsp; Financeiro　‹</span><span>◉ &nbsp; Produtos　‹</span><span>▤ &nbsp; Clientes</span><span>⚙ &nbsp; Configurações</span></div></aside>
-<div class="dash-main"><div class="dash-top"><span></span><span>● &nbsp; João Paulo　⌄</span></div>
-<svg class="dash-mark" viewBox="0 0 140 110" aria-hidden="true"><path fill="#247fe8" d="M8 4 49 27 49 51 8 28Z M58 29 131 70 131 96 58 55Z M8 43 36 59 36 83 8 67Z M49 70 131 116 80 116 49 98Z"/></svg>
+<div class="dash-main"><div class="dash-top"><span>Visão geral da operação</span><span>● &nbsp; João Paulo　⌄</span></div>
 <div class="stats"><div class="stat green">Vendas hoje<strong>1.996</strong></div><div class="stat">Ticket médio<strong>R$ 26,90</strong></div><div class="stat red">Alertas de Charge<strong>0</strong></div><div class="stat">Vendas no Pix<strong>R$ 43.542,00</strong></div><div class="stat">Vendas no cartão<strong>R$ 66.563,52</strong></div><div class="stat">Vendas boleto<strong>R$ 38.223</strong></div></div>
 <div class="dash-bottom"><div>Histórico de faturamento<br><small>Acompanhe mês a mês o histórico de faturamento</small></div><div>Minha Carteira</div></div>
 </div></div></div>
+<div class="product-phone" aria-label="Prévia ilustrativa do aplicativo PayNex">
+<div class="product-phone-notch"></div><div class="product-phone-status"><span>09:00</span><span>●●●</span></div>
+<div class="product-phone-brand">Pay<span>Nex</span></div><div class="product-phone-greeting">Olá, João Paulo</div>
+<div class="product-phone-balance-label">Resumo da sua operação</div>
+<div class="product-phone-balance"><small>Vendas hoje</small><strong>1.996</strong></div>
+<div class="product-phone-item"><span>Ticket médio</span><b>R$ 26,90</b></div>
+<div class="product-phone-item"><span>Vendas no Pix</span><b>R$ 43.542,00</b></div>
+<div class="product-phone-item"><span>Vendas no cartão</span><b>R$ 66.563,52</b></div>
+<div class="product-phone-item"><span>Vendas boleto</span><b>R$ 38.223</b></div>
+<div class="product-phone-footer">PayNex · Gestão de pagamentos</div>
+<div class="product-phone-home"></div>
+</div>
+</div>
 </div>
 </section>
 <section class="section" id="beneficios">
