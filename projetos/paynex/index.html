@@ -484,7 +484,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .product-dashboard-b.is-live .product-kpi:nth-child(4){transition-delay:.36s}
 .product-dashboard-b.is-live .product-kpi:nth-child(5){transition-delay:.44s}
 .product-dashboard-b.is-live .product-kpi:nth-child(6){transition-delay:.52s}
-.product-chart-plot svg path:last-child{stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 2s cubic-bezier(.22,.7,.2,1)}
+.product-chart-plot svg path:last-child{stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 5s cubic-bezier(.18,.62,.22,1)}
 .product-chart-plot svg path:first-of-type{opacity:0;transition:opacity 1.2s .8s ease}
 .product-dashboard-b.is-live .product-chart-plot svg path:last-child{stroke-dashoffset:0}
 .product-dashboard-b.is-live .product-chart-plot svg path:first-of-type{opacity:1}
@@ -638,7 +638,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <div class="product-kpi"><small>Vendas boleto</small><strong data-count-value="38223" data-count-kind="currency0">R$ 38.223</strong><em>Volume processado</em></div>
 </div>
 <div class="product-dash-panels">
-<div class="product-dash-panel product-revenue"><div class="product-panel-head"><div><small>DESEMPENHO</small><h4>Histórico de faturamento</h4></div><span>Ver relatório ↗</span></div><div class="product-chart"><div class="product-chart-y"><span>50k</span><span>35k</span><span>20k</span><span>0</span></div><div class="product-chart-plot"><div class="product-chart-grid"></div><svg viewBox="0 0 520 150" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="pnChartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#258cff" stop-opacity=".35"/><stop offset="1" stop-color="#258cff" stop-opacity="0"/></linearGradient></defs><path d="M0 120 C35 110 45 90 82 98 S130 116 160 76 S210 85 245 64 S290 88 325 53 S375 61 410 37 S465 47 520 12 L520 150 L0 150Z" fill="url(#pnChartFill)"/><path d="M0 120 C35 110 45 90 82 98 S130 116 160 76 S210 85 245 64 S290 88 325 53 S375 61 410 37 S465 47 520 12" fill="none" stroke="#3b9cff" stroke-width="3" vector-effect="non-scaling-stroke"/></svg><div class="product-chart-x"><span>01</span><span>05</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30</span></div></div></div></div>
+<div class="product-dash-panel product-revenue"><div class="product-panel-head"><div><small>DESEMPENHO</small><h4>Histórico de faturamento</h4></div><span>Ver relatório ↗</span></div><div class="product-chart"><div class="product-chart-y"><span>50k</span><span>35k</span><span>20k</span><span>0</span></div><div class="product-chart-plot"><div class="product-chart-grid"></div><svg viewBox="0 0 520 150" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="pnChartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#258cff" stop-opacity=".35"/><stop offset="1" stop-color="#258cff" stop-opacity="0"/></linearGradient></defs><path d="M0 105 C24 101 35 78 62 82 S96 111 125 92 S155 55 185 68 S215 94 245 72 S280 48 310 62 S340 89 370 64 S400 34 430 48 S470 69 495 42 S510 29 520 36 L520 150 L0 150Z" fill="url(#pnChartFill)"/><path d="M0 105 C24 101 35 78 62 82 S96 111 125 92 S155 55 185 68 S215 94 245 72 S280 48 310 62 S340 89 370 64 S400 34 430 48 S470 69 495 42 S510 29 520 36" fill="none" stroke="#3b9cff" stroke-width="3" vector-effect="non-scaling-stroke"/></svg><div class="product-chart-x"><span>01</span><span>05</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30</span></div></div></div></div>
 <div class="product-dash-panel product-activity"><div class="product-panel-head"><div><small>ACOMPANHAMENTO</small><h4>Atividade recente</h4></div><span>•••</span></div><div class="product-activity-row"><i class="ok">✓</i><div><b>Venda aprovada</b><small>Pagamento confirmado</small></div><strong>+ R$ 390</strong></div><div class="product-activity-row"><i class="blue">↗</i><div><b>Pagamento recebido</b><small>Transação processada</small></div><strong>+ R$ 240</strong></div><div class="product-activity-row"><i class="purple">↻</i><div><b>Histórico atualizado</b><small>Dados sincronizados</small></div><strong>Agora</strong></div></div>
 </div>
 <div class="product-dash-foot"><span>● Sistema operacional</span><span>Atualizado em tempo real</span><span>Minha Carteira　↗</span></div>
@@ -788,6 +788,15 @@ const activateProductMotion=el=>{
  if(!el||el.classList.contains('is-live')||!visitorHasScrolled)return;
  el.classList.add('is-live');
  countUp(el);
+ if(el===dashboard){
+  const line=el.querySelector('.product-chart-plot svg path:last-child');
+  if(line){
+   const length=line.getTotalLength();
+   line.style.strokeDasharray=length;
+   line.style.strokeDashoffset=length;
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{line.style.strokeDashoffset='0'}));
+  }
+ }
 };
 const checkVisibleProducts=()=>{
  if(!visitorHasScrolled)return;
