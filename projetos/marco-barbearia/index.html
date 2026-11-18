@@ -112,6 +112,16 @@ body{background:#000!important}
   .hero-content{transform:translateY(0);padding-bottom:42px}
   .hero-bottom p{max-width:350px;text-wrap:pretty}
 }
+
+/* FINAL HEADER GLASS OVERRIDE — transparent blur, never solid black */
+.site-header{
+  background:rgba(12,13,12,.20)!important;
+  background-color:rgba(12,13,12,.20)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(145%)!important;
+  backdrop-filter:blur(24px) saturate(145%)!important;
+  border-bottom:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:0 6px 24px rgba(0,0,0,.10)!important;
+}
 </style>
 </head>
 <body>
