@@ -1256,6 +1256,77 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .gateway-motion-stage.is-live .gateway-app-phone{
  box-shadow:0 8px 22px -10px rgba(0,0,0,.23),0 0 26px rgba(22,143,156,.07)!important;
 }
+
+/* PALETTE TEST — premium blue graphite cards, preserving the approved near-black page background */
+:root{
+ --card-graphite:#101c29;
+ --card-blue:#152638;
+ --card-blue-hover:#1b3044;
+ --card-border:rgba(132,169,199,.19);
+ --accent-cyan:#8dd8df;
+}
+.feature,
+#negocio .business-motion-benefits .benefit,
+#beneficios .capability,
+#ativacao .activation-benefit-tile{
+ background:linear-gradient(145deg,#152638 0%,#101c29 100%)!important;
+ border-color:var(--card-border)!important;
+}
+.feature:hover,
+#negocio .business-motion-benefits .benefit:hover,
+#beneficios .capability:hover,
+#ativacao .activation-benefit-tile:hover{
+ background:linear-gradient(145deg,#1b3044 0%,#152638 100%)!important;
+ border-color:rgba(141,216,223,.32)!important;
+}
+.feature h3,
+#negocio .business-motion-benefits .benefit h3,
+#beneficios .capability h3,
+#ativacao .activation-benefit-tile h3{
+ color:#d9e8f2!important;
+}
+.feature p,
+#negocio .business-motion-benefits .benefit p,
+#beneficios .capability p,
+#ativacao .activation-benefit-tile p{
+ color:#a8b8c8!important;
+}
+.feature-icon,
+#negocio .business-motion-benefits .benefit .mini-icon,
+#beneficios .capability-index,
+#ativacao .activation-tile-icon{
+ color:var(--accent-cyan)!important;
+}
+.stat,
+.product-kpi,
+.product-dash-panel{
+ background:linear-gradient(145deg,#172b3d 0%,#122234 100%)!important;
+ border-color:rgba(132,169,199,.2)!important;
+}
+.product-dashboard-b .product-kpi,
+.product-dashboard-b .product-dash-panel{
+ color:#e0eaf2!important;
+}
+.product-dashboard-b .product-kpi small,
+.product-dashboard-b .product-dash-panel small{
+ color:#9fb2c4!important;
+}
+.product-phone-b .product-phone-screen,
+.gateway-app-phone-premium .gateway-app-screen{
+ background-color:#14263a!important;
+}
+.dash-bottom div{
+ background:linear-gradient(145deg,#152638,#101c29)!important;
+ border-color:rgba(132,169,199,.18)!important;
+}
+#beneficios .capability:after{
+ background:rgba(99,153,190,.09)!important;
+}
+@media(hover:hover){
+ .feature:hover,.product-kpi:hover,.product-dash-panel:hover{
+  border-color:rgba(141,216,223,.3)!important;
+ }
+}
 </style>
 </head>
 <body>
