@@ -506,7 +506,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
      const index=Math.min(maxIndex,Math.max(0,Math.round(self.progress*maxIndex)));
      if(index===lastIndex)return;
      lastIndex=index;
-     GS.to(rail,{x:-index*step,duration:0.52,ease:'power2.out',overwrite:true});
+     GS.to(rail,{x:-index*step,duration:1.35,ease:'power2.inOut',overwrite:true});
     },
     onRefresh:self=>{
      measure();
@@ -836,4 +836,45 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 </script>
+<style id="latera-case-centering-slow-carousel-20261118">
+@media(min-width:992px){
+ /* Give each step more wheel travel without recreating the huge blank gap. */
+ .section.techo .techo-wrapper{height:190vh!important}
+ /* Keep all six case mockups in one straight, centered vertical column. */
+ .section.casesh .case-right-wrap{
+  width:100%!important;
+  max-width:694px!important;
+  margin:0 auto!important;
+  min-width:0!important;
+ }
+ .section.casesh .case-right-flex-wrap{
+  display:flex!important;
+  flex-flow:column nowrap!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:48px!important;
+  width:100%!important;
+ }
+ .section.casesh .case-image-wrap{
+  position:relative!important;
+  top:auto!important;
+  width:100%!important;
+  max-width:694px!important;
+  height:auto!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border-radius:24px!important;
+  overflow:hidden!important;
+  flex:0 0 auto!important;
+ }
+ .section.casesh .case-image{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  margin:0 auto!important;
+  object-fit:contain!important;
+ }
+}
+</style>
 <style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
