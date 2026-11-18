@@ -61,6 +61,20 @@
 .header-cta:before{width:6px;height:6px}
 @media(max-width:900px){.nav{gap:22px}.nav a{font-size:11px}.header-cta{font-size:11px;padding:11px 20px}}
 @media(max-width:700px){.nav a{font-size:14px;padding:15px 2px}}
+
+/* Desktop navigation scale corrected from user's screenshot */
+@media(min-width:701px){
+  .header-inner{width:min(1120px,calc(100% - 64px))}
+  .nav{gap:38px}
+  .nav a{font-size:14px;font-weight:500;letter-spacing:.01em}
+  .header-cta{font-size:13px;padding:14px 28px;gap:13px;min-height:46px}
+  .header-cta:before{width:7px;height:7px}
+}
+@media(min-width:701px) and (max-width:1050px){
+  .nav{gap:22px}
+  .nav a{font-size:12px}
+  .header-cta{font-size:12px;padding:12px 20px}
+}
 </style>
 </head>
 <body>
