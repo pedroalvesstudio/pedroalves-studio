@@ -322,8 +322,6 @@ function boot(){
   [...fading,...headingWrappers].forEach(function(el){if(ready(el))reveal(el);else{el.classList.add(el.getAttribute('animation')==='heading'?'latera-heading-hidden':'latera-reveal-pending');io.observe(el)}});
  }
  // IX3 source progress trigger: [Workline="blue"], top/top to bottom/bottom, scrub 1.5s.
- const workTrigger=document.querySelector('[workline="blue"] .find-wrapper');
- const progressBar=document.querySelector('.find-color-bg');
  // IX3 source horizontal trigger: .techo-wrapper, top/0 to bottom/bottom, scrub 1.5s.
  const techWrapper=document.querySelector('.section.techo .techo-wrapper');
  const techTrack=document.querySelector('.section.techo .techo-flex-wrap');
@@ -342,13 +340,6 @@ function boot(){
  let previous=0,pending=false,running=false;
  function readTargets(){
   if(reduced)return;
-  // Direct, reversible scroll-scrub: no delayed animation, no timer, no cached progress.
-  if(!window.CSS?.supports?.('animation-timeline: view()')&&workTrigger&&progressBar){
-   const rect=workTrigger.getBoundingClientRect();
-   const start=innerHeight*.84,end=innerHeight*.20;
-   const progress=clamp((start-rect.top)/Math.max(1,start-end));
-   progressBar.style.setProperty('width',(progress*100).toFixed(2)+'%','important');
-  }
   targetTech=scrollProgress(techWrapper);
   targetCase=scrollProgress(cases);
   if(!running){running=true;previous=performance.now();requestAnimationFrame(animate)}
@@ -389,8 +380,6 @@ function boot(){
   window.addEventListener('scroll',readTargets,{passive:true});
   window.addEventListener('resize',readTargets,{passive:true});
   readTargets();
- }else{
-  if(progressBar)progressBar.style.setProperty('width','100%','important');
  }
  // Restore six case-study panels for mobile/tablet; SingleFile erased their original nested markup.
  const mobileCases=document.querySelector('.section.casesh .case-mobile-wrap');
@@ -439,27 +428,28 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
-<style id="latera-timeline-native-scroll-20261118">
-/* Timeline linked to actual scrolling. Scrolling backwards reverses it instantly. */
-@supports (animation-timeline: view()) {
-  .section.works .find-wrapper {
-    view-timeline-name: --latera-work-timeline;
-    view-timeline-axis: block;
+
+<script id="latera-original-zarion-workline-20261118">
+/* Parameters recovered from live Zarion GSAP timeline in MotionLens Pro capture. */
+(function(){
+  function mountWorkline(){
+    const section=document.querySelector('[workline="blue"]');
+    const fill=section&&section.querySelector('.find-color-bg');
+    if(!section||!fill||!window.gsap||!window.ScrollTrigger)return;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.fromTo(fill,{width:'0%'},{
+      width:'100%',duration:1,ease:'none',
+      scrollTrigger:{
+        trigger:section,
+        start:'top top',
+        end:'bottom bottom',
+        scrub:1.5,
+        invalidateOnRefresh:true
+      }
+    });
+    ScrollTrigger.refresh();
   }
-  .section.works .find-color-bg {
-    animation-name: latera-progress-native;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-    animation-timeline: --latera-work-timeline;
-    animation-range: cover 0% cover 100%;
-  }
-  @keyframes latera-progress-native {
-    from { width: 0%; }
-    to { width: 100%; }
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .section.works .find-color-bg { animation: none !important; width: 100% !important; }
-}
-</style>
+  if(document.readyState==='complete')mountWorkline();
+  else window.addEventListener('load',mountWorkline,{once:true});
+})();
+</script>
