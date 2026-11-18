@@ -808,6 +808,27 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
  #negocio .business-motion-heading,#negocio .business-motion-copy,#negocio .checkout-motion-preview,
  #negocio .checkout-motion-preview *{opacity:1!important;transform:none!important;transition:none!important}
 }
+
+/* CHECKOUT CINEMATIC LOOP — slow, readable product walkthrough */
+#negocio .checkout-demo-progress{height:3px;width:100%;border-radius:99px;background:rgba(30,91,99,.12);overflow:hidden;opacity:0;transition:opacity .5s ease;margin:3px 0 1px}
+#negocio .checkout-demo-progress span{display:block;width:100%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#168f9c,#75d5d1);transform:scaleX(0);transform-origin:left center}
+#negocio .checkout-motion-preview.demo-running .checkout-demo-progress{opacity:1}
+#negocio .checkout-motion-preview.demo-processing .checkout-demo-progress span{transition:transform 2.1s cubic-bezier(.2,.65,.2,1);transform:scaleX(1)}
+#negocio .checkout-motion-preview.demo-reset .checkout-demo-progress span{transition:none;transform:scaleX(0)}
+#negocio .checkout-motion-preview .checkout-method{transition:color .55s ease,transform .55s ease,background .55s ease}
+#negocio .checkout-motion-preview.demo-running .checkout-method.demo-current{color:#087d89!important;font-weight:700;transform:translateX(4px)}
+#negocio .checkout-motion-preview.demo-running .checkout-method.demo-current i{border-color:#168f9c;box-shadow:0 0 0 4px rgba(22,143,156,.12)}
+#negocio .checkout-motion-preview .checkout-button{min-width:220px;justify-content:center;transition:background  .6s ease,transform .6s ease,box-shadow .6s ease,opacity .6s ease}
+#negocio .checkout-motion-preview.demo-processing .checkout-button{background:#155d67!important;box-shadow:0 0 0 4px rgba(22,143,156,.12),0 8px 22px rgba(22,143,156,.16)}
+#negocio .checkout-motion-preview.demo-success .checkout-button{background:#168f75!important;box-shadow:0 0 0 4px rgba(22,143,156,.1)}
+#negocio .checkout-motion-preview .checkout-status{transition:opacity .5s ease,color .5s ease}
+#negocio .checkout-motion-preview.demo-processing .checkout-status{color:#168f9c!important}
+#negocio .checkout-motion-preview.demo-success .checkout-status{color:#168f75!important;font-weight:700}
+#negocio .checkout-motion-preview.demo-success .checkout-confirm{animation:checkoutSuccessPulse 1.1s ease-out}
+@keyframes checkoutSuccessPulse{0%{filter:brightness(1)}35%{filter:brightness(1.12)}100%{filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){
+ #negocio .checkout-demo-progress,#negocio .checkout-demo-progress span,#negocio .checkout-motion-preview *{transition:none!important;animation:none!important}
+}
 </style>
 </head>
 <body>
@@ -930,6 +951,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <button class="checkout-method" type="button" data-method="Cartão de crédito" aria-pressed="false"><i></i>Cartão de crédito</button>
 <button class="checkout-method" type="button" data-method="Boleto" aria-pressed="false"><i></i>Boleto</button>
 </div>
+<div class="checkout-demo-progress" aria-hidden="true"><span></span></div>
 <div class="checkout-confirm"><button class="checkout-button" type="button">Confirmar pagamento <b>→</b></button><small class="checkout-status" aria-live="polite">Pagamento processado pela PayNex</small></div>
 </div>
 </div>
@@ -1090,29 +1112,98 @@ if(checkout){
  const methods=[...checkout.querySelectorAll('.checkout-method')];
  const status=checkout.querySelector('.checkout-status');
  const confirm=checkout.querySelector('.checkout-button');
- let chosen='Pix',processing=false;
- methods.forEach(button=>button.addEventListener('click',()=>{
-  if(processing)return;
-  chosen=button.dataset.method;
+ const progress=checkout.querySelector('.checkout-demo-progress');
+ const progressFill=progress?.querySelector('span');
+ const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let chosen='Pix',loopTimers=[],loopActive=false,userTookControl=false;
+ const selectMethod=name=>{
+  chosen=name;
   methods.forEach(item=>{
-   const selected=item===button;
+   const selected=item.dataset.method===name;
    item.classList.toggle('selected',selected);
+   item.classList.toggle('demo-current',selected);
    item.setAttribute('aria-pressed',String(selected));
   });
+ };
+ const clearLoop=()=>{loopTimers.forEach(window.clearTimeout);loopTimers=[]};
+ const schedule=(fn,delay)=>{const id=window.setTimeout(fn,delay);loopTimers.push(id)};
+ const resetDemo=()=>{
+  checkout.classList.remove('demo-processing','demo-success');
+  checkout.classList.add('demo-reset');
+  checkout.classList.remove('demo-running');
+  if(progressFill){progressFill.style.transition='none';progressFill.style.transform='scaleX(0)'}
+  confirm.disabled=false;confirm.innerHTML='Confirmar pagamento <b>→</b>';
+  status.textContent='Pagamento processado pela PayNex';status.classList.remove('is-success');
+  selectMethod('Pix');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   checkout.classList.remove('demo-reset');
+   if(progressFill)progressFill.style.transition='';
+  }));
+ };
+ const playCycle=()=>{
+  if(!loopActive||userTookControl)return;
+  resetDemo();
+  schedule(()=>{
+   if(!loopActive)return;
+   checkout.classList.add('demo-running');
+   status.textContent='Forma de pagamento selecionada';
+   selectMethod('Pix');
+  },900);
+  schedule(()=>{
+   if(!loopActive)return;
+   checkout.classList.add('demo-processing');
+   confirm.disabled=true;confirm.innerHTML='Processando pagamento <b>…</b>';
+   status.textContent='Validando pagamento de demonstração…';
+   if(progressFill){progressFill.style.transition='transform 2.1s cubic-bezier(.2,.65,.2,1)';progressFill.style.transform='scaleX(1)'}
+  },3400);
+  schedule(()=>{
+   if(!loopActive)return;
+   checkout.classList.remove('demo-processing');checkout.classList.add('demo-success');
+   confirm.disabled=false;confirm.innerHTML='Pagamento confirmado <b>✓</b>';
+   status.textContent='Demonstração concluída · Pix';status.classList.add('is-success');
+  },6200);
+  schedule(()=>{
+   if(!loopActive)return;
+   checkout.classList.remove('demo-success');
+   status.classList.remove('is-success');
+   status.textContent='Novo pedido pronto para pagamento';
+  },9100);
+  schedule(()=>{
+   if(!loopActive)return;
+   loopTimers=[];playCycle();
+  },11200);
+ };
+ const startLoop=()=>{
+  if(loopActive||userTookControl||prefersReduced)return;
+  loopActive=true;playCycle();
+ };
+ const stopLoop=()=>{
+  loopActive=false;clearLoop();
+  resetDemo();
+ };
+ methods.forEach(button=>button.addEventListener('click',()=>{
+  userTookControl=true;stopLoop();
+  selectMethod(button.dataset.method);
   status.textContent='Forma selecionada: '+chosen;
-  status.classList.remove('is-success');
  }));
  confirm?.addEventListener('click',()=>{
-  if(processing)return;
-  processing=true;confirm.disabled=true;confirm.innerHTML='Processando <b>…</b>';
-  status.classList.remove('is-success');status.textContent='Validando pagamento de demonstração…';
+  userTookControl=true;stopLoop();
+  checkout.classList.add('demo-processing');
+  confirm.disabled=true;confirm.innerHTML='Processando <b>…</b>';
+  status.textContent='Validando pagamento de demonstração…';
+  if(progressFill){progressFill.style.transition='transform 2.1s cubic-bezier(.2,.65,.2,1)';progressFill.style.transform='scaleX(1)'}
   window.setTimeout(()=>{
-   confirm.innerHTML='Pagamento confirmado <b>✓</b>';
-   status.textContent='Demonstração concluída · '+chosen;
-   status.classList.add('is-success');
-   processing=false;confirm.disabled=false;
-  },1500);
+   checkout.classList.remove('demo-processing');checkout.classList.add('demo-success');
+   confirm.disabled=false;confirm.innerHTML='Pagamento confirmado <b>✓</b>';
+   status.textContent='Demonstração concluída · '+chosen;status.classList.add('is-success');
+  },2600);
  });
+ if('IntersectionObserver'in window){
+  const checkoutObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(entry.isIntersecting)startLoop();else stopLoop();
+  }),{threshold:.42});
+  checkoutObserver.observe(checkout);
+ }else{startLoop()}
 }
 
 document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
