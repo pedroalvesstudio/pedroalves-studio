@@ -619,4 +619,93 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 .section.pricing-c .pricing-a-single-title{font-size:34px!important;line-height:1.1!important}
 .section.pricing-c .pricing-a-card-details{font-size:18px!important;line-height:1.35!important}
 </style>
+<style id="latera-terracotta-visuals-20261118">
+.section.casesh .case-image-wrap,
+.section.back .back-right-image{background:transparent!important}
+.section.casesh .case-image-wrap{overflow:hidden!important}
+.section.casesh .case-image,.section.back .back-right-image{
+ display:block!important;
+ max-width:100%!important;
+}
+</style>
+<script id="latera-terracotta-visuals-20261118">
+/* Color the seven original Webflow mockups in the Latera palette, and
+   trim their outer white margins while keeping the original UI artwork. */
+(function(){
+ 'use strict';
+ function recolor(img){
+  if(img.dataset.lateraTerracotta==='done')return;
+  const original=img.currentSrc||img.src;
+  if(!original)return;
+  const source=new Image();
+  source.onload=function(){
+   try{
+    const sw=source.naturalWidth,sh=source.naturalHeight;
+    if(sw<30||sh<30)return;
+    const cvs=document.createElement('canvas');
+    cvs.width=sw;cvs.height=sh;
+    const ctx=cvs.getContext('2d',{willReadFrequently:true});
+    ctx.drawImage(source,0,0);
+    const pixels=ctx.getImageData(0,0,sw,sh);
+    const a=pixels.data;
+    // Recolor blue/cyan gradient accents, preserving white UI, dark text
+    // and the original green confirmations.
+    for(let k=0;k<a.length;k+=4){
+     const r=a[k],g=a[k+1],b=a[k+2];
+     const blue=Math.max(0,Math.min(1,(b-r-8)/65));
+     const cool=Math.max(0,Math.min(1,(b-g-3)/35));
+     const weight=Math.max(blue,cool*.72);
+     if(weight>.025 && b>g*.97 && b>r*1.04){
+      const strength=Math.min(1,weight);
+      const luminance=(r+g+b)/3;
+      const targetR=Math.min(255,luminance*.66+111);
+      const targetG=Math.min(255,luminance*.60+55);
+      const targetB=Math.min(255,luminance*.57+42);
+      a[k]=r+(targetR-r)*strength;
+      a[k+1]=g+(targetG-g)*strength;
+      a[k+2]=b+(targetB-b)*strength;
+     }
+    }
+    ctx.putImageData(pixels,0,0);
+    // Find the colored gradient panel boundary: original images are on white.
+    let left=sw,top=sh,right=0,bottom=0;
+    const stride=Math.max(1,Math.floor(Math.min(sw,sh)/380));
+    for(let y=0;y<sh;y+=stride){
+     for(let x=0;x<sw;x+=stride){
+      const k=(y*sw+x)*4;
+      const r=a[k],g=a[k+1],b=a[k+2];
+      if(Math.max(r,g,b)-Math.min(r,g,b)>10 && Math.min(r,g,b)<245){
+       if(x<left)left=x;if(x>right)right=x;
+       if(y<top)top=y;if(y>bottom)bottom=y;
+      }
+     }
+    }
+    // Use the same inset on each side to avoid exposing white source edges.
+    if(right>left && bottom>top){
+     const cutLeft=Math.max(0,left-2),cutTop=Math.max(0,top-2);
+     const cutRight=Math.min(sw,right+stride+2),cutBottom=Math.min(sh,bottom+stride+2);
+     const result=document.createElement('canvas');
+     result.width=cutRight-cutLeft;result.height=cutBottom-cutTop;
+     result.getContext('2d').drawImage(cvs,cutLeft,cutTop,result.width,result.height,0,0,result.width,result.height);
+     img.dataset.lateraTerracotta='done';
+     img.removeAttribute('srcset');img.removeAttribute('sizes');
+     img.src=result.toDataURL('image/png');
+     img.style.setProperty('width','100%','important');
+     img.style.setProperty('height','auto','important');
+     img.style.setProperty('border-radius','24px','important');
+    }
+   }catch(err){console.warn('Latera image recoloring:',err)}
+  };
+  source.src=original;
+ }
+ function run(){
+  document.querySelectorAll('.section.casesh img.case-image,.section.back img.back-right-image').forEach(recolor);
+  // The original desktop case-study artwork is cloned to mobile later.
+  const mobile=document.querySelector('.section.casesh .case-mobile-wrap');
+  if(mobile)new MutationObserver(()=>mobile.querySelectorAll('img.case-image').forEach(recolor))
+   .observe(mobile,{childList:true,subtree:true});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+})();
+</script>
 <style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
