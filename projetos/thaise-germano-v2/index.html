@@ -90,7 +90,7 @@ body{min-height:100vh;overflow-x:hidden}
 .hero-note{margin:18px 0 0;color:rgba(226,215,212,.42);font:500 9px/1.5 "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase}
 @keyframes hero-copy-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 .brand-ticker{position:relative;z-index:2;display:flex;align-items:center;height:66px;margin-top:-10px;overflow:hidden;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);background:rgba(12,10,10,.58);transform:rotate(-.7deg) scale(1.01);backdrop-filter:blur(8px)}
-.brand-ticker-track{display:flex;align-items:center;gap:17px;height:100%;width:max-content;white-space:nowrap;animation:brand-loop 32s linear infinite}
+.brand-ticker-track{display:flex;align-items:center;gap:0;height:100%;width:max-content;white-space:nowrap;will-change:transform;animation:brand-loop 32s linear infinite}.brand-ticker-group{display:flex;align-items:center;gap:17px;height:100%;flex:none;padding-right:17px}
 .brand-ticker-track span{display:inline-flex;align-items:center;height:100%;color:rgba(235,226,223,.72);font:400 14px/1 "DM Sans",sans-serif}
 .brand-ticker-track b{display:inline-flex;align-items:center;justify-content:center;height:100%;color:#e11a28;font:800 19px/1 "DM Sans",sans-serif;letter-spacing:-.1em;transform:translateY(-1px)}
 .brand-ticker:hover .brand-ticker-track{animation-play-state:paused}
@@ -104,7 +104,7 @@ body{min-height:100vh;overflow-x:hidden}
  .hero-action{min-height:42px;padding:0 16px;font-size:8px}
  .hero-note{font-size:8px;margin-top:14px}
  .brand-ticker{height:56px;margin-top:-8px}
- .brand-ticker-track{gap:14px;animation-duration:26s}
+ .brand-ticker-group{gap:14px;padding-right:14px}.brand-ticker-track{animation-duration:26s}
  .brand-ticker-track span{font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){.hero-copy{animation:none}.brand-ticker-track{animation:none}}
@@ -115,7 +115,7 @@ body{min-height:100vh;overflow-x:hidden}
 .reforma-section:before{content:"";position:absolute;z-index:-1;left:-10%;top:12%;width:48%;height:75%;background:radial-gradient(ellipse,rgba(174,0,18,.2),transparent 70%);filter:blur(48px);pointer-events:none}
 .reforma-wrap{width:min(1080px,88%);margin:0 auto}
 .reforma-heading{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(32px,5vw,58px);align-items:center;margin-bottom:36px}
-.reforma-kicker{margin:0 0 16px;color:#e11a28;font:600 9px/1.6 "DM Sans",sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.reforma-kicker{position:relative;isolation:isolate;width:max-content;max-width:100%;padding-top:9px;margin:0 0 16px;color:#e11a28;font:600 9px/1.6 "DM Sans",sans-serif;letter-spacing:.24em;text-transform:uppercase}.reforma-kicker:before{content:"";position:absolute;z-index:-1;left:0;right:-12px;top:0;height:1px;background:linear-gradient(90deg,rgba(225,26,40,.9),rgba(225,26,40,.16) 72%,transparent);box-shadow:0 0 10px rgba(225,26,40,.22);pointer-events:none}
 .reforma-heading h2{margin:0;max-width:13ch;color:#f4efed;font:400 clamp(28px,2.8vw,38px)/1.2 "Manrope",sans-serif;letter-spacing:-.025em;text-wrap:balance}
 .reforma-heading h2 span{color:#e11a28}
 .reforma-intro{margin:0;max-width:42ch;color:rgba(245,237,234,.78);font:400 13px/1.9 "DM Sans",sans-serif;letter-spacing:.005em;text-wrap:pretty}
@@ -369,9 +369,7 @@ html{scroll-behavior:smooth}
 <p class="hero-note">Método Contadora Elite · Cresça com estratégia</p>
 </div>
 </section>
-<div class="brand-ticker" aria-label="Contadora Elite em movimento"><div class="brand-ticker-track" aria-hidden="true">
-<span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b>
-</div></div>
+<div class="brand-ticker" aria-label="Contadora Elite em movimento"><div class="brand-ticker-track" aria-hidden="true"><div class="brand-ticker-group"><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b></div><div class="brand-ticker-group"><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b></div></div></div>
 <section class="reforma-section" id="sobre" aria-labelledby="reforma-title">
 <div class="reforma-wrap">
 <div class="reforma-heading">
