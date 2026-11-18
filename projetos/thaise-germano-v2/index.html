@@ -228,6 +228,48 @@ body{min-height:100vh;overflow-x:hidden}
 }
 @media(prefers-reduced-motion:reduce){.aceleracao-section.reveal-on-scroll .aceleracao-head,.aceleracao-section.reveal-on-scroll .aceleracao-item{opacity:1;transform:none;transition:none}}
 
+
+/* Sections 08–09 — Practical outcomes and FAQ */
+.resultados-section,.faq-section{position:relative;z-index:1;padding:88px 0 96px}
+.resultados-wrap,.faq-wrap{width:min(1080px,88%);margin:0 auto}
+.resultados-head{max-width:650px;margin-bottom:32px}
+.resultados-kicker,.faq-kicker{margin:0 0 15px;color:#e11a28;font:600 9px/1.6 "DM Sans",sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.resultados-head h2,.faq-head h2{margin:0 0 14px;color:#f4efed;font:400 clamp(28px,3vw,38px)/1.2 "Manrope",sans-serif;letter-spacing:-.025em;text-wrap:balance}
+.resultados-head h2 span,.faq-head h2 span{color:#e11a28}
+.resultados-head p,.faq-head p{max-width:52ch;margin:0;color:rgba(245,237,234,.76);font:400 13px/1.85 "DM Sans",sans-serif;text-wrap:pretty}
+.resultados-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.resultado-card{padding:26px 25px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(145deg,rgba(25,16,18,.78),rgba(12,11,11,.9));min-height:170px}
+.resultado-card span{display:block;margin-bottom:20px;color:#e11a28;font:600 9px/1 "DM Sans",sans-serif;letter-spacing:.18em}
+.resultado-card h3{margin:0 0 10px;color:#f4efed;font:500 17px/1.4 "Manrope",sans-serif}
+.resultado-card p{margin:0;color:rgba(245,237,234,.72);font:400 12px/1.85 "DM Sans",sans-serif}
+.faq-section{padding-top:76px;border-top:1px solid rgba(255,255,255,.07)}
+.faq-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(35px,6vw,80px);align-items:start}
+.faq-head h2{max-width:12ch}
+.faq-list{border-top:1px solid rgba(255,255,255,.13)}
+.faq-list details{border-bottom:1px solid rgba(255,255,255,.13);padding:0}
+.faq-list summary{position:relative;list-style:none;cursor:pointer;padding:21px 38px 21px 0;color:#f4efed;font:500 15px/1.45 "Manrope",sans-serif}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary:after{content:"+";position:absolute;right:4px;top:18px;color:#e11a28;font:400 22px/1 "DM Sans",sans-serif;transition:transform .2s}
+.faq-list details[open] summary:after{transform:rotate(45deg)}
+.faq-list details p{max-width:58ch;margin:0;padding:0 34px 20px 0;color:rgba(245,237,234,.74);font:400 12px/1.9 "DM Sans",sans-serif}
+@media(max-width:700px){
+ .resultados-section,.faq-section{padding:66px 0 74px}
+ .resultados-wrap,.faq-wrap{width:calc(100% - 44px)}
+ .resultados-head{margin-bottom:24px}
+ .resultados-head h2,.faq-head h2{font-size:28px}
+ .resultados-head p,.faq-head p{font-size:12px;line-height:1.85}
+ .resultados-grid{grid-template-columns:1fr;gap:10px}
+ .resultado-card{min-height:0;padding:22px}
+ .resultado-card span{margin-bottom:14px}
+ .resultado-card h3{font-size:16px}
+ .resultado-card p{font-size:12px}
+ .faq-layout{grid-template-columns:1fr;gap:24px}
+ .faq-head h2{max-width:16ch}
+ .faq-list summary{font-size:14px;padding:19px 34px 19px 0}
+ .faq-list details p{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.faq-list summary:after{transition:none}}
+
 </style>
 </head>
 <body>
@@ -304,6 +346,36 @@ body{min-height:100vh;overflow-x:hidden}
 <article class="aceleracao-item"><span class="aceleracao-index">06 / EVOLUÇÃO</span><h3>Rotina de melhoria contínua</h3><p>Acompanhe resultados, identifique gargalos e evolua com consistência.</p></article>
 </div>
 <p class="aceleracao-foot">Estratégia · Gestão · Posicionamento · Crescimento</p>
+</div>
+</section>
+
+<section class="resultados-section" id="resultados" aria-labelledby="resultados-title">
+<div class="resultados-wrap">
+<header class="resultados-head">
+<p class="resultados-kicker">O que buscamos construir</p>
+<h2 id="resultados-title">Mais clareza para conduzir seu escritório com <span>intenção.</span></h2>
+<p>O desenvolvimento profissional acontece nas decisões do dia a dia: na forma de organizar, orientar clientes e planejar os próximos passos.</p>
+</header>
+<div class="resultados-grid">
+<article class="resultado-card"><span>01 / ROTINA</span><h3>Mais organização</h3><p>Processos claros ajudam a enxergar prioridades e a conduzir a operação com mais consistência.</p></article>
+<article class="resultado-card"><span>02 / POSICIONAMENTO</span><h3>Mais valor percebido</h3><p>Uma atuação consultiva fortalece a relação com clientes e amplia a percepção sobre o papel da contabilidade.</p></article>
+<article class="resultado-card"><span>03 / GESTÃO</span><h3>Decisões mais conscientes</h3><p>Indicadores e planejamento apoiam escolhas melhores para a evolução do escritório.</p></article>
+</div>
+</div>
+</section>
+<section class="faq-section" id="duvidas" aria-labelledby="faq-title">
+<div class="faq-wrap faq-layout">
+<header class="faq-head">
+<p class="faq-kicker">Dúvidas frequentes</p>
+<h2 id="faq-title">Antes de dar o próximo <span>passo.</span></h2>
+<p>Algumas respostas para ajudar você a entender a proposta da Contadora Elite.</p>
+</header>
+<div class="faq-list">
+<details><summary>Para quem é o Método Contadora Elite?</summary><p>Para profissionais da contabilidade que desejam desenvolver a gestão, o posicionamento e a atuação consultiva do próprio escritório.</p></details>
+<details><summary>Preciso já ter meu próprio escritório?</summary><p>O método é apresentado com foco em quem deseja estruturar ou desenvolver um negócio contábil. Os requisitos específicos de participação precisam ser confirmados com a equipe da Thaíse.</p></details>
+<details><summary>O método garante um faturamento específico?</summary><p>Não é correto tratar resultados financeiros como garantidos. O desempenho depende de fatores como contexto, execução, mercado e decisões de cada profissional.</p></details>
+<details><summary>Como descubro os detalhes da mentoria?</summary><p>Entre em contato com a equipe da Thaíse para confirmar formato, duração, investimento, condições e disponibilidade das próximas turmas.</p></details>
+</div>
 </div>
 </section>
 </main>
