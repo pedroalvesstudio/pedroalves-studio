@@ -966,20 +966,30 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
 
 <style id="latera-safari-work-icon-anchor-20261118">
-/* Anchor the four-step decorative mark to the grid intersection.
-   Safari and Chromium calculate static positions of absolute flex children differently. */
-@media (min-width: 992px) {
-  .section.works .work-wrap { position: relative !important; }
-  .section.works .work-short-icon-wrap {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    right: auto !important;
-    bottom: auto !important;
-    margin: 0 !important;
-    transform: translate(-50%, -50%) !important;
-    z-index: 3 !important;
-    pointer-events: none !important;
-  }
+/* Keep the orange 135px mark centered on the four-card intersection.
+   The SVG is 135x244: its orange disc occupies the first 135px,
+   with the decorative white glows extending below it. */
+.section.works .work-grid-wrap {
+  position: relative !important;
+}
+.section.works .work-short-icon-wrap {
+  width: 135px !important;
+  height: 244px !important;
+  position: absolute !important;
+  top: calc(50% - 67.5px) !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  transform: translateX(-50%) !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+}
+.section.works .work-short-icon-wrap img {
+  display: block !important;
+  width: 135px !important;
+  height: 244px !important;
+  max-width: none !important;
+  object-fit: contain !important;
 }
 </style>
