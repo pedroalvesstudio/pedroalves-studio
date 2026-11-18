@@ -654,7 +654,7 @@ textarea.w-input, textarea.w-select {
 }
 
 .w-file-upload-error-msg {
-  color: #38d0ea;
+  color: #167D8D;
   padding: 2px 0;
   display: inline-block;
 }
@@ -2073,7 +2073,7 @@ textarea.w-input, textarea.w-select {
   --_structure---spacing--small: 12px;
   --_structure---spacing--2x-small: 4px;
   --_typography---weight--subheading: 500;
-  --primary--orange: #28e0ff;
+  --primary--orange: #167D8D;
   --_structure---max-width--x-large: 846px;
   --_structure---max-width--large: 628px;
   --_structure---max-width--medium: 580px;
@@ -2149,7 +2149,7 @@ textarea.w-input, textarea.w-select {
   --neutral--black: black;
   --_elements---input--size: 48px;
   --_elements---input--font-weight: 400;
-  --primary--dark: #050100;
+  --primary--dark: #000000;
   --white--4: #ffffff0a;
   --white--8: #ffffff14;
   --white--12: #ffffff1f;
@@ -2904,7 +2904,7 @@ figure {
 }
 
 .button-primary:hover {
-  background-color: #32e1ff;
+  background-color: #126575;
 }
 
 .button-primary-small {
@@ -3162,7 +3162,7 @@ figure {
 }
 
 .form-checkbox-button.w--redirected-checked {
-  background-color: #160042;
+  background-color: #071821;
   background-size: .75rem;
   border-style: none;
   border-radius: .25rem;
@@ -3406,7 +3406,7 @@ figure {
 }
 
 .styles-class.styles-class-global {
-  background-color: #d678c2;
+  background-color: #167D8D;
 }
 
 .styles-grid {
@@ -3554,7 +3554,7 @@ figure {
 }
 
 .button-primary-large:hover {
-  background-color: #32e1ff;
+  background-color: #126575;
 }
 
 .text-color-tertiary {
@@ -3697,7 +3697,7 @@ figure {
 }
 
 .text-color-gradient-brand {
-  background-image: linear-gradient(180deg, var(--text--brand), #ffa48d);
+  background-image: linear-gradient(180deg, var(--text--brand), #73C3CF);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
