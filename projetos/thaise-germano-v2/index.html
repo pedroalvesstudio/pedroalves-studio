@@ -304,6 +304,23 @@ body{min-height:100vh;overflow-x:hidden}
  .convite-section p:not(.convite-kicker){font-size:12px}
 }
 
+
+/* Footer */
+.site-footer{position:relative;z-index:2;padding:27px 0 25px;border-top:1px solid rgba(255,255,255,.1);background:#080808}
+.footer-inner{width:min(1080px,88%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.footer-brand{display:flex;align-items:center;gap:12px;color:#f4efed;text-decoration:none}
+.footer-mark{color:#e10d20;font:800 24px/.9 "DM Sans",sans-serif;letter-spacing:-.12em}
+.footer-name{color:rgba(245,237,234,.72);font:500 10px/1.5 "DM Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.footer-links{display:flex;align-items:center;gap:22px}
+.footer-links a,.footer-credit{color:rgba(245,237,234,.48);font:500 9px/1.5 "DM Sans",sans-serif;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-credit{margin:0;text-align:right;letter-spacing:.04em;text-transform:none}
+@media(max-width:700px){
+ .footer-inner{width:calc(100% - 44px);display:grid;grid-template-columns:1fr auto;gap:20px}
+ .footer-links{grid-column:1/-1;grid-row:2;justify-content:flex-start;flex-wrap:wrap;gap:17px}
+ .footer-credit{font-size:8px}
+}
+
 </style>
 </head>
 <body>
@@ -311,7 +328,7 @@ body{min-height:100vh;overflow-x:hidden}
 <header class="site-header">
 <a class="site-brand" href="#inicio" aria-label="Thaíse Germano">ce</a>
 <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
-<a href="#sobre">SOBRE</a><a href="#solucoes">SOLUÇÕES</a><a href="#casos">CASOS DE SUCESSO</a><a href="#contato">CONTATO</a>
+<a href="#sobre">SOBRE</a><a href="#solucoes">SOLUÇÕES</a><a href="#resultados">RESULTADOS</a><a href="#contato">CONTATO</a>
 </nav>
 <a class="studio-home" href="/">PEDROALVES STUDIO ↗</a>
 <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav">
@@ -439,6 +456,18 @@ body{min-height:100vh;overflow-x:hidden}
 </div>
 </section>
 </main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<a class="footer-brand" href="#inicio" aria-label="Voltar ao início">
+<span class="footer-mark">ce</span><span class="footer-name">Thaíse Germano<br>Contadora Elite</span>
+</a>
+<nav class="footer-links" aria-label="Links do rodapé">
+<a href="#sobre">Sobre</a><a href="#solucoes">Método</a><a href="#resultados">Resultados</a><a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
+</nav>
+<p class="footer-credit">Desenvolvido por <a href="/" style="color:inherit;text-decoration:none">PedroAlves Studio</a></p>
+</div>
+</footer>
 <script>
 (()=>{const b=document.querySelector(".menu-toggle"),n=document.querySelector(".site-nav");if(!b||!n)return;b.addEventListener("click",()=>{const open=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"Fechar menu":"Abrir menu");n.classList.toggle("is-open",open)});n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{n.classList.remove("is-open");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Abrir menu")}));})();
 </script>
