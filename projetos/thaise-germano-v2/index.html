@@ -341,6 +341,41 @@ html{scroll-behavior:smooth}
 .hero-copy{z-index:4}
 @media(max-width:700px){.hero-portrait{z-index:1!important}.hero-copy{z-index:4}}
 
+
+/* Hero layout matched to the approved reference composition */
+@media (min-width: 701px) {
+  .hero-stage {
+    grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+    padding-top: 112px;
+    padding-bottom: 0;
+  }
+  .hero-copy {
+    width: min(100%, 560px);
+    padding-top: 18px;
+    padding-bottom: 44px;
+  }
+  .hero-title {
+    max-width: 590px;
+    font-size: clamp(30px, 2.7vw, 39px);
+    line-height: 1.16;
+  }
+  .hero-portrait {
+    right: -1%;
+    bottom: 0;
+    width: min(59%, 700px);
+    height: 96%;
+  }
+  .hero-portrait img {
+    object-position: center bottom;
+    transform-origin: center bottom;
+  }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .hero-copy { width: min(100%, 490px); }
+  .hero-title { font-size: clamp(28px, 3.2vw, 34px); }
+  .hero-portrait { width: 56%; height: 88%; }
+}
+
 </style>
 </head>
 <body>
