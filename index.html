@@ -40,19 +40,8 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.project{margin-top:0}.project:nth-child(even){margin-top:0}.art{aspect-ratio:1.5/1;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px;transition:.5s}.art span{font:600 clamp(40px,6vw,85px) "Space Grotesk";letter-spacing:-.07em;transition:.5s}.project:hover .art{transform:scale(.985)}.project:hover .art span{transform:scale(1.08)}.a1{background:#c9fa63;color:#111}.a2{background:#eee9de;color:#111}.a3{background:#17171a;border:1px solid #2e2e33}.a4{background:linear-gradient(135deg,#252529,#0b0b0d);border:1px solid #2e2e33;color:var(--lime)}
 /* Capas de proyectos: vista real de la primera dobra, manteniendo el formato original 3:2. */
 .project-preview{aspect-ratio:1.5/1;position:relative;display:block;overflow:hidden;border-radius:12px;background:#171719;border:1px solid #2e2e33;isolation:isolate}
-/* Project covers: editorial safe area without changing the card aspect ratio. */
-.project-preview{padding:clamp(12px,1.6vw,20px);box-sizing:border-box}
-.project-preview-stage{position:relative;width:100%;height:100%;border-radius:9px;overflow:hidden;background:#111;isolation:isolate}
-/* Actually reframe the page inside the cover: reserve space at left and top, not just outside the iframe. */
-.project-preview-stage iframe{position:absolute;top:0;left:0;width:205%;height:215%;border:0;transform:translate(30px,16px) scale(.46);transform-origin:top left;pointer-events:none;background:transparent}
-.project[data-project="latera"] .project-preview-stage{background:#fff6ed}
-.project[data-project="aurenta"] .project-preview-stage{background:#f7f4ee}
-.project[data-project="kodara"] .project-preview-stage{background:#000}
-.project[data-project="nexora"] .project-preview-stage{background:#f9f9ff}
-@media(max-width:640px){.project-preview-stage iframe{transform:translate(20px,10px) scale(.46)}}
-.project-preview-stage:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid rgba(255,255,255,.06);border-radius:9px}
-@media(max-width:640px){.project-preview{padding:10px}.project-preview-stage{border-radius:7px}}
-
+/* Full-bleed original site preview. Only text is inset in LATERA's portfolio iframe. */
+.project-preview iframe{position:absolute;inset:0;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;background:#111}
 .project-preview:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;transition:background .35s ease}
 .project:hover .project-preview:after{background:rgba(255,255,255,.035)}
 .meta{display:block;margin-top:15px;padding:0 0 18px;border-bottom:1px solid var(--line)}.meta .project-category{display:block;color:var(--lime);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px}.meta strong{display:block;color:var(--fg);font:600 24px/1.1 "Space Grotesk";letter-spacing:-.04em;margin:0 0 5px}.meta p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.note{color:var(--muted);font-size:12px;margin-top:50px}
@@ -122,10 +111,10 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 <div class="marquee"><div class="marquee-track"><div class="marquee-group">BRANDING <b>✳</b> WEB DESIGN <b>✳</b> DIGITAL EXPERIENCE <b>✳</b> CREATIVE DIRECTION <b>✳</b> BRANDING <b>✳</b> WEB DESIGN <b>✳</b> DIGITAL EXPERIENCE <b>✳</b> CREATIVE DIRECTION <b>✳</b></div><div class="marquee-group" aria-hidden="true">BRANDING <b>✳</b> WEB DESIGN <b>✳</b> DIGITAL EXPERIENCE <b>✳</b> CREATIVE DIRECTION <b>✳</b> BRANDING <b>✳</b> WEB DESIGN <b>✳</b> DIGITAL EXPERIENCE <b>✳</b> CREATIVE DIRECTION <b>✳</b></div></div></div>
 
 <section id="proyectos"><div class="wrap"><div class="head reveal"><h2 data-i="selected">Trabajo<br>seleccionado<span class="lime">.</span></h2><small>01 / 07</small></div><div class="grid">
-<article class="project reveal" data-project="aurenta"><a href="/projetos/fynora/" aria-label="Abrir proyecto AURENTA CAPITAL" style="display:block;color:inherit;text-decoration:none"><div class="project-preview"><div class="project-preview-stage"><iframe src="/projetos/fynora/" title="Vista previa de AURENTA CAPITAL" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div></div><div class="meta"><span class="project-category">01 / FINANZAS</span><strong>AURENTA CAPITAL</strong><p data-i="p2">Asesoramiento financiero y patrimonial</p></div></a></article>
-<article class="project reveal" data-project="kodara"><a href="/projetos/mooni/" aria-label="Abrir proyecto KODARA" style="display:block;color:inherit;text-decoration:none"><div class="project-preview"><div class="project-preview-stage"><iframe src="/projetos/mooni/" title="Vista previa de KODARA" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div></div><div class="meta"><span class="project-category">02 / SOFTWARE</span><strong>KODARA</strong><p data-i="p3">Plataforma de desarrollo inteligente</p></div></a></article>
-<article class="project reveal" data-project="latera"><a href="/projetos/zarion/" aria-label="Abrir proyecto LATERA" style="display:block;color:inherit;text-decoration:none"><div class="project-preview"><div class="project-preview-stage"><iframe src="/projetos/zarion/" title="Vista previa de LATERA" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div></div><div class="meta"><span class="project-category">03 / INTELIGENCIA ARTIFICIAL</span><strong>LATERA</strong><p data-i="p6">Asistente personal con inteligencia artificial</p></div></a></article>
-<article class="project reveal" data-project="nexora"><a href="/projetos/nexora/" aria-label="Abrir proyecto NEXORA AI" style="display:block;color:inherit;text-decoration:none"><div class="project-preview"><div class="project-preview-stage"><iframe src="/projetos/nexora/" title="Vista previa de NEXORA AI" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div></div><div class="meta"><span class="project-category">04 / INTELIGENCIA ARTIFICIAL</span><strong>NEXORA AI</strong><p data-i="p7">Soluciones de inteligencia artificial</p></div></a></article>
+<article class="project reveal" data-project="aurenta"><a href="/projetos/fynora/" aria-label="Abrir proyecto AURENTA CAPITAL" style="display:block;color:inherit;text-decoration:none"><div class="project-preview"><iframe src="/projetos/fynora/" title="Vista previa de AURENTA CAPITAL" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div><div class="meta"><span class="project-category">01 / FINANZAS</span><strong>AURENTA CAPITAL</strong><p data-i="p2">Asesoramiento financiero y patrimonial</p></div></a></article>
+<article class="project reveal" data-project="kodara"><a href="/projetos/mooni/" aria-label="Abrir proyecto KODARA" style="display:block;color:inherit;text-decoration:none"><div class="project-preview"><iframe src="/projetos/mooni/" title="Vista previa de KODARA" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div><div class="meta"><span class="project-category">02 / SOFTWARE</span><strong>KODARA</strong><p data-i="p3">Plataforma de desarrollo inteligente</p></div></a></article>
+<article class="project reveal" data-project="latera"><a href="/projetos/zarion/" aria-label="Abrir proyecto LATERA" style="display:block;color:inherit;text-decoration:none"><div class="project-preview"><iframe src="/projetos/zarion/" title="Vista previa de LATERA" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div><div class="meta"><span class="project-category">03 / INTELIGENCIA ARTIFICIAL</span><strong>LATERA</strong><p data-i="p6">Asistente personal con inteligencia artificial</p></div></a></article>
+<article class="project reveal" data-project="nexora"><a href="/projetos/nexora/" aria-label="Abrir proyecto NEXORA AI" style="display:block;color:inherit;text-decoration:none"><div class="project-preview"><iframe src="/projetos/nexora/" title="Vista previa de NEXORA AI" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div><div class="meta"><span class="project-category">04 / INTELIGENCIA ARTIFICIAL</span><strong>NEXORA AI</strong><p data-i="p7">Soluciones de inteligencia artificial</p></div></a></article>
 </div></div></section>
 <section class="services" id="servicios"><div class="wrap"><div class="head reveal"><h2 data-i="what">Lo que<br>hago<span class="lime">.</span></h2><small>02 / 04</small></div>
 <div class="service reveal"><small>01</small><h3 data-i="s1">Identidad & branding</h3><p data-i="sd1">Marcas con personalidad, estrategia y coherencia.</p></div>
@@ -152,4 +141,27 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ov.classList.contai
 ov.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>menu(false)));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-</body></html>
+<script id="portfolio-cover-text-safe-area">
+/* Only move the text composition inside the Latera cover: the original
+   hero background, mountains, navbar and assistant UI stay untouched. */
+(function(){
+  function apply(){
+    var frame=document.querySelector('.project[data-project="latera"] .project-preview iframe');
+    if(!frame)return;
+    function insetText(){
+      try{
+        var doc=frame.contentDocument;
+        if(!doc||doc.getElementById('portfolio-latera-text-inset'))return;
+        var css=doc.createElement('style');
+        css.id='portfolio-latera-text-inset';
+        css.textContent='.section.hero .hero-left-wrap{position:relative!important;left:55px!important;}';
+        doc.head.appendChild(css);
+      }catch(err){console.warn('Preview text inset:',err);}
+    }
+    frame.addEventListener('load',insetText);
+    if(frame.contentDocument&&frame.contentDocument.readyState==='complete')insetText();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);
+  else apply();
+})();
+</script></body></html>
