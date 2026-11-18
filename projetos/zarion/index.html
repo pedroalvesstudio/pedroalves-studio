@@ -708,4 +708,132 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
 })();
 </script>
+<style id="latera-layout-pricing-footer-20261118">
+/* Reduce the dead space left by the sticky carousel without disabling its scroll sequence. */
+@media(min-width:992px){
+ .section.techo .techo-wrapper{height:158vh!important}
+ .section.techo .techo-sticky-wrap{top:2vh!important;height:86vh!important}
+ .section.casesh{padding-top:18px!important}
+ .section.casesh .case-top-wrap{margin-top:0!important}
+}
+.section.faq{padding-bottom:36px!important}
+.section.faq .faq-wrapper{padding-bottom:0!important}
+.section.cta{padding-top:0!important;padding-bottom:12px!important}
+.section.cta .cta-wrapper{margin-top:0!important;margin-bottom:0!important}
+.section.footer{padding-top:0!important;padding-bottom:20px!important}
+.section.pricing-c .pricing-a-grid-wrap{gap:16px!important}
+/* Match the two pill badges to the original proportions and contrasting fills. */
+.section.pricing-c .popular-tag,
+.section.pricing-c .popular-tag:not(.black){
+ background-color:#cd6840!important;color:#fff!important;
+ display:inline-flex!important;align-items:center!important;
+ width:max-content!important;max-width:calc(100% - 20px)!important;
+ padding:6px 11px!important;gap:6px!important;
+ border-radius:999px!important;white-space:nowrap!important;
+ line-height:1.25!important;
+}
+.section.pricing-c .popular-tag.black{
+ background-color:#171717!important;color:white!important;
+ padding:6px 11px!important;
+ border-radius:999px!important;
+}
+.section.pricing-c .popular-tag .popular-text,
+.section.pricing-c .popular-tag.black .popular-text{
+ background:transparent!important;color:white!important;
+ font-size:12px!important;line-height:1.25!important;font-weight:600!important;
+ white-space:nowrap!important;
+}
+.section.pricing-c .popular-tag.black .popular-icon{filter:none!important}
+.section.pricing-c .popular-tag .popular-icon-wrap{flex:0 0 14px!important}
+/* Keep all balance chips on one line as in the original. */
+.section.pricing-c .balance-wrap{min-width:0!important}
+.section.pricing-c .balance-month-wrap{
+ display:flex!important;align-items:center!important;
+ gap:5px!important;flex-wrap:nowrap!important;min-width:0!important;
+}
+.section.pricing-c .balance-month{
+ font-size:clamp(10px,0.85vw,13px)!important;line-height:1.25!important;
+ padding:5px 9px!important;border-radius:100px!important;
+ white-space:nowrap!important;min-width:0!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 1 auto!important;
+}
+.section.pricing-c .balance-title{font-size:15px!important}
+.section.pricing-c .balance-a-dot{flex-shrink:0!important}
+@media(max-width:991px){
+ .section.pricing-c .balance-month-wrap{flex-wrap:wrap!important}
+ .section.pricing-c .balance-month{font-size:12px!important}
+}
+/* Latera footer identity rather than the original Zarion logo and sitemap. */
+.section.footer .footer-wrapper{
+ background:#f5ebe2!important;
+ background-image:none!important;
+ padding:36px 46px 20px!important;min-height:unset!important;
+ overflow:hidden!important;position:relative!important;
+}
+.section.footer .footer-wrapper:after{
+ content:'latera'!important;display:block!important;
+ font-size:clamp(85px,17vw,240px)!important;
+ line-height:.85!important;font-weight:800!important;letter-spacing:-.085em!important;
+ color:rgba(109,57,43,.09)!important;white-space:nowrap!important;
+ text-align:center!important;margin-top:30px!important;
+ pointer-events:none!important;
+}
+.section.footer .footer-brand-link img{display:none!important}
+.section.footer .latera-footer-brand{display:flex;align-items:center;gap:12px;color:#6d392b;font-size:27px;font-weight:800;letter-spacing:-.045em}
+.section.footer .latera-footer-icon{
+ width:42px;height:42px;border-radius:13px;background:#cd6840;color:white;
+ display:grid;place-items:center;font-size:27px;line-height:1;
+}
+.section.footer .footer-details{font-size:15px!important;line-height:1.55!important;color:#513b32!important}
+.section.footer .footer-menu-title{font-size:14px!important;color:#6d392b!important;font-weight:700!important}
+.section.footer .footer-menu-wrap{gap:12px!important}
+.section.footer .footer-menu-wrap a{color:#513b32!important}
+.section.footer .footer-copyright-wrap{
+ max-width:none!important;margin-top:42px!important;
+ align-items:center!important;position:relative!important;
+}
+.section.footer .footer-copyright-text{color:#6d392b!important}
+@media(max-width:767px){
+ .section.footer .footer-wrapper{padding:28px 22px 18px!important}
+ .section.footer .footer-copyright-wrap{margin-top:22px!important}
+}
+</style>
+<script id="latera-footer-cleanup-20261118">
+(function(){
+ function init(){
+  const footer=document.querySelector('.section.footer');
+  if(!footer)return;
+  const brand=footer.querySelector('.footer-brand-link');
+  if(brand){
+   brand.removeAttribute('href');
+   brand.setAttribute('aria-label','latera');
+   brand.innerHTML='<span class="latera-footer-brand"><span class="latera-footer-icon" aria-hidden="true">✦</span><span>latera</span></span>';
+  }
+  const columns=footer.querySelectorAll('.footer-single-wrap');
+  const sections=['Inicio','Funciones','Casos de uso','Precios'];
+  const info=['Asistente personal','Diseño y desarrollo','PedroAlves Studio'];
+  [sections,info].forEach((items,i)=>{
+   const col=columns[i];if(!col)return;
+   const title=col.querySelector('.footer-menu-title');
+   if(title)title.textContent=i?'Información':'Secciones';
+   const nav=col.querySelector('.footer-menu-wrap');
+   if(!nav)return;
+   nav.innerHTML='';
+   items.forEach((name,j)=>{
+    const label=document.createElement('span');
+    label.className='latera-footer-entry';
+    label.textContent=name;
+    label.style.cssText='display:block;color:#513b32;font-size:14px;line-height:1.5;';
+    nav.appendChild(label);
+   });
+  });
+  const copy=footer.querySelector('.footer-copyright-wrap .footer-copyright-text');
+  if(copy)copy.textContent='© 2026 latera · Diseño y desarrollo: PedroAlves Studio';
+  const socials=footer.querySelector('.footer-social-wrapper');
+  if(socials)socials.remove();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script>
 <style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
