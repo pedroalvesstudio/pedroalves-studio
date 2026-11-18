@@ -1,0 +1,28 @@
+name: Build Latera original Lottie
+on:
+  push:
+    paths:
+      - 'scripts/build_latera_lottie.py'
+      - '.github/workflows/latera-lottie.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install Pillow
+      - name: Build branded animation JSON
+        run: python scripts/build_latera_lottie.py
+      - name: Commit local JSON asset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projetos/zarion/assets/latera-hero.json
+          git diff --cached --quiet || (git commit -m "Generate local Latera Lottie animation" && git push)
