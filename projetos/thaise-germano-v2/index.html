@@ -162,6 +162,34 @@ body{min-height:100vh;overflow-x:hidden}
  .light-orb{filter:none!important}
 }
 
+
+/* Section 03 — Meet the mentor */
+.mentor-section{position:relative;z-index:1;padding:96px 0 112px;overflow:hidden}
+.mentor-wrap{width:min(1080px,88%);margin:0 auto;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(260px,.88fr);gap:clamp(38px,6vw,82px);align-items:center}
+.mentor-kicker{margin:0 0 17px;color:#e11a28;font:600 9px/1.6 "DM Sans",sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.mentor-copy h2{max-width:15ch;margin:0 0 25px;color:#f4efed;font:400 clamp(29px,3vw,40px)/1.2 "Manrope",sans-serif;letter-spacing:-.025em;text-wrap:balance}
+.mentor-copy h2 span{color:#e11a28}
+.mentor-copy p:not(.mentor-kicker){max-width:58ch;margin:0 0 15px;color:rgba(245,237,234,.78);font:400 13px/1.9 "DM Sans",sans-serif;letter-spacing:.005em;text-wrap:pretty}
+.mentor-highlight{position:relative;min-height:280px;padding:34px 34px 30px;border:1px solid rgba(255,255,255,.13);background:linear-gradient(145deg,rgba(34,16,19,.82),rgba(12,11,11,.92));display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.mentor-highlight:before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:linear-gradient(180deg,#ed1b2b,rgba(173,0,18,.12))}
+.mentor-highlight:after{content:"";position:absolute;right:-65px;top:-75px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(176,0,20,.16),transparent 70%);pointer-events:none}
+.mentor-highlight-label{position:relative;z-index:1;color:rgba(238,229,226,.55);font:600 9px/1.6 "DM Sans",sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.mentor-highlight-number{position:relative;z-index:1;margin:24px 0 9px;color:#ed1b2b;font:400 clamp(48px,5.4vw,68px)/1 "Manrope",sans-serif;letter-spacing:-.06em}
+.mentor-highlight-copy{position:relative;z-index:1;max-width:26ch;color:#f4efed;font:400 14px/1.65 "DM Sans",sans-serif}
+.mentor-highlight-foot{position:relative;z-index:1;margin-top:30px;padding-top:17px;border-top:1px solid rgba(255,255,255,.1);color:rgba(238,229,226,.5);font:500 9px/1.6 "DM Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.mentor-section.reveal-on-scroll .mentor-wrap{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.mentor-section.reveal-on-scroll.is-visible .mentor-wrap{opacity:1;transform:translateY(0)}
+@media(max-width:700px){
+ .mentor-section{padding:68px 0 78px}
+ .mentor-wrap{width:calc(100% - 44px);grid-template-columns:1fr;gap:25px}
+ .mentor-copy h2{font-size:29px;max-width:16ch;margin-bottom:19px}
+ .mentor-copy p:not(.mentor-kicker){font-size:12px;line-height:1.85}
+ .mentor-highlight{min-height:220px;padding:27px 25px}
+ .mentor-highlight-number{font-size:54px;margin:20px 0 8px}
+ .mentor-highlight-copy{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.mentor-section.reveal-on-scroll .mentor-wrap{opacity:1;transform:none;transition:none}}
+
 </style>
 </head>
 <body>
@@ -205,12 +233,31 @@ body{min-height:100vh;overflow-x:hidden}
 </div>
 </section>
 <div class="light-beam"></div><div class="light-orb one"></div><div class="light-orb two"></div>
+
+<section class="mentor-section reveal-on-scroll" id="mentora" aria-labelledby="mentor-heading">
+<div class="mentor-wrap">
+<div class="mentor-copy">
+<p class="mentor-kicker">Quem será sua mentora?</p>
+<h2 id="mentor-heading">Prazer, eu sou a <span>Thaíse Germano</span></h2>
+<p>Meu esposo é contador, sou a fundadora da Soluzione, atual contabilidade da FPE e comecei atendendo de casa.</p>
+<p>Em busca da liberdade financeira e de trazer mais conforto pra minha família, eu investi mais de 100 mil reais em treinamentos, cursos, mentorias e mais meia década na Soluzione aperfeiçoando todos os processos e criando a Contadora Elite.</p>
+</div>
+<aside class="mentor-highlight" aria-label="Investimento em formação profissional">
+<div class="mentor-highlight-label">Experiência construída com dedicação</div>
+<div><div class="mentor-highlight-number">100 mil+</div><div class="mentor-highlight-copy">investidos em treinamentos, cursos e mentorias.</div></div>
+<div class="mentor-highlight-foot">Mais de meia década aperfeiçoando processos</div>
+</aside>
+</div>
+</section>
 </main>
 <script>
 (()=>{const b=document.querySelector(".menu-toggle"),n=document.querySelector(".site-nav");if(!b||!n)return;b.addEventListener("click",()=>{const open=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"Fechar menu":"Abrir menu");n.classList.toggle("is-open",open)});n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{n.classList.remove("is-open");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Abrir menu")}));})();
 </script>
 <script>
 (()=>{const cards=document.querySelectorAll(".reforma-card.reveal");if(!("IntersectionObserver"in window)){cards.forEach(x=>x.classList.add("visible"));return;}const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target)}}),{threshold:.14});cards.forEach(x=>io.observe(x));})();
+</script>
+<script>
+(()=>{const el=document.querySelector(".mentor-section.reveal-on-scroll");if(!el)return;if(!("IntersectionObserver"in window)){el.classList.add("is-visible");return;}const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){el.classList.add("is-visible");io.unobserve(el)}}),{threshold:.12});io.observe(el);})();
 </script>
 </body>
 </html>
