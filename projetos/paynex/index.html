@@ -695,6 +695,41 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 @media(prefers-reduced-motion:reduce){
 .gateway-motion-stage .gateway-app-phone,.gateway-motion-stage .gateway-app-phone *{opacity:1!important;transform:none!important;transition:none!important}
 }
+
+/* SECTION 04 — activation offer, scroll-triggered reveal and premium detail */
+#ativacao .activation-motion-heading{opacity:0;transform:translate3d(0,20px,0);transition:opacity 1.35s cubic-bezier(.2,.68,.22,1),transform 1.35s cubic-bezier(.2,.68,.22,1)}
+#ativacao.is-live .activation-motion-heading{opacity:1;transform:translate3d(0,0,0)}
+#ativacao .activation-motion-tile{opacity:0;transform:translate3d(0,28px,0) scale(.985);transition:opacity 1.5s cubic-bezier(.2,.68,.22,1),transform 1.5s cubic-bezier(.2,.68,.22,1),box-shadow .6s ease,border-color .6s ease}
+#ativacao.is-live .activation-motion-tile{opacity:1;transform:translate3d(0,0,0) scale(1)}
+#ativacao.is-live .activation-motion-tile:nth-child(1){transition-delay:.2s}
+#ativacao.is-live .activation-motion-tile:nth-child(2){transition-delay:.75s}
+#ativacao.is-live .activation-motion-tile:nth-child(3){transition-delay:1.15s}
+#ativacao.is-live .activation-motion-tile:nth-child(4){transition-delay:1.55s}
+#ativacao .activation-price-tile{color:#174b53!important;background:linear-gradient(145deg,#fbfdfd,#e8f1f1)!important}
+#ativacao .activation-price-tile h3{color:#174b53!important}
+#ativacao .activation-price-tile .activation-tile-label{color:#176c77!important}
+#ativacao .activation-rate{display:block;opacity:.35;transform:translate3d(0,8px,0);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.2,.68,.22,1)}
+#ativacao.is-live .activation-rate{opacity:1;transform:translate3d(0,0,0);transition-delay:.8s}
+#ativacao .activation-benefit-tile{background:linear-gradient(145deg,rgba(17,48,54,.96),rgba(10,27,32,.99));border-color:rgba(88,199,201,.22)}
+#ativacao .activation-benefit-tile h3{color:#b4e7e6}
+#ativacao .activation-benefit-tile p{color:#a9bec0}
+#ativacao .activation-tile-icon{display:inline-grid;place-items:center;transition:transform .9s cubic-bezier(.2,.68,.22,1),background .6s ease,color .6s ease}
+#ativacao.is-live .activation-motion-tile .activation-tile-icon{animation:activationIconIn 1.2s .9s both}
+@keyframes activationIconIn{0%{transform:translate3d(0,7px,0) rotate(-12deg) scale(.82)}65%{transform:translate3d(0,-2px,0) rotate(3deg) scale(1.04)}100%{transform:translate3d(0,0,0) rotate(0) scale(1)}}
+@media(hover:hover){
+#ativacao .activation-benefit-tile{transition:transform .65s cubic-bezier(.2,.68,.22,1),border-color .6s ease,box-shadow .6s ease}
+#ativacao .activation-benefit-tile:hover{transform:translate3d(0,-5px,0);border-color:rgba(88,199,201,.52);box-shadow:0 20px 42px rgba(0,0,0,.24),0 0 28px rgba(22,143,156,.1)}
+#ativacao .activation-price-tile{transition:transform .65s cubic-bezier(.2,.68,.22,1),box-shadow .65s ease}
+#ativacao .activation-price-tile:hover{transform:translate3d(0,-4px,0);box-shadow:0 24px 52px rgba(0,0,0,.3)}
+}
+@media(max-width:760px){
+#ativacao .activation-motion-tile{transition-duration:1.2s}
+#ativacao.is-live .activation-motion-tile:nth-child(n){transition-delay:.15s}
+}
+@media(prefers-reduced-motion:reduce){
+#ativacao .activation-motion-heading,#ativacao .activation-motion-tile{opacity:1;transform:none;transition:none}
+#ativacao .activation-motion-tile .activation-tile-icon{animation:none}
+}
 </style>
 </head>
 <body>
@@ -793,12 +828,12 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 </section>
 <section class="section activation" id="ativacao">
 <div class="wrap">
-<header class="section-head"><span class="eyebrow">Com a PayNex, você só tem a ganhar</span><h2>Ao ativar sua conta agora, você garante</h2></header>
-<div class="activation-bento">
-<div class="activation-price-tile"><span class="activation-tile-label">CONDIÇÕES ESPECIAIS PAYNEX</span><h3>Taxas abaixo do mercado desde o início</h3><strong class="activation-rate">0,85%</strong><ul><li>Pix: a partir de 0,85%</li><li>Cartão: taxas competitivas para sua operação</li><li>Boleto: condições especiais</li></ul></div>
-<article class="activation-benefit-tile"><span class="activation-tile-icon">↗</span><h3>Nós pagamos no seu mês</h3><p>Acompanhamento técnico para a primeira integração via API</p></article>
-<article class="activation-benefit-tile"><span class="activation-tile-icon">▥</span><h3>Monitoramento da ponte</h3><p>Dashboard de gestão e operação incluso</p></article>
-<article class="activation-benefit-tile activation-zero"><span class="activation-tile-icon">＋</span><h3>Custo totalmente zero!</h3><p>Múltiplos métodos liberados sem custo adicional</p></article>
+<header class="section-head activation-motion-heading"><span class="eyebrow">Com a PayNex, você só tem a ganhar</span><h2>Ao ativar sua conta agora, você garante</h2></header>
+<div class="activation-bento activation-motion-grid">
+<div class="activation-price-tile activation-motion-tile"><span class="activation-tile-label">CONDIÇÕES ESPECIAIS PAYNEX</span><h3>Taxas abaixo do mercado desde o início</h3><strong class="activation-rate" data-activation-rate>0,85%</strong><ul><li>Pix: a partir de 0,85%</li><li>Cartão: taxas competitivas para sua operação</li><li>Boleto: condições especiais</li></ul></div>
+<article class="activation-benefit-tile activation-motion-tile"><span class="activation-tile-icon">↗</span><h3>Nós pagamos no seu mês</h3><p>Acompanhamento técnico para a primeira integração via API</p></article>
+<article class="activation-benefit-tile activation-motion-tile"><span class="activation-tile-icon">▥</span><h3>Monitoramento da ponte</h3><p>Dashboard de gestão e operação incluso</p></article>
+<article class="activation-benefit-tile activation-zero activation-motion-tile"><span class="activation-tile-icon">＋</span><h3>Custo totalmente zero!</h3><p>Múltiplos métodos liberados sem custo adicional</p></article>
 </div>
 </div>
 </section>
@@ -935,6 +970,28 @@ if(appStage&&'IntersectionObserver'in window){
  }),{threshold:.22,rootMargin:'0px 0px -8% 0px'});
  appObserver.observe(appStage);
 }else if(appStage){appStage.classList.add('is-live')}
+
+
+const activationSection=document.querySelector('#ativacao');
+if(activationSection&&'IntersectionObserver'in window){
+ const activationObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;
+  activationSection.classList.add('is-live');
+  const rate=activationSection.querySelector('[data-activation-rate]');
+  if(rate&&!rate.dataset.countDone){
+   rate.dataset.countDone='1';
+   const start=performance.now(),duration=2600,target=.85;
+   const tick=now=>{
+    const t=Math.min(1,(now-start)/duration),ease=1-Math.pow(1-t,3);
+    rate.textContent=(target*ease).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+    if(t<1)requestAnimationFrame(tick);else rate.textContent='0,85%';
+   };
+   requestAnimationFrame(tick);
+  }
+  activationObserver.unobserve(activationSection);
+ }),{threshold:.18,rootMargin:'0px 0px -7% 0px'});
+ activationObserver.observe(activationSection);
+}
 
 document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
 })();
