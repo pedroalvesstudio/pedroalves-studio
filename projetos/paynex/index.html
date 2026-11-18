@@ -1156,6 +1156,20 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 #negocio .business-motion-benefits .benefit .mini-icon svg circle{
  vector-effect:non-scaling-stroke;
 }
+
+/* FAQ — preserve approved appearance, soften accordion motion */
+.faq-list details{transition:border-color .42s ease,background-color .42s ease,box-shadow .42s ease!important}
+.faq-list summary{transition:color .35s ease,background-color .35s ease!important}
+.faq-list summary:after{
+ display:inline-flex;align-items:center;justify-content:center;
+ transform:rotate(0deg);transition:transform .42s cubic-bezier(.22,.61,.36,1),color .35s ease,opacity .35s ease!important;
+}
+.faq-list details[open] summary:after{transform:rotate(180deg)}
+.faq-list details p{will-change:height,opacity,transform}
+@media(prefers-reduced-motion:reduce){
+ .faq-list details,.faq-list summary,.faq-list summary:after{transition:none!important}
+ .faq-list details p{will-change:auto}
+}
 </style>
 </head>
 <body>
@@ -1472,7 +1486,40 @@ if(checkout){
  if('IntersectionObserver'in window){const checkoutObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)startLoop();else stopLoop();}),{threshold:.42});checkoutObserver.observe(checkout);}else{startLoop()}
 }
 
-document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
+const faqItems=[...document.querySelectorAll('.faq-list details')];
+faqItems.forEach(d=>{
+ const summary=d.querySelector('summary'),answer=d.querySelector('p');
+ if(!summary||!answer)return;
+ answer.style.overflow='hidden';
+ summary.addEventListener('click',event=>{
+  event.preventDefault();
+  if(d.dataset.animating==='true')return;
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){d.open=!d.open;return;}
+  d.dataset.animating='true';
+  if(d.open){
+   const height=answer.getBoundingClientRect().height;
+   const animation=answer.animate([
+    {height:height+'px',opacity:1,transform:'translateY(0)'},
+    {height:'0px',opacity:0,transform:'translateY(-5px)'}
+   ],{duration:360,easing:'cubic-bezier(.22,.61,.36,1)'});
+   animation.onfinish=()=>{d.open=false;delete d.dataset.animating;};
+  }else{
+   d.open=true;
+   const height=answer.scrollHeight;
+   answer.animate([
+    {height:'0px',opacity:0,transform:'translateY(-5px)'},
+    {height:height+'px',opacity:1,transform:'translateY(0)'}
+   ],{duration:440,easing:'cubic-bezier(.22,.61,.36,1)'}).onfinish=()=>{
+    answer.style.height='auto';
+    delete d.dataset.animating;
+   };
+  }
+ });
+});
+faqItems.forEach(d=>d.addEventListener('toggle',()=>{
+ if(d.open)faqItems.forEach(other=>{if(other!==d&&other.open)other.open=false});
+}));
 })();
 </script>
 </body>
