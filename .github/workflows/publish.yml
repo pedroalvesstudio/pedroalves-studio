@@ -27,6 +27,8 @@ jobs:
           done
           test -s projetos/mooni/assets/kodara-original.css
           test -s projetos/mooni/assets/kodara-icon.svg
+          test -s projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp
+          file projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp | grep -qi webp
           grep -q "kodara" projetos/mooni/index.html
           grep -q "Desarrollo más inteligente" projetos/mooni/index.html
           grep -q "fb-carousel" projetos/mooni/index.html
@@ -52,3 +54,16 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy --assets ./site --name pedroalves-studio --compatibility-date 2026-11-17
+      - name: Verify deployed Thaíse portrait asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in {1..10}; do
+            if curl -fsSI "https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp" | grep -qi "content-type: image/webp"; then
+              echo "Thaíse portrait is publicly served as WebP."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Thaíse portrait asset is not being served correctly." >&2
+          exit 1
