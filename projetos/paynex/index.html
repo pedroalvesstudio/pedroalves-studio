@@ -1507,6 +1507,147 @@ a.pill:not(.ghost),button.pill:not(.ghost){
 }
 a.pill.ghost{color:#c8ddf7!important;border-color:rgba(143,196,255,.42)!important}
 .footer-compact,.footer-col,.footer-bottom{color:#a9bad0!important}
+
+/* FINAL CONTRAST PASS — remove legacy teal surfaces and restore readable phone UI */
+:root{
+ --blue:#397cff;--blue2:#2867e8;--cyan:#9bcaff;
+ --line:rgba(155,184,222,.2);--glow:rgba(57,124,255,.18);
+}
+/* Remaining green-tinted cards: pricing, feature bento and FAQ */
+.feature,.benefit,.activation-card,.activation-benefit-tile,
+#beneficios .capability,.faq-list details,
+#beneficios .feature,#ativacao .activation-benefit-tile{
+ background:linear-gradient(145deg,#172d48 0%,#10233a 100%)!important;
+ border:1px solid rgba(143,177,219,.24)!important;
+ box-shadow:inset 0 1px 0 rgba(225,237,252,.035),0 12px 28px rgba(0,0,0,.16)!important;
+}
+.feature:hover,.benefit:hover,.activation-benefit-tile:hover,
+#beneficios .capability:hover,.faq-list details[open]{
+ background:linear-gradient(145deg,#203b5d 0%,#172d48 100%)!important;
+ border-color:rgba(143,196,255,.48)!important;
+}
+.feature h3,.benefit h3,.activation-benefit-tile h3,
+#beneficios .capability h3,#ativacao .activation-benefit-tile h3,
+.faq-list summary{
+ color:#c7ddfa!important;
+}
+.feature p,.benefit p,.activation-benefit-tile p,
+#beneficios .capability p,#ativacao .activation-benefit-tile p,
+.faq-list details p{color:#b4c4d8!important}
+.feature-icon,.benefit .mini-icon,.activation-tile-icon,
+#beneficios .capability-index,.faq-list summary:after{
+ color:#9bcaff!important;
+}
+.faq-list details{background:linear-gradient(145deg,#142a43,#0e2035)!important}
+.faq-list details[open]{border-color:rgba(143,196,255,.48)!important}
+.activation-price-tile{
+ background:linear-gradient(145deg,#172d48 0%,#10233a 100%)!important;
+ color:#eaf2fc!important;border-color:rgba(143,196,255,.28)!important;
+}
+.activation-price-tile h3,.activation-price-tile .activation-rate,
+.activation-price-tile .activation-tile-label{color:#eaf2fc!important}
+.activation-price-tile ul{color:#bdcde0!important}
+.activation-price-tile:after{
+ border-color:rgba(143,196,255,.2)!important;
+ box-shadow:0 0 0 22px rgba(57,124,255,.055),0 0 0 45px rgba(57,124,255,.035)!important;
+}
+/* Dashboard frame and chart accents */
+.product-dashboard-b{border-color:rgba(143,196,255,.34)!important}
+.product-dash-top,.product-dash-sidebar{border-color:rgba(143,177,219,.2)!important}
+.product-dash-sidebar{background:linear-gradient(180deg,#0e2035,#10243a)!important}
+.product-dash-nav.active,.product-dash-nav.is-active{
+ background:rgba(57,124,255,.16)!important;border-color:rgba(143,196,255,.38)!important;color:#bcd8ff!important;
+}
+.product-dash-foot span:first-child{color:#9bcaff!important}
+.product-dashboard-b svg path[stroke],
+.product-dashboard-b svg polyline[stroke]{stroke:#5792ff!important}
+.product-dashboard-b svg rect[fill],
+.product-dashboard-b svg circle[fill]{fill:#79adff!important}
+/* Phone mockups: screens are intentionally light, so restore dark, high-contrast UI text.
+   Do not apply the pale website typography palette inside the white phone screens. */
+.product-phone-b,.product-phone-b *{
+ color:inherit;
+}
+.product-phone-b{color:#eaf2fc!important}
+.product-phone-b-status,.product-phone-b-muted,.product-phone-b small,
+.product-phone-b-label,.product-phone-b-caption{color:#536b84!important}
+.product-phone-b-head strong,.product-phone-b-welcome,
+.product-phone-b-balance strong,.product-phone-b-item b{color:#17304d!important}
+.product-phone-b-screen,.product-phone-b .product-phone-screen{
+ background:linear-gradient(160deg,#f7faff 0%,#e8f0fa 100%)!important;
+ color:#17304d!important;
+}
+.product-phone-b-screen *,.product-phone-b .product-phone-screen *{
+ color:#17304d!important;
+}
+.product-phone-b-screen .product-phone-b-muted,
+.product-phone-b-screen small,.product-phone-b-screen .muted{
+ color:#647b95!important;
+}
+.product-phone-b-screen .product-phone-balance,
+.product-phone-b-screen .product-phone-b-card{
+ background:linear-gradient(135deg,#173d67,#245c91)!important;
+ color:#fff!important;
+}
+.product-phone-b-screen .product-phone-balance *,
+.product-phone-b-screen .product-phone-b-card *{color:#fff!important}
+.product-phone-b-screen .product-phone-b-nav,
+.product-phone-b-screen .product-phone-b-footer{
+ background:#fff!important;color:#355779!important;
+}
+/* Approved 03-A app mockup — white screen with legible navy typography */
+.gateway-app-phone-premium{
+ background:linear-gradient(145deg,#aebdca,#506985 28%,#142943 100%)!important;
+ box-shadow:0 28px 58px rgba(0,0,0,.42),0 0 42px rgba(57,124,255,.12)!important;
+}
+.gateway-app-phone-premium,
+.gateway-app-phone-premium *{text-shadow:none!important}
+.gateway-app-phone-premium .gateway-app-status{color:#526b86!important}
+.gateway-app-phone-premium .gateway-app-brand strong,
+.gateway-app-phone-premium .gateway-app-greeting{color:#17304d!important}
+.gateway-app-phone-premium .gateway-app-brand strong span{color:#58718c!important}
+.gateway-app-phone-premium .gateway-app-date,
+.gateway-app-phone-premium .gateway-app-subtitle,
+.gateway-app-phone-premium .gateway-app-section-title,
+.gateway-app-phone-premium .gateway-app-section-title span{color:#607995!important}
+.gateway-app-phone-premium .gateway-app-row,
+.gateway-app-phone-premium .gateway-app-row>span{color:#294764!important}
+.gateway-app-phone-premium .gateway-app-row small{color:#6d8299!important}
+.gateway-app-phone-premium .gateway-app-row b{color:#24496f!important}
+.gateway-app-phone-premium .gateway-app-avatar{
+ background:#dce9f8!important;color:#315a87!important;
+}
+.gateway-app-phone-premium .gateway-app-actions button,
+.gateway-app-phone-premium .gateway-app-action{
+ background:#fff!important;border-color:#d5e1ee!important;color:#355779!important;
+}
+.gateway-app-phone-premium .gateway-app-actions button *,
+.gateway-app-phone-premium .gateway-app-action *{color:#355779!important}
+.gateway-app-phone-premium .gateway-app-actions i{
+ background:#e5effc!important;color:#2867e8!important;
+}
+.gateway-app-phone-premium .gateway-app-nav,
+.gateway-app-phone-premium .gateway-app-bottom-nav,
+.gateway-app-phone-premium .gateway-app-home{
+ background:#fff!important;color:#426487!important;border-color:#d9e4ef!important;
+}
+.gateway-app-phone-premium .gateway-app-nav *,
+.gateway-app-phone-premium .gateway-app-bottom-nav *{color:#426487!important}
+.gateway-app-phone-premium .gateway-app-balance-card{
+ background:linear-gradient(135deg,#173d67 0%,#245c91 58%,#397cff 100%)!important;
+ color:#fff!important;
+}
+.gateway-app-phone-premium .gateway-app-balance-card *{color:#fff!important}
+.gateway-app-phone-premium .gateway-app-monogram{
+ background:linear-gradient(145deg,#5798f7,#2867e8)!important;color:#fff!important;
+}
+.gateway-app-phone-premium .gateway-app-row>i{background:#e7effb!important;color:#397cff!important}
+.gateway-app-phone-premium .gateway-app-row>i.payment{background:#e7effb!important;color:#397cff!important}
+.gateway-app-phone-premium .gateway-app-row>i.update{background:#edf0fa!important;color:#6576bd!important}
+/* Preserve green only for semantic successful-payment indicators */
+#negocio .checkout-motion-preview.demo-success .checkout-status,
+#negocio .checkout-success-details .checkout-success-status,
+#negocio .checkout-success-mark{color:#16815c!important}
 </style>
 </head>
 <body>
