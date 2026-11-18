@@ -161,6 +161,13 @@ for link in styles:
     try:
         css=urllib.request.urlopen(urllib.request.Request(old,headers={'User-Agent':'Mozilla/5.0'}),timeout=40).read().decode('utf-8')
         css=re.sub(r'#[a-fA-F0-9]{3,8}\b',transform_hex,css)
+        # Normalize the template's original orange token and hardcoded bright/pink leftovers.
+        css=css.replace('--primary--orange: #28e0ff','--primary--orange: #167D8D')
+        css=css.replace('--primary--dark: #050100','--primary--dark: #000000')
+        css=css.replace('#32e1ff','#126575').replace('#38d0ea','#167D8D')
+        css=css.replace('#d678c2','#167D8D').replace('#ffa48d','#73C3CF')
+        css=css.replace('#160042','#071821')
+
         with open(DEST+'/assets/kodara-original.css','w') as f:f.write(css)
         link['href']='./assets/kodara-original.css'
     except Exception as exc:
@@ -169,7 +176,15 @@ for link in styles:
 style=soup.new_tag('style',id='kodara-brand-palette')
 style.string='''
 :root{--kodara-primary:#167D8D;--kodara-muted:#73C3CF}
-html,body,.page-wrapper,section.section-large{background-color:#000000!important}
+/* Black base, but allow original transparent glow/light layers to blend continuously. */
+:root{--primary--dark:#000000;--background--dark:#000000;--primary--orange:#167D8D;--background--brand:#167D8D}
+html,body{background-color:#000000!important}
+.page-wrapper{background-color:transparent!important}
+section.section-large{background-color:transparent!important}
+/* Restore header and hero's original bloom: the sections must not paint over it. */
+.header,.background-lights,.hero-title,.hero-button-wrapper{isolation:auto}
+.bg-lights{opacity:1!important}
+
 body{color:#F7FBFC!important}
 /* Use a dark enough petrol-blue fill for white button lettering to remain readable. */
 .button-primary,.button-primary-large,.button-primary-small{
@@ -200,15 +215,19 @@ body{color:#F7FBFC!important}
 .nav-logo{display:inline-flex;align-items:center}
 .text-color-gradient-brand{background-image:linear-gradient(110deg,#167D8D 20%,#72C0CC 85%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
 .badge-primary,.banner-badge{border-color:rgba(22,125,141,.5)!important;color:#82CED8!important}
-.hero-background,.bg-lights{filter:hue-rotate(151deg) saturate(.83)}
+.hero-background,.bg-lights{filter:hue-rotate(184deg) saturate(.83)}
+/* Original rotating hero button border; remap the pink accent, keep its motion. */
+.hero-button{background-color:rgba(22,125,141,.48)!important}
+.hero-button-border{background-image:linear-gradient(112deg,#167D8D,#73C3CF 33%,rgba(115,195,207,.08) 46%)!important}
+.hero-button-inner{background-color:#000000!important}
 /* The original decorative graphics remain in place, with their warm hue shifted
    to Kodara petrol-blue; no icon/card is replaced or removed. */
 .statistic-icon,.statistic-light,.pricing-light,
 .light-front,.light-back,.integration-light,.testimonial-light,
 .cta-icon,.cta-bg-light,.footer-light,
-.section-large img.image-cover{filter:hue-rotate(151deg) saturate(.88)}
+.section-large img.image-cover{filter:hue-rotate(184deg) saturate(.76)}
 
-.hero-button-border,.circle-gradient{filter:hue-rotate(151deg)}
+.circle-gradient{filter:hue-rotate(184deg) saturate(.8)}
 ::selection{background:#167D8D;color:#0B1116}
 .w-webflow-badge{display:none!important}
 @media(max-width:479px){.kodara-wordmark{font-size:21px}.kodara-wordmark svg{width:32px;height:32px}}
