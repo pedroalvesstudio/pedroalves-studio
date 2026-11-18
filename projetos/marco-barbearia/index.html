@@ -152,6 +152,29 @@ body{background:#000!important}
  .services-section .service-top{margin-bottom:20px}
  .services-section .service-card h3{font-size:21px}
 }
+
+/* Shared button and arrow system */
+.btn{min-height:42px;padding:10px 16px;font-size:12px;line-height:1;gap:11px}
+.btn .arrow{width:18px;height:18px;display:grid;place-items:center;border-radius:50%;background:#101111;color:var(--yellow)}
+.btn .arrow svg{width:11px;height:11px;display:block}
+.header-cta{font-size:13px;min-height:46px;padding:12px 26px;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.header-arrow{width:14px;height:14px;display:block;flex:none}
+.services-section{padding-top:58px;padding-bottom:70px}
+.services-section .section-head{margin-bottom:24px}
+.services-section .service-card{min-height:232px}
+.services-section .service-top{margin-bottom:19px}
+.services-section .service-card h3{font-size:23px}
+.services-section .service-card p{font-size:12px;line-height:1.6}
+.services-section .service-bottom{margin-top:18px}
+.services-section .service-bottom .btn{min-height:42px;padding:10px 16px;font-size:12px;gap:11px}
+.services-section .service-bottom .arrow{width:18px;height:18px}
+@media(max-width:700px){
+ .services-section{padding-top:48px;padding-bottom:58px}
+ .services-section .section-head{margin-bottom:20px}
+ .services-section .service-card{min-height:210px}
+ .services-section .service-card p{font-size:12px}
+ .services-section .service-bottom .btn{min-height:40px;font-size:12px;padding:9px 15px}
+}
 </style>
 </head>
 <body>
@@ -161,12 +184,12 @@ body{background:#000!important}
 <nav class="nav" aria-label="Navegação principal">
 <a href="#servicos">Serviços</a><a href="#trabalho">Nosso Trabalho</a><a href="#equipe">Nossa Equipe</a><a href="#clientes">Clientes</a><a href="#historia">História</a>
 </nav>
-<a class="header-cta" href="#inicio">Agendar horário ↗</a>
+<a class="header-cta" href="#inicio">Agendar horário <svg class="header-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div></header>
 <main>
 <section class="hero" id="inicio">
 <img class="hero-photo" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=2200&q=88" alt="Interior de uma barbearia contemporânea">
-<div class="hero-content"><div class="hero-kicker">Estilo, identidade e cuidado</div><h1>Muito além de <span>cabelo e barba.</span></h1><div class="hero-bottom"><p>Atendimento especializado em barbearia, com 2 unidades na região para cuidar de você.</p><a class="btn" href="#inicio">Agendar horário <span class="arrow">↗</span></a></div></div>
+<div class="hero-content"><div class="hero-kicker">Estilo, identidade e cuidado</div><h1>Muito além de <span>cabelo e barba.</span></h1><div class="hero-bottom"><p>Atendimento especializado em barbearia, com 2 unidades na região para cuidar de você.</p><a class="btn" href="#inicio">Agendar horário <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div></div>
 </section>
 
 <section class="section services-section" id="servicos">
