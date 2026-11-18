@@ -96,6 +96,68 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 /* Narrow-phone header clearance: no changes to other breakpoints */
 @media(max-width:370px){.top{padding:17px 14px}.brandword{font-size:clamp(14px,4.6vw,17px)}.topright{gap:5px}.lang button{padding:5px}.menu{padding:8px;font-size:13px}}
 
+/* Mobile refinement: tighter rhythm, readable type and comfortable touch targets */
+@media(max-width:520px){
+  html{scroll-padding-top:84px}
+  .top{padding:calc(14px + env(safe-area-inset-top)) 18px 14px}
+  .topright{gap:7px}
+  .lang button{min-width:30px;min-height:30px}
+  .menu{min-height:38px;padding:8px 12px}
+  .hero{min-height:100svh;padding:calc(112px + env(safe-area-inset-top)) 0 34px}
+  h1{font-size:clamp(48px,12vw,64px);line-height:.94;letter-spacing:-.07em}
+  .herofoot{gap:14px}
+  .herofoot p{font-size:17px;line-height:1.45;max-width:34ch}
+  .heroicon{width:54px;height:54px;align-self:flex-end}
+  .heroicon .mark{width:34px;height:34px}
+  .marquee{padding:12px 0}
+  .marquee-group{font-size:14px}
+  .marquee b{margin:0 13px}
+  section{padding:72px 0}
+  .head{align-items:flex-end;margin-bottom:34px}
+  .head h2,.about h2{font-size:clamp(40px,10.8vw,54px);line-height:.94}
+  .head small{font-size:9px;letter-spacing:.04em}
+  .grid{grid-template-columns:minmax(0,1fr);gap:26px}
+  .project-preview{aspect-ratio:1.42/1;border-radius:10px}
+  .meta{margin-top:12px;padding-bottom:15px}
+  .meta strong{font-size:22px}
+  .meta p{font-size:13px;line-height:1.55}
+  .note{margin-top:30px;line-height:1.55}
+  .service{grid-template-columns:28px minmax(0,1fr);gap:10px 12px;padding:24px 0}
+  .service>small{font-size:11px;padding-top:5px}
+  .service h3{font-size:clamp(25px,7.5vw,34px);line-height:1.08}
+  .service p{grid-column:2;margin:0;font-size:15px;line-height:1.55}
+  .about{gap:20px}
+  .about p{font-size:19px;line-height:1.45;margin-top:20px}
+  .steps{margin-top:38px}
+  .steps .step{padding:22px 0}
+  .step h3{font-size:22px;margin:20px 0 7px}
+  .step p{font-size:14px;line-height:1.55}
+  .contact{padding:64px 0 44px}
+  .contact h2{font-size:clamp(40px,10.5vw,52px);line-height:.94;letter-spacing:-.07em}
+  .contact-foot{align-items:center;margin-top:24px}
+  .contact a{min-height:44px;padding:11px 15px;font-size:14px}
+  .contact-heroicon{width:52px;height:52px}
+  .contact-heroicon .mark{width:34px;height:34px}
+  .site-footer{padding:28px 0 calc(24px + env(safe-area-inset-bottom))}
+  .site-footer .sf-top{align-items:center}
+  .site-footer .sf-label,.site-footer .sf-back{font-size:11px}
+  .site-footer .sf-brandline{margin:28px 0 34px;gap:9px}
+  .site-footer .sf-mark{width:38px;height:38px}
+  .site-footer .sf-word{font-size:clamp(21px,6vw,28px);letter-spacing:-.065em}
+}
+@media(max-width:370px){
+  .wrap{padding-left:18px;padding-right:18px}
+  .top{padding-left:14px;padding-right:14px}
+  .brandword{font-size:15px}
+  .lang button{min-width:27px;padding:4px}
+  .menu{font-size:12px;padding:8px 10px}
+  .contact-foot{gap:8px}
+  .contact a{font-size:13px;padding:10px 12px}
+}
+@media(hover:none){
+  .project:hover .project-preview:after{background:transparent}
+}
+
 </style>
 </head>
 <body>
