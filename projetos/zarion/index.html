@@ -447,7 +447,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 @media (min-width: 992px) {
   .section.techo .techo-sticky-wrap { overflow: hidden !important; }
   .section.techo .techo-wrap {
-    width: max-content !important;
+    width: 100% !important;
     max-width: none !important;
     will-change: transform;
   }
@@ -455,9 +455,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 }
 </style>
 <script id="latera-original-benefits-20261118">
-/* Zarion MotionLens original: trigger .techo-wrapper; target .techo-wrap;
-   tween xPercent -100, duration 1, ease none, scrub 1.5.
-   Translate the observed 100% motion into exact overflow distance to avoid blank ending. */
+/* Zarion MotionLens trace: animate .techo-wrap xPercent -100 on .techo-wrapper,
+   duration 1, ease none, scrub 1.5. Match the original viewport-width geometry. */
 (function(){
   function mountBenefits(){
     if(!window.gsap||!window.ScrollTrigger)return;
@@ -467,21 +466,20 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     const cards=viewport&&viewport.querySelector('.techo-flex-wrap');
     if(!wrapper||!sticky||!viewport||!cards)return;
     gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.matchMedia({
-      '(min-width: 992px)':function(){
-        const travel=()=>Math.max(0,cards.scrollWidth-sticky.clientWidth);
-        gsap.fromTo(viewport,{x:0},{
-          x:()=>-travel(),
-          duration:1,ease:'none',
-          scrollTrigger:{
-            trigger:wrapper,
-            start:'top top',
-            end:'bottom bottom',
-            scrub:1.5,
-            invalidateOnRefresh:true
-          }
-        });
-      }
+    const responsive=gsap.matchMedia();
+    responsive.add('(min-width: 992px)',function(){
+      // Exact Zarion MotionLens animation property, not an estimated pixel travel.
+      gsap.fromTo(viewport,{xPercent:0},{
+        xPercent:-100,
+        duration:1,ease:'none',
+        scrollTrigger:{
+          trigger:wrapper,
+          start:'top top',
+          end:'bottom bottom',
+          scrub:1.5,
+          invalidateOnRefresh:true
+        }
+      });
     });
     ScrollTrigger.refresh();
   }
