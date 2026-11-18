@@ -11,9 +11,9 @@ body{color:#6D392B}
 .latera-brandmark .latera-symbol{display:block;width:41px;height:41px;color:#6D392B;flex:0 0 auto}
 .latera-brandmark strong{font-weight:750}
 a[href*="webflow.com"],a[href*="ozen-studio"]{display:none!important}
-[animation]:not([animation="heading"]){transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1)!important}
-[animation].latera-reveal-pending{opacity:0!important;transform:translate3d(0,56px,0)!important}
-[animation].latera-reveal-shown{opacity:1!important;transform:translate3d(0,0,0)!important}
+[animation]:not([animation="heading"]):not(.techo-wrap){transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1)!important}
+[animation]:not(.techo-wrap).latera-reveal-pending{opacity:0!important;transform:translate3d(0,56px,0)!important}
+[animation]:not(.techo-wrap).latera-reveal-shown{opacity:1!important;transform:translate3d(0,0,0)!important}
 [animation="heading"]{opacity:1!important;transform:none!important}
 [animation="heading"] h1,[animation="heading"] h2,[animation="heading"] h3{opacity:1!important;transform:none!important}
 .section.works .work-card{transition:transform .85s cubic-bezier(.2,.7,.2,1),opacity .85s ease!important}
