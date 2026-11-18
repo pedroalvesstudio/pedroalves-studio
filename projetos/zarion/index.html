@@ -185,7 +185,8 @@ body,.pages-wrapper{color:var(--latera-text)!important}
 </style><style id="latera-motion-v2-20261117">
 /* Source-based IX3 motion reconstruction — one controller for each scroll section. */
 html{scroll-behavior:auto!important}
-[animation^="fade-"]{transition:opacity .6s cubic-bezier(.22,.7,.22,1),transform .6s cubic-bezier(.22,.7,.22,1)!important}
+[animation^="fade-"]:not(.techo-wrap){transition:opacity .6s cubic-bezier(.22,.7,.22,1),transform .6s cubic-bezier(.22,.7,.22,1)!important}
+.section.techo .techo-wrap{transition:opacity .6s cubic-bezier(.22,.7,.22,1)!important}
 [animation="fade-one"]{transition-delay:0s!important}
 [animation="fade-two"]{transition-delay:.1s!important}
 [animation="fade-three"]{transition-delay:.2s!important}
@@ -471,6 +472,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     const responsive=gsap.matchMedia();
     responsive.add('(min-width: 992px)',function(){
       // Exact Zarion MotionLens animation property, not an estimated pixel travel.
+      // ScrollTrigger drives the original horizontal timeline; no competing reveal transform.
       gsap.fromTo(viewport,{xPercent:0},{
         xPercent:-100,
         duration:1,ease:'none',
