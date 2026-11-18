@@ -114,17 +114,17 @@ body{min-height:100vh;overflow-x:hidden}
 .reforma-section{position:relative;z-index:1;padding:92px 0 108px;overflow:hidden}
 .reforma-section:before{content:"";position:absolute;z-index:-1;left:-10%;top:12%;width:48%;height:75%;background:radial-gradient(ellipse,rgba(174,0,18,.2),transparent 70%);filter:blur(48px);pointer-events:none}
 .reforma-wrap{width:min(1080px,88%);margin:0 auto}
-.reforma-heading{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:end;margin-bottom:32px}
-.reforma-kicker{margin:0 0 18px;color:#e11a28;font:600 9px/1.5 "DM Sans",sans-serif;letter-spacing:.28em;text-transform:uppercase}
-.reforma-heading h2{margin:0;max-width:470px;color:#f4efed;font:400 clamp(28px,3vw,40px)/1.16 "Manrope",sans-serif;letter-spacing:-.03em}
+.reforma-heading{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(32px,5vw,58px);align-items:center;margin-bottom:36px}
+.reforma-kicker{margin:0 0 16px;color:#e11a28;font:600 9px/1.6 "DM Sans",sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.reforma-heading h2{margin:0;max-width:13ch;color:#f4efed;font:400 clamp(28px,2.8vw,38px)/1.2 "Manrope",sans-serif;letter-spacing:-.025em;text-wrap:balance}
 .reforma-heading h2 span{color:#e11a28}
-.reforma-intro{margin:0 0 4px;max-width:470px;color:rgba(238,229,226,.7);font:400 13px/1.8 "DM Sans",sans-serif}
-.reforma-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.reforma-card{position:relative;min-height:190px;padding:29px 30px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(24,18,19,.88),rgba(12,11,11,.82));backdrop-filter:blur(8px);overflow:hidden}
+.reforma-intro{margin:0;max-width:42ch;color:rgba(245,237,234,.78);font:400 13px/1.9 "DM Sans",sans-serif;letter-spacing:.005em;text-wrap:pretty}
+.reforma-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}
+.reforma-card{position:relative;min-height:200px;padding:31px 34px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(24,18,19,.88),rgba(12,11,11,.82));backdrop-filter:blur(8px);overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start}
 .reforma-card:before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:linear-gradient(180deg,#ed1b2b,rgba(173,0,18,.12))}
-.reforma-card small{display:block;margin-bottom:18px;color:rgba(238,229,226,.45);font:600 9px/1 "DM Sans",sans-serif;letter-spacing:.2em}
-.reforma-card h3{margin:0 0 12px;color:#f4efed;font:500 19px/1.3 "Manrope",sans-serif;letter-spacing:-.02em}
-.reforma-card p{margin:0;color:rgba(238,229,226,.65);font:400 12px/1.75 "DM Sans",sans-serif}
+.reforma-card small{display:block;margin-bottom:20px;color:rgba(238,229,226,.52);font:600 9px/1.5 "DM Sans",sans-serif;letter-spacing:.18em}
+.reforma-card h3{margin:0 0 13px;max-width:26ch;color:#f4efed;font:500 18px/1.4 "Manrope",sans-serif;letter-spacing:-.015em;text-wrap:balance}
+.reforma-card p{margin:0;max-width:52ch;color:rgba(245,237,234,.76);font:400 12px/1.9 "DM Sans",sans-serif;letter-spacing:.005em;text-wrap:pretty}
 .reforma-card strong{color:#fff;font-weight:600}
 .reforma-card.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .reforma-card.reveal.visible{opacity:1;transform:translateY(0)}
@@ -132,13 +132,13 @@ body{min-height:100vh;overflow-x:hidden}
 @media(max-width:700px){
  .reforma-section{padding:64px 0 72px}
  .reforma-wrap{width:calc(100% - 44px)}
- .reforma-heading{grid-template-columns:1fr;gap:15px;margin-bottom:23px}
- .reforma-heading h2{font-size:29px;max-width:400px}
- .reforma-intro{font-size:11px;line-height:1.75}
- .reforma-grid{grid-template-columns:1fr;gap:11px}
- .reforma-card{min-height:0;padding:23px 22px}
- .reforma-card h3{font-size:17px}
- .reforma-card p{font-size:11px}
+ .reforma-heading{grid-template-columns:1fr;gap:17px;margin-bottom:26px}
+ .reforma-heading h2{font-size:28px;max-width:15ch;line-height:1.22}
+ .reforma-intro{font-size:12px;line-height:1.85;max-width:46ch}
+ .reforma-grid{grid-template-columns:1fr;gap:13px}
+ .reforma-card{min-height:0;padding:25px 24px}
+ .reforma-card h3{font-size:17px;max-width:28ch;line-height:1.42}
+ .reforma-card p{font-size:12px;line-height:1.85;max-width:55ch}
 }
 @media(prefers-reduced-motion:reduce){.reforma-card.reveal{opacity:1;transform:none;transition:none}}
 
