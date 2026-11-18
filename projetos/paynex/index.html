@@ -687,12 +687,12 @@ if('IntersectionObserver'in window){
  const liveObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   if(!entry.isIntersecting)return;
   entry.target.classList.add('is-live');
-  if(entry.target===dashboard)countUp(dashboard);
+  countUp(entry.target);
   liveObserver.unobserve(entry.target);
  }),{threshold:.2,rootMargin:'0px 0px -5% 0px'});
  if(dashboard)liveObserver.observe(dashboard);
  if(phone)liveObserver.observe(phone);
-}else{[dashboard,phone].filter(Boolean).forEach(el=>el.classList.add('is-live'));if(dashboard)countUp(dashboard)}
+}else{[dashboard,phone].filter(Boolean).forEach(el=>{el.classList.add('is-live');countUp(el)})}
 
 document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
 })();
