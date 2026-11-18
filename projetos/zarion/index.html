@@ -455,40 +455,56 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     will-change: transform;
   }
   .section.techo .techo-flex-wrap { transform: none !important; }
+  .section.techo .techo-wrap { transform-origin: left center; }
 }
 </style>
 <script id="latera-original-benefits-20261118">
-/* Zarion MotionLens trace: animate .techo-wrap xPercent -100 on .techo-wrapper,
-   duration 1, ease none, scrub 1.5. Match the original viewport-width geometry. */
+/* Original Zarion interaction, measured with MotionLens:
+   trigger .techo-wrapper, animated .techo-wrap, xPercent -100, scrub 1.5.
+   Wait for GSAP instead of silently abandoning setup if CDN loads late. */
 (function(){
-  function mountBenefits(){
-    if(!window.gsap||!window.ScrollTrigger)return;
-    const wrapper=document.querySelector('.section.techo .techo-wrapper');
-    const sticky=wrapper&&wrapper.querySelector('.techo-sticky-wrap');
-    const viewport=sticky&&sticky.querySelector('.techo-wrap');
-    const cards=viewport&&viewport.querySelector('.techo-flex-wrap');
-    if(!wrapper||!sticky||!viewport||!cards)return;
-    gsap.registerPlugin(ScrollTrigger);
-    const responsive=gsap.matchMedia();
-    responsive.add('(min-width: 992px)',function(){
-      // Exact Zarion MotionLens animation property, not an estimated pixel travel.
-      // ScrollTrigger drives the original horizontal timeline; no competing reveal transform.
-      gsap.fromTo(viewport,{xPercent:0},{
-        xPercent:-100,
-        duration:1,ease:'none',
-        scrollTrigger:{
-          trigger:wrapper,
-          start:'top top',
-          end:'bottom bottom',
-          scrub:1.5,
-          invalidateOnRefresh:true
-        }
-      });
-    });
-    ScrollTrigger.refresh();
+ 'use strict';
+ let attempts=0,installed=false;
+ function init(){
+  if(installed)return;
+  const section=document.querySelector('.section.techo');
+  const wrapper=section&&section.querySelector('.techo-wrapper');
+  const sticky=wrapper&&wrapper.querySelector('.techo-sticky-wrap');
+  const track=sticky&&sticky.querySelector('.techo-wrap');
+  const cards=track&&track.querySelectorAll('.techo-card');
+  if(!wrapper||!sticky||!track||!cards||cards.length!==6)return;
+  if(!window.gsap||!window.ScrollTrigger){
+   if(++attempts<=100)window.setTimeout(init,120);
+   return;
   }
-  if(document.readyState==='complete')mountBenefits();
-  else window.addEventListener('load',mountBenefits,{once:true});
+  installed=true;
+  const GS=window.gsap, ST=window.ScrollTrigger;
+  GS.registerPlugin(ST);
+  const mm=GS.matchMedia();
+  mm.add('(min-width: 992px)',function(){
+   const tween=GS.fromTo(track,{xPercent:0},{
+    xPercent:-100,
+    duration:1,
+    ease:'none',
+    scrollTrigger:{
+     trigger:wrapper,
+     start:'top top',
+     end:'bottom bottom',
+     scrub:1.5,
+     invalidateOnRefresh:true
+    }
+   });
+   section.dataset.lateraCarousel='active';
+   return function(){
+    section.dataset.lateraCarousel='mobile';
+    tween.kill();
+   };
+  });
+  ST.refresh();
+  window.addEventListener('load',function(){ST.refresh()},{once:true});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+ else init();
 })();
 </script>
 <style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
