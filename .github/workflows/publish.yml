@@ -58,12 +58,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python -m pip install --quiet pillow
           for attempt in {1..10}; do
-            if curl -fsSI "https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp" | grep -qi "content-type: image/webp"; then
-              echo "Thaíse portrait is publicly served as WebP."
+            if curl -fsS "https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp" -o /tmp/thaise.webp; then
+              python - <<'PY'
+          from PIL import Image
+          im = Image.open("/tmp/thaise.webp").convert("RGBA")
+          alpha = im.getchannel("A")
+          print("Deployed portrait:", im.size, "visible alpha bbox:", alpha.getbbox())
+          assert im.width >= 300 and im.height >= 300, "Portrait dimensions are unexpectedly small"
+          assert alpha.getbbox() is not None, "Portrait is fully transparent"
+          assert alpha.getextrema()[1] > 0, "Portrait has no visible pixels"
+          PY
               exit 0
             fi
             sleep 5
           done
-          echo "Thaíse portrait asset is not being served correctly." >&2
+          echo "Thaíse portrait asset could not be downloaded from the deployed site." >&2
           exit 1
