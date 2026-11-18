@@ -122,6 +122,36 @@ body{background:#000!important}
   border-bottom:1px solid rgba(255,255,255,.16)!important;
   box-shadow:0 6px 24px rgba(0,0,0,.10)!important;
 }
+
+/* Section 02 — services, continuing the approved black/yellow visual language */
+.services-section{background:#000;padding:84px 0 92px}
+.section-inner{width:min(1120px,calc(100% - 64px));margin:0 auto}
+.services-section .section-head{margin:0 auto 34px;text-align:center;display:block}
+.section-eyebrow{margin:0 0 12px;color:#aeb0a8;font-size:9px;letter-spacing:.22em}
+.services-section .section-title{margin:0;font:500 clamp(27px,3.2vw,39px)/1.15 Manrope,sans-serif;letter-spacing:-.045em;color:#f2f2ed}
+.services-section .section-title span{color:var(--yellow)}
+.services-section .services{gap:16px}
+.services-section .service-card{min-height:250px;padding:24px 23px 20px;background:#090a0a;border:1px solid rgba(255,255,255,.09);border-radius:5px;box-shadow:none}
+.services-section .service-card:hover{background:#0c0d0d;border-color:rgba(241,237,0,.42);transform:translateY(-3px)}
+.services-section .service-top{margin-bottom:25px}
+.services-section .service-top small{font-size:8px;letter-spacing:.14em;color:#898b83}
+.services-section .service-index{font-size:9px;color:#777970}
+.services-section .service-card h3{font:500 22px/1.2 Manrope,sans-serif;letter-spacing:-.035em;color:#f2f2ed;margin:0 0 10px}
+.services-section .service-card p{font:400 11px/1.65 "DM Sans",sans-serif;color:#b9bbb3;max-width:300px}
+.services-section .service-bottom{margin-top:22px}
+.services-section .service-number{font:600 31px/.9 Manrope,sans-serif;color:var(--yellow)}
+.services-section .service-bottom .btn{font-size:9px;padding:8px 12px;gap:9px}
+.services-section .service-bottom .arrow{width:15px;height:15px}
+@media(max-width:700px){
+ .section-inner{width:calc(100% - 38px)}
+ .services-section{padding:65px 0 70px}
+ .services-section .section-head{margin-bottom:25px}
+ .services-section .section-title{font-size:29px}
+ .services-section .services{grid-template-columns:1fr;gap:11px}
+ .services-section .service-card{min-height:220px;padding:20px}
+ .services-section .service-top{margin-bottom:20px}
+ .services-section .service-card h3{font-size:21px}
+}
 </style>
 </head>
 <body>
@@ -137,6 +167,32 @@ body{background:#000!important}
 <section class="hero" id="inicio">
 <img class="hero-photo" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=2200&q=88" alt="Interior de uma barbearia contemporânea">
 <div class="hero-content"><div class="hero-kicker">Estilo, identidade e cuidado</div><h1>Muito além de <span>cabelo e barba.</span></h1><div class="hero-bottom"><p>Atendimento especializado em barbearia, com 2 unidades na região para cuidar de você.</p><a class="btn" href="#inicio">Agendar horário <span class="arrow">↗</span></a></div></div>
+</section>
+
+<section class="section services-section" id="servicos">
+  <div class="section-inner">
+    <div class="section-head center">
+      <p class="section-eyebrow">NOSSOS SERVIÇOS</p>
+      <h2 class="section-title">O que você vai encontrar<br>na <span>Marco Barbearia?</span></h2>
+    </div>
+    <div class="services">
+      <article class="service-card">
+        <div class="service-top"><small>CONSULTORIA DE IMAGEM</small><span class="service-index">01 / 03</span></div>
+        <div><h3>Visagismo</h3><p>Uma consultoria completa para valorizar sua imagem e encontrar um visual que combine com sua personalidade.</p></div>
+        <div class="service-bottom"><span class="service-number">01.</span><a class="btn" href="#inicio">Agendar horário <span class="arrow">↗</span></a></div>
+      </article>
+      <article class="service-card">
+        <div class="service-top"><small>CORTE E ESTILO</small><span class="service-index">02 / 03</span></div>
+        <div><h3>Cabelo</h3><p>Diversas opções de corte, de acordo com sua preferência. Feito com qualidade para manter o visual alinhado além da barbearia.</p></div>
+        <div class="service-bottom"><span class="service-number">02.</span><a class="btn" href="#inicio">Agendar horário <span class="arrow">↗</span></a></div>
+      </article>
+      <article class="service-card">
+        <div class="service-top"><small>CUIDADO E PRECISÃO</small><span class="service-index">03 / 03</span></div>
+        <div><h3>Barba</h3><p>Todo o cuidado que sua barba precisa para um visual diferenciado, bem cuidado e de respeito.</p></div>
+        <div class="service-bottom"><span class="service-number">03.</span><a class="btn" href="#inicio">Agendar horário <span class="arrow">↗</span></a></div>
+      </article>
+    </div>
+  </div>
 </section>
 </main>
 <script>
