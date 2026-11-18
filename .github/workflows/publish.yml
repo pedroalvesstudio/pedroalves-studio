@@ -22,12 +22,17 @@ jobs:
         run: |
           set -euo pipefail
           test -s index.html
-          for project in fynora videfo zarion althor norte nexora; do
+          for project in fynora videfo zarion althor norte nexora mooni; do
             test -s "projetos/$project/index.html"
           done
-          # Mooni is a reserved placeholder; publishing other projects must not fail because it is empty.
-          test -f projetos/mooni/index.html
-          echo "Homepage and six active project pages verified; Mooni placeholder exists."
+          test -s projetos/mooni/assets/kodara-original.css
+          test -s projetos/mooni/assets/kodara-icon.svg
+          grep -q "kodara" projetos/mooni/index.html
+          grep -q "Desarrollo más inteligente" projetos/mooni/index.html
+          grep -q "fb-carousel" projetos/mooni/index.html
+          grep -q "w-tab-link" projetos/mooni/index.html
+          grep -q "w-slider" projetos/mooni/index.html
+          echo "Homepage and all seven project pages verified, including Kodara and original interactions."
 
   deploy:
     needs: verify
