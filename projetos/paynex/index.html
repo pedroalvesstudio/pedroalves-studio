@@ -409,6 +409,23 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .stat.green:before{background:#48c99a!important}
 .stat.red:before{background:#d98282!important}
 .product-kpi,.product-dash-panel{background:linear-gradient(145deg,#173b40,#10292e)!important;border-color:rgba(88,199,201,.22)!important}
+
+/* Global heading color normalization — remove legacy electric-blue titles */
+:root{--heading:#8edadd;--heading-strong:#b4e7e6}
+.hero h1,.section-head h2,.split-copy h2,.feature h3,.business-copy h3,
+.benefit h3,.faq-list summary,.capability-index,.capability h3,
+.checkout-head strong,.checkout-head b,.checkout-label,
+.activation-price-tile h3,.activation-benefit-tile h3,
+.footer-col h4,.signature,.footer-compact .footer-nav a:hover{
+  color:var(--heading)!important;
+}
+.feature h3,.benefit h3,.business-copy h3,.split-copy h2,.section-head h2,
+.activation-price-tile h3,.activation-benefit-tile h3{ text-shadow:0 0 24px rgba(88,199,201,.08); }
+.feature-icon,.benefit .mini-icon,.capability-index{color:#58c7c9!important}
+.faq-list summary:after{color:#58c7c9!important}
+.checkout-head strong,.checkout-head b,.checkout-label{color:#176c77!important}
+.checkout-button{background:linear-gradient(100deg,#168f9c,#116c78)!important}
+.signature{color:#58c7c9!important}
 </style>
 </head>
 <body>
