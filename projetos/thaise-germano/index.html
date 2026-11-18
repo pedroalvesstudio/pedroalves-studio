@@ -50,6 +50,35 @@ a{color:inherit}
  .ticker span{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+ 
+/* Section 02 — Reforma tributária */
+.reforma{position:relative;padding:58px 0 70px;background:radial-gradient(ellipse at 0 48%,rgba(151,0,12,.24),transparent 38%),#090909}
+.reforma-grid{width:min(1000px,84%);margin:0 auto;display:grid;grid-template-columns:minmax(230px,.72fr) minmax(0,1.55fr);gap:18px}
+.reforma-title,.reforma-copy{border:1px solid rgba(255,255,255,.12);background:rgba(17,16,16,.78);min-height:245px}
+.reforma-title{padding:36px 30px;display:flex;flex-direction:column;justify-content:center}
+.reforma-title h2{margin:0 0 24px;color:#c91621;font-family:"Playfair Display",serif;font-size:clamp(25px,2.4vw,34px);line-height:1.08;letter-spacing:-.035em;font-weight:600}
+.reforma-title p{margin:0;color:#d2c9c7;font-size:13px;line-height:1.45}
+.reforma-title strong{color:#fff;font-weight:800}
+.reforma-copy{padding:34px 38px;display:flex;flex-direction:column;justify-content:center}
+.reforma-copy p{margin:0 0 15px;color:#c7bfbd;font-size:13px;line-height:1.55}
+.reforma-copy p:last-of-type{margin-bottom:18px}
+.reforma-points{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.reforma-points li{position:relative;padding-left:23px;color:#d0c8c6;font-size:12px;line-height:1.45}
+.reforma-points li:before{content:"↗";position:absolute;left:0;top:0;color:#e51a25;font-size:14px;font-weight:700}
+.reforma-card{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.reforma-card.is-visible{opacity:1;transform:translateY(0)}
+.reforma-copy.reforma-card{transition-delay:.12s}
+@media(max-width:700px){
+ .reforma{padding:38px 0 48px}
+ .reforma-grid{width:calc(100% - 40px);grid-template-columns:1fr;gap:12px}
+ .reforma-title,.reforma-copy{min-height:0;padding:25px 23px}
+ .reforma-title h2{max-width:300px;font-size:30px;margin-bottom:16px}
+ .reforma-title p{font-size:12px}
+ .reforma-copy p{font-size:12px}
+ .reforma-points li{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.reforma-card{opacity:1;transform:none;transition:none}}
+
 </style>
 </head>
 <body>
@@ -74,5 +103,25 @@ a{color:inherit}
 <div class="ticker-track" aria-hidden="true">
 <span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b><span>Contadora Elite</span><b>ce</b>
 </div></div>
+<section class="reforma" id="sobre" aria-labelledby="reforma-heading">
+<div class="reforma-grid">
+<article class="reforma-title reforma-card">
+<h2 id="reforma-heading">A Reforma tributária não é o problema!</h2>
+<p>Ela é a <strong>MAIOR janela de OPORTUNIDADE DA ÚLTIMA DÉCADA!</strong></p>
+</article>
+<article class="reforma-copy reforma-card">
+<p>A Reforma Tributária cria uma grande oportunidade para contadores.</p>
+<p>Empresários vão precisar de orientação, revisão de preços e segurança para decidir.</p>
+<p>Mas a maioria dos contadores estará focada apenas em estudar a legislação e não em se posicionar, explicar a reforma e aproveitar a nova demanda.</p>
+<ul class="reforma-points">
+<li>Enchida em livros de 300 páginas de advogados tributaristas</li>
+<li>Pagando valores altíssimos em cursos que só falam juridiquês nada aplicáveis</li>
+</ul>
+</article>
+</div>
+</section>
 </main>
+<script>
+(()=>{const els=document.querySelectorAll('.reforma-card');if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('is-visible'));return;}const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');io.unobserve(entry.target)}}),{threshold:.16});els.forEach(e=>io.observe(e));})();
+</script>
 </body></html>
