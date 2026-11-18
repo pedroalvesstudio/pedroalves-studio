@@ -56,15 +56,23 @@ for asset in obj.get("assets",[]):
             # rather than overlaying a second brand outside the animation.
             im=Image.new("RGBA",(136,40),(0,0,0,0))
             draw=ImageDraw.Draw(im)
-            draw.rounded_rectangle((0,5,30,35),radius=9,fill=(205,104,64,255))
-            draw.line([(15,10),(15,30)],fill="white",width=2)
-            draw.line([(5,20),(25,20)],fill="white",width=2)
-            draw.polygon([(15,12),(18,17),(24,20),(18,23),(15,28),(12,23),(6,20),(12,17)],fill="white")
+            draw.rounded_rectangle((0,2,36,38),radius=10,fill=(205,104,64,255))
+            draw.line([(18,8),(18,32)],fill="white",width=2)
+            draw.line([(7,20),(29,20)],fill="white",width=2)
+            draw.polygon([(18,9),(22,16),(29,20),(22,24),(18,31),(14,24),(7,20),(14,16)],fill="white")
             try:
-                font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",20)
+                font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",23)
             except OSError:
                 font=ImageFont.load_default()
-            draw.text((36,7),"latera",font=font,fill=(33,26,23,255))
+            draw.text((41,5),"latera",font=font,fill=(33,26,23,255))
+        elif asset.get("id")=="image_21":
+            # Preserve the exact badge shape and white Auto lettering.
+            # Only dark opaque background pixels become Latera terracotta.
+            for yy in range(h):
+                for xx in range(w):
+                    rr,gg,bb,aa=pixels[xx,yy]
+                    if aa>0 and max(rr,gg,bb)<105:
+                        pixels[xx,yy]=(205,104,64,aa)
         else:
             for yy in range(h):
                 for xx in range(w):
