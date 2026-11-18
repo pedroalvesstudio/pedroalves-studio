@@ -98,6 +98,20 @@ body{background:#000!important}
  .hero-bottom{display:flex;flex-direction:column;align-items:flex-start;gap:17px}
  .hero-bottom p{font-family:"Manrope",sans-serif;font-size:14px;max-width:350px;margin:0}
 }
+
+/* Refine hero copy block position and supporting-copy line balance */
+.hero-content{transform:translateY(32px)}
+.hero-bottom{align-items:flex-start}
+.hero-bottom p{
+  max-width:470px;
+  text-wrap:balance;
+  line-height:1.65;
+  letter-spacing:-.01em;
+}
+@media(max-width:700px){
+  .hero-content{transform:translateY(0);padding-bottom:42px}
+  .hero-bottom p{max-width:350px;text-wrap:pretty}
+}
 </style>
 </head>
 <body>
