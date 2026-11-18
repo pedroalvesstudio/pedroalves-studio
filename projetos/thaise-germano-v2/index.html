@@ -270,6 +270,40 @@ body{min-height:100vh;overflow-x:hidden}
 }
 @media(prefers-reduced-motion:reduce){.faq-list summary:after{transition:none}}
 
+
+/* Sections 10–11 — Fit and final invitation */
+.publico-section{position:relative;z-index:1;padding:88px 0 92px}
+.publico-wrap{width:min(1080px,88%);margin:0 auto;display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(34px,6vw,76px);align-items:start}
+.publico-kicker,.convite-kicker{margin:0 0 15px;color:#e11a28;font:600 9px/1.6 "DM Sans",sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.publico-copy h2{max-width:13ch;margin:0;color:#f4efed;font:400 clamp(28px,3vw,38px)/1.2 "Manrope",sans-serif;letter-spacing:-.025em;text-wrap:balance}
+.publico-copy h2 span{color:#e11a28}
+.publico-copy>p:last-child{max-width:40ch;margin:18px 0 0;color:rgba(245,237,234,.74);font:400 12px/1.85 "DM Sans",sans-serif}
+.publico-list{display:grid;gap:11px}
+.publico-item{display:grid;grid-template-columns:34px 1fr;gap:15px;align-items:start;padding:19px 21px;border:1px solid rgba(255,255,255,.11);background:rgba(22,15,16,.55)}
+.publico-item span{color:#e11a28;font:600 10px/1.5 "DM Sans",sans-serif;letter-spacing:.12em}
+.publico-item p{margin:0;color:rgba(245,237,234,.8);font:400 12px/1.8 "DM Sans",sans-serif}
+.publico-item strong{color:#f4efed;font-weight:600}
+.convite-section{position:relative;z-index:1;padding:78px 0 88px;overflow:hidden;border-top:1px solid rgba(255,255,255,.08);background:radial-gradient(ellipse 55% 100% at 50% 100%,rgba(150,0,18,.2),transparent 72%),#0b090a;text-align:center}
+.convite-wrap{width:min(760px,88%);margin:0 auto}
+.convite-section h2{max-width:19ch;margin:0 auto 16px;color:#f4efed;font:400 clamp(30px,3.4vw,44px)/1.16 "Manrope",sans-serif;letter-spacing:-.03em;text-wrap:balance}
+.convite-section h2 span{color:#e11a28}
+.convite-section p:not(.convite-kicker){max-width:48ch;margin:0 auto 26px;color:rgba(245,237,234,.75);font:400 13px/1.85 "DM Sans",sans-serif}
+.convite-action{display:inline-flex;align-items:center;justify-content:center;gap:13px;min-height:47px;padding:0 22px;border:1px solid rgba(238,35,48,.55);background:#b90e1d;color:#fff;text-decoration:none;font:600 9px/1 "DM Sans",sans-serif;letter-spacing:.12em;transition:background .2s,transform .2s}
+.convite-action:hover{background:#d11627;transform:translateY(-2px)}
+.convite-action svg{width:14px;height:14px}
+@media(max-width:700px){
+ .publico-section{padding:66px 0 70px}
+ .publico-wrap{width:calc(100% - 44px);grid-template-columns:1fr;gap:25px}
+ .publico-copy h2{font-size:28px;max-width:15ch}
+ .publico-copy>p:last-child{font-size:12px}
+ .publico-item{padding:17px 17px;grid-template-columns:27px 1fr;gap:12px}
+ .publico-item p{font-size:12px}
+ .convite-section{padding:66px 0 72px}
+ .convite-wrap{width:calc(100% - 44px)}
+ .convite-section h2{font-size:30px}
+ .convite-section p:not(.convite-kicker){font-size:12px}
+}
+
 </style>
 </head>
 <body>
@@ -376,6 +410,32 @@ body{min-height:100vh;overflow-x:hidden}
 <details><summary>O método garante um faturamento específico?</summary><p>Não é correto tratar resultados financeiros como garantidos. O desempenho depende de fatores como contexto, execução, mercado e decisões de cada profissional.</p></details>
 <details><summary>Como descubro os detalhes da mentoria?</summary><p>Entre em contato com a equipe da Thaíse para confirmar formato, duração, investimento, condições e disponibilidade das próximas turmas.</p></details>
 </div>
+</div>
+</section>
+
+<section class="publico-section" id="perfil" aria-labelledby="publico-title">
+<div class="publico-wrap">
+<header class="publico-copy">
+<p class="publico-kicker">Essa jornada é para você?</p>
+<h2 id="publico-title">Desenvolvimento para quem quer <span>evoluir</span> na contabilidade.</h2>
+<p>O Método Contadora Elite é apresentado como uma jornada de desenvolvimento da gestão e da atuação profissional do escritório.</p>
+</header>
+<div class="publico-list">
+<div class="publico-item"><span>01</span><p><strong>Quer estruturar melhor a operação</strong> e organizar processos para trabalhar com mais clareza.</p></div>
+<div class="publico-item"><span>02</span><p><strong>Deseja fortalecer o posicionamento</strong> e comunicar melhor o valor do serviço contábil.</p></div>
+<div class="publico-item"><span>03</span><p><strong>Busca uma atuação mais consultiva</strong> e uma relação mais estratégica com os clientes.</p></div>
+<div class="publico-item"><span>04</span><p><strong>Está disposta a aplicar e aprimorar</strong> processos de acordo com a realidade do próprio escritório.</p></div>
+</div>
+</div>
+</section>
+<section class="convite-section" id="contato" aria-labelledby="convite-title">
+<div class="convite-wrap">
+<p class="convite-kicker">Método Contadora Elite</p>
+<h2 id="convite-title">Seu próximo passo começa com uma <span>boa conversa.</span></h2>
+<p>Quer entender se o método faz sentido para o momento do seu escritório? Consulte as informações da mentoria, o formato e as condições diretamente com a equipe da Thaíse.</p>
+<a class="convite-action" href="#duvidas">TIRE SUAS DÚVIDAS
+<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
 </div>
 </section>
 </main>
