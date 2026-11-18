@@ -513,6 +513,47 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .product-dashboard-b .product-kpi,.product-dashboard-b .product-activity-row,.product-phone-b .product-phone-b-spark i,.product-phone-b .product-phone-b-transaction{opacity:1!important;transform:none!important;transition:none!important}
 .product-chart-plot svg path{stroke-dashoffset:0!important;opacity:1!important;transition:none!important}
 }
+
+/* MOTION REFINEMENT — slower pacing, softer easing, lower paint cost */
+.hero-motion-title{animation-duration:1.75s!important;animation-timing-function:cubic-bezier(.22,.68,.24,1)!important}
+.hero-motion-copy{animation-duration:1.5s!important;animation-delay:.32s!important;animation-timing-function:cubic-bezier(.22,.68,.24,1)!important}
+.hero-motion-actions{animation-duration:1.45s!important;animation-delay:.52s!important;animation-timing-function:cubic-bezier(.22,.68,.24,1)!important}
+.motion-dashboard{animation-duration:2.1s!important;animation-delay:.4s!important;animation-timing-function:cubic-bezier(.2,.72,.22,1)!important}
+.motion-phone{animation-duration:2.15s,12s!important;animation-delay:.72s,3s!important;animation-timing-function:cubic-bezier(.2,.72,.22,1),ease-in-out!important}
+@keyframes pnHeroTitleIn{from{opacity:0;transform:translate3d(0,28px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes pnHeroCopyIn{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes pnDashboardIn{from{opacity:0;transform:translate3d(0,42px,0) scale(.98)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes pnPhoneIn{from{opacity:0;transform:translate3d(0,36px,0) rotate(1deg) scale(.975)}to{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1)}}
+@keyframes pnPhoneFloat{0%,100%{translate:0 0}50%{translate:0 -4px}}
+.product-dashboard-b .product-kpi{transition-duration:1.05s!important;transition-timing-function:cubic-bezier(.2,.68,.22,1)!important;transform:translate3d(0,9px,0)}
+.product-dashboard-b.is-live .product-kpi:nth-child(1){transition-delay:.18s}
+.product-dashboard-b.is-live .product-kpi:nth-child(2){transition-delay:.32s}
+.product-dashboard-b.is-live .product-kpi:nth-child(3){transition-delay:.46s}
+.product-dashboard-b.is-live .product-kpi:nth-child(4){transition-delay:.6s}
+.product-dashboard-b.is-live .product-kpi:nth-child(5){transition-delay:.74s}
+.product-dashboard-b.is-live .product-kpi:nth-child(6){transition-delay:.88s}
+.product-chart-plot svg path:last-child{transition-duration:3.4s!important;transition-timing-function:cubic-bezier(.2,.65,.2,1)!important}
+.product-chart-plot svg path:first-of-type{transition-duration:2.2s!important;transition-delay:1.25s!important}
+.product-dashboard-b .product-activity-row{transition-duration:.9s!important;transition-timing-function:cubic-bezier(.2,.68,.22,1)!important;transform:translate3d(9px,0,0)}
+.product-dashboard-b.is-live .product-activity-row:nth-child(2){transition-delay:.45s}
+.product-dashboard-b.is-live .product-activity-row:nth-child(3){transition-delay:.68s}
+.product-dashboard-b.is-live .product-activity-row:nth-child(4){transition-delay:.91s}
+.product-phone-b .product-phone-b-spark i{transition-duration:1.15s!important;transition-timing-function:cubic-bezier(.2,.7,.2,1)!important}
+.product-phone-b.is-live .product-phone-b-spark i:nth-child(2n){transition-delay:.16s}
+.product-phone-b.is-live .product-phone-b-spark i:nth-child(3n){transition-delay:.3s}
+.product-phone-b .product-phone-b-transaction{transition-duration:.9s!important;transition-timing-function:cubic-bezier(.2,.68,.22,1)!important;transform:translate3d(0,7px,0)}
+.product-phone-b.is-live .product-phone-b-transaction:nth-child(1){transition-delay:.3s}
+.product-phone-b.is-live .product-phone-b-transaction:nth-child(2){transition-delay:.52s}
+.product-phone-b.is-live .product-phone-b-transaction:nth-child(3){transition-delay:.74s}
+@media(hover:hover){
+.product-dashboard-b,.product-phone-b{transition:transform .55s ease,border-color .55s ease!important}
+.product-dashboard-b:hover{transform:translate3d(0,-3px,0);box-shadow:0 28px 75px rgba(0,0,0,.5),0 0 48px rgba(22,143,156,.14)}
+.product-phone-b:hover{transform:translate3d(0,-3px,0);box-shadow:0 28px 65px rgba(0,0,0,.55),0 0 36px rgba(36,177,184,.16)}
+}
+@media(prefers-reduced-motion:reduce){
+.hero-motion-title,.hero-motion-copy,.hero-motion-actions,.motion-dashboard,.motion-phone{animation:none!important}
+.product-dashboard-b .product-kpi,.product-dashboard-b .product-activity-row,.product-phone-b .product-phone-b-spark i,.product-phone-b .product-phone-b-transaction{transition:none!important}
+}
 </style>
 </head>
 <body>
