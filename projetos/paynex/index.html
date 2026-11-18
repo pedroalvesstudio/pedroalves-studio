@@ -992,7 +992,27 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 }
 #negocio .checkout-motion-preview.demo-processing .checkout-status{color:#075f69!important}
 #negocio .checkout-motion-preview.demo-success .checkout-status{color:#126b4b!important}
-</style>
+/* CHECKOUT SUCCESS SCREEN — same card footprint, full-screen state transition */
+#negocio .checkout-motion-preview{position:relative!important;overflow:hidden;min-height:350px;}
+#negocio .checkout-form-view{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-areas:"head head" "order label" "order methods" "progress progress" "confirm confirm";column-gap:30px;row-gap:0;align-items:center;padding:0;width:100%;transition:opacity .65s ease,transform .8s cubic-bezier(.2,.68,.22,1),visibility .65s;}
+#negocio .checkout-success-view{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px;text-align:center;background:linear-gradient(145deg,#f7fbfa 0%,#edf4f2 100%);opacity:0;visibility:hidden;transform:translateY(14px) scale(.985);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.68,.22,1),visibility .8s;pointer-events:none;}
+#negocio .checkout-motion-preview.screen-success .checkout-form-view{opacity:0;visibility:hidden;transform:translateY(-10px) scale(.99);pointer-events:none;}
+#negocio .checkout-motion-preview.screen-success .checkout-success-view{opacity:1;visibility:visible;transform:translateY(0) scale(1);}
+#negocio .checkout-success-mark{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:#dcefe7;color:#16815c;margin-bottom:13px;box-shadow:0 0 0 7px rgba(22,129,92,.07);animation:checkoutSuccessMark .85s cubic-bezier(.2,.8,.2,1) both;}
+#negocio .checkout-success-mark svg{width:30px;height:30px;}
+#negocio .checkout-success-kicker{font-size:9px;letter-spacing:.19em;font-weight:800;color:#39777a;margin-bottom:8px;}
+#negocio .checkout-success-view h3{margin:0;color:#123f47;font-size:clamp(19px,2vw,24px);font-weight:800;line-height:1.2;}
+#negocio .checkout-success-description{margin:6px 0 12px;color:#557176;font-size:11px;}
+#negocio .checkout-success-amount{font-size:clamp(25px,3vw,34px);line-height:1.1;letter-spacing:-.035em;color:#123f47;font-weight:850;font-variant-numeric:tabular-nums;margin-bottom:15px;}
+#negocio .checkout-success-details{width:min(100%,410px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px 14px;border:1px solid #d5e2df;border-radius:10px;background:rgba(255,255,255,.68);}
+#negocio .checkout-success-details div{display:flex;flex-direction:column;gap:5px;min-width:0;text-align:left;}
+#negocio .checkout-success-details span{font-size:9px;color:#6b8587;}
+#negocio .checkout-success-details b{font-size:11px;color:#17474d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#negocio .checkout-success-details .checkout-success-status{color:#16815c;}
+#negocio .checkout-success-footer{font-size:9px;color:#789092;margin-top:13px;}
+@keyframes checkoutSuccessMark{0%{opacity:0;transform:scale(.55) rotate(-12deg)}65%{opacity:1;transform:scale(1.1) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+@media(max-width:600px){#negocio .checkout-motion-preview{min-height:390px;}#negocio .checkout-form-view{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "order" "label" "methods" "progress" "confirm";}#negocio .checkout-success-view{padding:20px 16px;}#negocio .checkout-success-details{gap:6px;padding:10px;}#negocio .checkout-success-details b{font-size:10px;}}
+@media(prefers-reduced-motion:reduce){#negocio .checkout-form-view,#negocio .checkout-success-view,#negocio .checkout-success-mark{transition:none!important;animation:none!important;}}</style>
 </head>
 <body>
 <div class="ambient" aria-hidden="true"></div>
@@ -1106,6 +1126,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <div class="business-feature-layout business-motion-layout">
 <div class="business-copy business-motion-copy"><h3>Na compra, seu lead realiza o pagamento para PayNex.</h3><p>Garanta uma experiência de pagamento simples para seu cliente.</p><a class="pill" href="#ativacao">Quero vender <span>›</span></a></div>
 <div class="checkout-preview checkout-motion-preview" aria-label="Prévia interativa do checkout PayNex">
+<div class="checkout-form-view">
 <div class="checkout-head"><strong>Finalizar compra</strong><b>PayNex</b></div>
 <div class="checkout-order"><span>Pedido #PN-2048</span><strong>R$ 9.700</strong></div>
 <h3 class="checkout-label">Forma de pagamento</h3>
@@ -1115,8 +1136,22 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <button class="checkout-method" type="button" data-method="Boleto" aria-pressed="false"><i></i>Boleto</button>
 </div>
 <div class="checkout-demo-progress" aria-hidden="true"><span></span></div>
-<div class="checkout-confirm"><button class="checkout-button" type="button"><span>Confirmar pagamento</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.5 10h12M10 4.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><small class="checkout-status" aria-live="polite">Pagamento processado pela PayNex</small></div>
+<div class="checkout-confirm"><button class="checkout-button" type="button"><span>Confirmar pagamento</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.5 10h12M10 4.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><small class="checkout-status" aria-live="polite">Pagamento processado pela PayNex</small>
 </div>
+<div class="checkout-success-view" aria-live="polite" aria-hidden="true">
+ <div class="checkout-success-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="m12 25 8 8 17-18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+ <span class="checkout-success-kicker">PAYNEX · DEMONSTRAÇÃO</span>
+ <h3>Pagamento aprovado!</h3>
+ <p class="checkout-success-description">Sua compra foi confirmada com sucesso.</p>
+ <strong class="checkout-success-amount">R$ 9.700,00</strong>
+ <div class="checkout-success-details">
+  <div><span>Pedido</span><b>#PN-2048</b></div>
+  <div><span>Pagamento</span><b class="checkout-success-method">Pix</b></div>
+  <div><span>Status</span><b class="checkout-success-status">Aprovado</b></div>
+ </div>
+ <span class="checkout-success-footer">Pagamento demonstrativo processado pela PayNex</span>
+</div>
+</div>>
 </div>
 <div class="benefit-row business-motion-benefits">
 <article class="benefit reveal"><span class="mini-icon">♙</span><h3>98% de Conversão</h3><p>Com um checkout focado em facilitar o processo de pagamento e reduzir etapas desnecessárias.</p></article>
@@ -1275,98 +1310,21 @@ if(checkout){
  const methods=[...checkout.querySelectorAll('.checkout-method')];
  const status=checkout.querySelector('.checkout-status');
  const confirm=checkout.querySelector('.checkout-button');
- const progress=checkout.querySelector('.checkout-demo-progress');
- const progressFill=progress?.querySelector('span');
+ const progressFill=checkout.querySelector('.checkout-demo-progress span');
+ const successMethod=checkout.querySelector('.checkout-success-method');
  const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  let chosen='Pix',loopTimers=[],loopActive=false,userTookControl=false;
- const selectMethod=name=>{
-  chosen=name;
-  methods.forEach(item=>{
-   const selected=item.dataset.method===name;
-   item.classList.toggle('selected',selected);
-   item.classList.toggle('demo-current',selected);
-   item.setAttribute('aria-pressed',String(selected));
-  });
- };
+ const selectMethod=name=>{chosen=name;methods.forEach(item=>{const selected=item.dataset.method===name;item.classList.toggle('selected',selected);item.classList.toggle('demo-current',selected);item.setAttribute('aria-pressed',String(selected));});if(successMethod)successMethod.textContent=name;};
  const clearLoop=()=>{loopTimers.forEach(window.clearTimeout);loopTimers=[]};
  const schedule=(fn,delay)=>{const id=window.setTimeout(fn,delay);loopTimers.push(id)};
- const resetDemo=()=>{
-  checkout.classList.remove('demo-processing','demo-success');
-  checkout.classList.add('demo-reset');
-  checkout.classList.remove('demo-running');
-  if(progressFill){progressFill.style.transition='none';progressFill.style.transform='scaleX(0)'}
-  confirm.disabled=false;confirm.innerHTML='<span>Confirmar pagamento</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 10h12M10 4.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  status.textContent='Pagamento processado pela PayNex';status.classList.remove('is-success');
-  selectMethod('Pix');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-   checkout.classList.remove('demo-reset');
-   if(progressFill)progressFill.style.transition='';
-  }));
- };
- const playCycle=()=>{
-  if(!loopActive||userTookControl)return;
-  resetDemo();
-  schedule(()=>{
-   if(!loopActive)return;
-   checkout.classList.add('demo-running');
-   status.textContent='Forma de pagamento selecionada';
-   selectMethod('Pix');
-  },900);
-  schedule(()=>{
-   if(!loopActive)return;
-   checkout.classList.add('demo-processing');
-   confirm.disabled=true;confirm.innerHTML='<span>Processando pagamento</span><span class="checkout-button-spinner" aria-hidden="true"></span>';
-   status.textContent='Validando pagamento de demonstração…';
-   if(progressFill){progressFill.style.transition='transform 2.1s cubic-bezier(.2,.65,.2,1)';progressFill.style.transform='scaleX(1)'}
-  },3400);
-  schedule(()=>{
-   if(!loopActive)return;
-   checkout.classList.remove('demo-processing');checkout.classList.add('demo-success');
-   confirm.disabled=false;confirm.innerHTML='<span>Pagamento confirmado</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10.5 4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-   status.textContent='Demonstração concluída · Pix';status.classList.add('is-success');
-  },6200);
-  schedule(()=>{
-   if(!loopActive)return;
-   checkout.classList.remove('demo-success');
-   status.classList.remove('is-success');
-   status.textContent='Novo pedido pronto para pagamento';
-  },9100);
-  schedule(()=>{
-   if(!loopActive)return;
-   loopTimers=[];playCycle();
-  },11200);
- };
- const startLoop=()=>{
-  if(loopActive||userTookControl||prefersReduced)return;
-  loopActive=true;playCycle();
- };
- const stopLoop=()=>{
-  loopActive=false;clearLoop();
-  resetDemo();
- };
- methods.forEach(button=>button.addEventListener('click',()=>{
-  userTookControl=true;stopLoop();
-  selectMethod(button.dataset.method);
-  status.textContent='Forma selecionada: '+chosen;
- }));
- confirm?.addEventListener('click',()=>{
-  userTookControl=true;stopLoop();
-  checkout.classList.add('demo-processing');
-  confirm.disabled=true;confirm.innerHTML='<span>Processando</span><span class="checkout-button-spinner" aria-hidden="true"></span>';
-  status.textContent='Validando pagamento de demonstração…';
-  if(progressFill){progressFill.style.transition='transform 2.1s cubic-bezier(.2,.65,.2,1)';progressFill.style.transform='scaleX(1)'}
-  window.setTimeout(()=>{
-   checkout.classList.remove('demo-processing');checkout.classList.add('demo-success');
-   confirm.disabled=false;confirm.innerHTML='Pagamento confirmado <b>✓</b>';
-   status.textContent='Demonstração concluída · '+chosen;status.classList.add('is-success');
-  },2600);
- });
- if('IntersectionObserver'in window){
-  const checkoutObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-   if(entry.isIntersecting)startLoop();else stopLoop();
-  }),{threshold:.42});
-  checkoutObserver.observe(checkout);
- }else{startLoop()}
+ const showSuccess=()=>{selectMethod(chosen);checkout.classList.remove('demo-processing');checkout.classList.add('demo-success','screen-success');checkout.querySelector('.checkout-success-view')?.setAttribute('aria-hidden','false');checkout.querySelector('.checkout-form-view')?.setAttribute('aria-hidden','true');};
+ const resetDemo=()=>{checkout.classList.remove('demo-processing','demo-success','screen-success','demo-running');checkout.querySelector('.checkout-success-view')?.setAttribute('aria-hidden','true');checkout.querySelector('.checkout-form-view')?.setAttribute('aria-hidden','false');if(progressFill){progressFill.style.transition='none';progressFill.style.transform='scaleX(0)'}confirm.disabled=false;confirm.innerHTML='<span>Confirmar pagamento</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 10h12M10 4.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';status.textContent='Pagamento processado pela PayNex';status.classList.remove('is-success');selectMethod('Pix');requestAnimationFrame(()=>requestAnimationFrame(()=>{if(progressFill)progressFill.style.transition='';}));};
+ const playCycle=()=>{if(!loopActive||userTookControl)return;resetDemo();schedule(()=>{if(!loopActive)return;checkout.classList.add('demo-running');status.textContent='Forma de pagamento selecionada';selectMethod('Pix');},900);schedule(()=>{if(!loopActive)return;checkout.classList.add('demo-processing');confirm.disabled=true;confirm.innerHTML='<span>Processando pagamento</span><span class="checkout-button-spinner" aria-hidden="true"></span>';status.textContent='Validando pagamento de demonstração…';if(progressFill){progressFill.style.transition='transform 2.1s cubic-bezier(.2,.65,.2,1)';progressFill.style.transform='scaleX(1)'}},3400);schedule(()=>{if(!loopActive)return;confirm.disabled=false;confirm.innerHTML='<span>Pagamento aprovado</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10.5 4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';status.textContent='Demonstração concluída · '+chosen;status.classList.add('is-success');showSuccess();},6200);schedule(()=>{if(!loopActive)return;checkout.classList.remove('screen-success','demo-success');checkout.querySelector('.checkout-success-view')?.setAttribute('aria-hidden','true');checkout.querySelector('.checkout-form-view')?.setAttribute('aria-hidden','false');},10500);schedule(()=>{if(!loopActive)return;loopTimers=[];playCycle();},12800);};
+ const startLoop=()=>{if(loopActive||userTookControl||prefersReduced)return;loopActive=true;playCycle()};
+ const stopLoop=()=>{loopActive=false;clearLoop();resetDemo()};
+ methods.forEach(button=>button.addEventListener('click',()=>{userTookControl=true;stopLoop();selectMethod(button.dataset.method);status.textContent='Forma selecionada: '+chosen;}));
+ confirm?.addEventListener('click',()=>{userTookControl=true;stopLoop();checkout.classList.add('demo-processing');confirm.disabled=true;confirm.innerHTML='<span>Processando</span><span class="checkout-button-spinner" aria-hidden="true"></span>';status.textContent='Validando pagamento de demonstração…';if(progressFill){progressFill.style.transition='transform 2.1s cubic-bezier(.2,.65,.2,1)';progressFill.style.transform='scaleX(1)'}window.setTimeout(()=>{confirm.disabled=false;confirm.innerHTML='<span>Pagamento aprovado</span><svg class="checkout-button-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10.5 4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';status.textContent='Demonstração concluída · '+chosen;status.classList.add('is-success');showSuccess();},2600);});
+ if('IntersectionObserver'in window){const checkoutObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)startLoop();else stopLoop();}),{threshold:.42});checkoutObserver.observe(checkout);}else{startLoop()}
 }
 
 document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq-list details').forEach(other=>{if(other!==d)other.open=false})}));
