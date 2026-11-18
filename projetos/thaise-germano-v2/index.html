@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<title>Thaíse Germano — Nova direção visual | PedroAlves Studio</title>
+<style>
+:root{color-scheme:dark;--black:#080808;--red:#a90012;--red-hot:#e10d20}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--black)}
+body{min-height:100vh;overflow-x:hidden}
+.background-stage{position:relative;isolation:isolate;min-height:100svh;overflow:hidden;background:
+ radial-gradient(ellipse 58% 74% at -8% 88%,rgba(174,0,18,.46) 0%,rgba(112,0,12,.22) 34%,transparent 72%),
+ radial-gradient(ellipse 40% 54% at 93% 18%,rgba(94,13,17,.26) 0%,rgba(65,8,12,.12) 42%,transparent 76%),
+ radial-gradient(ellipse 28% 34% at 52% 108%,rgba(93,0,10,.16),transparent 76%),
+ #080808}
+.background-stage:before,.background-stage:after{content:"";position:absolute;pointer-events:none;inset:-12%;z-index:-1}
+.background-stage:before{background:
+ radial-gradient(ellipse 28% 17% at 8% 46%,rgba(214,0,24,.15),transparent 72%),
+ radial-gradient(ellipse 21% 15% at 88% 76%,rgba(172,0,18,.13),transparent 75%);
+ filter:blur(48px);opacity:.9;animation:ambient-drift 18s ease-in-out infinite alternate}
+.background-stage:after{inset:0;z-index:0;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.light-beam{position:absolute;z-index:0;pointer-events:none;width:38vw;height:2px;left:-8vw;top:18%;background:linear-gradient(90deg,transparent,rgba(239,20,35,.65),transparent);filter:blur(5px);box-shadow:0 0 22px 5px rgba(194,0,20,.16);opacity:.7}
+.light-orb{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(72px);mix-blend-mode:screen}
+.light-orb.one{width:32vw;height:32vw;left:-19vw;bottom:-17vw;background:rgba(192,0,22,.24)}
+.light-orb.two{width:22vw;height:22vw;right:-12vw;top:20%;background:rgba(119,0,15,.18)}
+@keyframes ambient-drift{0%{transform:translate3d(-1.5%,0,0) scale(1)}100%{transform:translate3d(2%,1.5%,0) scale(1.06)}}
+@media(max-width:700px){
+ .background-stage{min-height:100svh;background:
+ radial-gradient(ellipse 95% 48% at -18% 90%,rgba(174,0,18,.4),transparent 72%),
+ radial-gradient(ellipse 78% 42% at 100% 24%,rgba(94,13,17,.2),transparent 75%),#080808}
+ .background-stage:before{filter:blur(38px);opacity:.8}
+ .light-beam{width:70vw;top:22%;opacity:.55}
+ .light-orb.one{width:68vw;height:68vw;left:-40vw;bottom:-20vw}
+ .light-orb.two{width:45vw;height:45vw;right:-28vw;top:25%}
+}
+@media(prefers-reduced-motion:reduce){.background-stage:before{animation:none}}
+</style>
+</head>
+<body>
+<main class="background-stage" aria-label="Estudo de fundo visual dark com iluminação vermelha">
+<div class="light-beam"></div><div class="light-orb one"></div><div class="light-orb two"></div>
+</main>
+</body>
+</html>
