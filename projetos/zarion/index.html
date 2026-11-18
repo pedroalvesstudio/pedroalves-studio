@@ -359,7 +359,7 @@ function boot(){
    caseLines.forEach(function(line,i){
     const on=i===segment;
     line.style.setProperty('width',on?'160px':'60px','important');
-    line.style.setProperty('background-color',on?'#CA6840':'rgba(109,57,43,.2)','important');
+    line.style.setProperty('background-color',on?'#cd6840':'rgba(109,57,43,.2)','important');
    });
   }else{
    casePanels.forEach(function(el){el.style.removeProperty('opacity');el.style.removeProperty('pointer-events')});
@@ -454,7 +454,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     max-width: none !important;
     will-change: transform;
   }
-  .section.techo .techo-flex-wrap { transform: none !important; }
+  /* The GSAP rail must be free to move; !important previously froze its inline transform. */
+  .section.techo .techo-flex-wrap { transform: translate3d(0,0,0); }
   .section.techo .techo-wrap { transform-origin: left center; }
 }
 </style>
@@ -512,4 +513,35 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  else init();
 })();
 </script>
+<style id="latera-polish-20261118">
+:root{--latera-accent:#cd6840}
+@media(min-width:992px){
+ .section.techo .techo-wrapper{height:210vh!important}
+ .section.techo .techo-flex-wrap{transform:translate3d(0,0,0);transition:none!important}
+ .section.techo .techo-wrap{overflow:visible!important}
+}
+.section.techo .techo-card-title{font-size:22px!important;line-height:1.22!important}
+.section.techo .techo-card-details{font-size:16px!important;line-height:1.43!important}
+.section.techo .techo-card.w-variant-77576982-13fd-b6f5-f68a-45a1f75f42df{background-color:#f4ddd1!important}
+.section.pricing-c .pricing-a-single-wrap.blue{background-color:#f4ddd1!important}
+.section.pricing-c .pricing-a-card .pricing-a-single-title{font-size:26px!important}
+.section.pricing-c .pricing-a-card-details,
+.section.pricing-c .pricing-a-list-text,
+.section.pricing-c .balance-title,
+.section.pricing-c .balance-month{font-size:16px!important;line-height:1.4!important}
+.section.pricing-c .pricing-a-price-text{font-size:clamp(44px,4vw,64px)!important}
+.section.pricing-c .pricing-a-list-wrapper{opacity:1!important;visibility:visible!important}
+.section.pricing-c .pricing-a-card .primary-button,
+.section.pricing-c .pricing-a-card .primary-button.w-variant-77576982-13fd-b6f5-f68a-45a1f75f42df,
+.section.pricing-c .pricing-a-card .primary-button.blue,
+.section.pricing-c .popular-wrap,
+.section.pricing-c .popular-text,
+.section.pricing-c .balance-month{background-color:var(--latera-accent)!important;color:white!important}
+.section.works .find-color-bg,[workline="blue"] .find-color-bg{background-color:var(--latera-accent)!important}
+.section.casesh .case-line{background-color:var(--latera-accent)}
+@media(max-width:991px){
+.section.techo .techo-card-title{font-size:20px!important}
+.section.techo .techo-card-details{font-size:15px!important}
+}
+</style>
 <style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
