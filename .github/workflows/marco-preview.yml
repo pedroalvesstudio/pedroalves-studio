@@ -1,0 +1,76 @@
+name: Marco Barbearia preview validation
+
+on:
+  push:
+    branches: [build/marco-barbearia-page]
+    paths:
+      - 'projetos/marco-barbearia/**'
+      - '.github/workflows/marco-preview.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  browser-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          playwright install --with-deps chromium
+      - name: Test desktop and mobile layouts
+        run: |
+          python -m http.server 8080 --directory . >/tmp/marco-server.log 2>&1 &
+          python - <<'PY'
+          import asyncio
+          from playwright.async_api import async_playwright
+
+          async def main():
+              async with async_playwright() as p:
+                  browser = await p.chromium.launch()
+                  errors = []
+                  page = await browser.new_page(viewport={"width": 1440, "height": 1000})
+                  page.on("pageerror", lambda error: errors.append(str(error)))
+                  response = await page.goto("http://127.0.0.1:8080/projetos/marco-barbearia/", wait_until="domcontentloaded")
+                  assert response and response.status == 200
+                  assert await page.title() == "Marco Barbearia — Muito além de cabelo e barba"
+                  assert await page.locator("h1").count() == 1
+                  assert await page.locator(".service-card").count() == 3
+                  assert await page.locator(".team-card").count() == 9
+                  assert await page.locator(".client-card").count() == 4
+                  assert await page.locator(".location-item").count() == 2
+                  await page.evaluate("document.fonts.ready")
+                  desktop = await page.evaluate("({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth})")
+                  assert desktop["scroll"] <= desktop["client"] + 1, f"Desktop overflow: {desktop}"
+                  await page.screenshot(path="/tmp/marco-desktop.png", full_page=True)
+                  mobile = await browser.new_page(viewport={"width":390,"height":844}, device_scale_factor=1)
+                  mobile.on("pageerror", lambda error: errors.append(str(error)))
+                  response = await mobile.goto("http://127.0.0.1:8080/projetos/marco-barbearia/", wait_until="domcontentloaded")
+                  assert response and response.status == 200
+                  await mobile.locator(".menu-toggle").click()
+                  assert "open" in (await mobile.locator(".nav").get_attribute("class") or "")
+                  await mobile.locator(".nav a[href='#equipe']").click()
+                  assert await mobile.locator(".menu-toggle").get_attribute("aria-expanded") == "false"
+                  width = await mobile.evaluate("({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth})")
+                  assert width["scroll"] <= width["client"] + 1, f"Mobile overflow: {width}"
+                  await mobile.evaluate("window.scrollTo(0,0)")
+                  await mobile.screenshot(path="/tmp/marco-mobile.png", full_page=True)
+                  assert not errors, "JavaScript errors: " + " | ".join(errors)
+                  await browser.close()
+                  print("Marco Barbearia desktop/mobile checks passed.")
+          asyncio.run(main())
+          PY
+      - name: Upload visual previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: marco-barbearia-browser-previews
+          path: |
+            /tmp/marco-desktop.png
+            /tmp/marco-mobile.png
+          if-no-files-found: error
+          retention-days: 7
