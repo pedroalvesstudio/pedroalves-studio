@@ -482,8 +482,13 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   GS.registerPlugin(ST);
   const mm=GS.matchMedia();
   mm.add('(min-width: 992px)',function(){
-   const tween=GS.fromTo(track,{xPercent:0},{
-    xPercent:-100,
+   const rail=track.querySelector('.techo-flex-wrap');
+   if(!rail)return;
+   // Move only the actual overflow width, leaving the final card fully visible.
+   const getTravel=()=>Math.max(0,rail.scrollWidth-sticky.clientWidth);
+   GS.set(track,{clearProps:'transform'});
+   const tween=GS.fromTo(rail,{x:0},{
+    x:()=>-getTravel(),
     duration:1,
     ease:'none',
     scrollTrigger:{
