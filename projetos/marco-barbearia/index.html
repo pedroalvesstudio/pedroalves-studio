@@ -552,6 +552,88 @@ body{background:#000!important}
  .work-card:after{height:100px!important;border-radius:0 0 21px 21px!important}
  .work-image{border-radius:21px!important}
 }
+
+/* CLEAN RESET — restore the reference video-card composition */
+.work-card{
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  border:1px solid rgba(255,255,255,.20)!important;
+  border-radius:28px!important;
+  background:#050505!important;
+  box-shadow:none!important;
+}
+.work-card:before,.work-card:after{
+  content:none!important;
+  display:none!important;
+}
+.work-image{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:.64!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  border-radius:27px!important;
+  background:#050505!important;
+}
+.work-image img:first-child{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  display:block!important;
+  filter:brightness(.72) saturate(.88)!important;
+}
+.work-image:before{
+  content:none!important;
+  display:none!important;
+}
+.work-image:after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:2!important;
+  pointer-events:none!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  top:52%!important;
+  border-radius:0 0 27px 27px!important;
+  background:linear-gradient(to top,
+    #000 0%,
+    rgba(0,0,0,.94) 18%,
+    rgba(0,0,0,.72) 42%,
+    rgba(0,0,0,.34) 72%,
+    rgba(0,0,0,0) 100%)!important;
+  -webkit-backdrop-filter:blur(15px)!important;
+  backdrop-filter:blur(15px)!important;
+  -webkit-mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.92) 45%,transparent 100%)!important;
+  mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.92) 45%,transparent 100%)!important;
+}
+.work-profile,.work-subscribe,.work-play,.work-tag{
+  z-index:4!important;
+}
+.work-profile{top:13px!important;left:14px!important}
+.work-subscribe{top:13px!important;right:13px!important}
+.work-play{
+  top:50%!important;
+  left:50%!important;
+  width:84px!important;
+  height:96px!important;
+  transform:translate(-50%,-50%)!important;
+}
+.work-tag{bottom:44px!important}
+@media(max-width:700px){
+ .work-card{border-radius:22px!important}
+ .work-image{aspect-ratio:.68!important;border-radius:21px!important}
+ .work-image:after{top:52%!important;border-radius:0 0 21px 21px!important}
+ .work-play{width:58px!important;height:67px!important}
+ .work-tag{bottom:18px!important}
+}
 </style>
 </head>
 <body>
