@@ -333,6 +333,14 @@ html{scroll-behavior:smooth}
 @media(max-width:700px){.whatsapp-float{right:16px;bottom:16px;width:50px;height:50px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+
+/* Ensure the portrait itself paints above ambient layers */
+.hero-portrait{z-index:3!important;overflow:visible}
+.hero-portrait:before{z-index:0}
+.hero-portrait img{z-index:1;display:block;visibility:visible;opacity:1;max-width:100%;object-fit:contain}
+.hero-copy{z-index:4}
+@media(max-width:700px){.hero-portrait{z-index:1!important}.hero-copy{z-index:4}}
+
 </style>
 </head>
 <body>
