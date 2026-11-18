@@ -366,6 +366,15 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .gateway-app-bottom-nav small{font-size:6px}.gateway-app-bottom-nav .active{color:#16839a}
 .gateway-app-phone-premium .gateway-app-home{position:relative;width:48px;height:3px;background:#8da2a9;border-radius:5px;margin:14px auto 0}
 @media(max-width:760px){.gateway-app-phone-premium{width:245px}.gateway-app-stage{min-height:0;padding:25px 0}}
+
+/* Fix section 03-A phone screen: opaque light surface inside metallic bezel */
+.gateway-app-phone-premium{padding:8px;border:1px solid #a9b9bd;background:linear-gradient(145deg,#c4d1d2 0%,#657c81 30%,#1a3037 100%)}
+.gateway-app-phone-premium .gateway-app-notch{top:8px}
+.gateway-app-screen{position:relative;isolation:isolate;overflow:hidden;border-radius:31px;background:#f7fafb!important;background-image:linear-gradient(180deg,#fbfdfd 0%,#edf3f4 100%)!important;padding:17px 12px 0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.9)}
+.gateway-app-screen .gateway-app-status{margin-top:3px;color:#29444c}
+.gateway-app-screen .gateway-app-bottom-nav{margin:9px -12px 0}
+.gateway-app-screen .gateway-app-home{margin-bottom:0}
+.gateway-app-phone-premium .gateway-app-home{background:#82999f}
 </style>
 </head>
 <body>
@@ -444,6 +453,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 <div class="gateway-app-stage" aria-label="Prévia do aplicativo PayNex em smartphone">
 <div class="gateway-app-phone gateway-app-phone-premium">
 <div class="gateway-app-notch"></div>
+<div class="gateway-app-screen">
 <div class="gateway-app-status"><span>09:41</span><span>●●●　◖</span></div>
 <div class="gateway-app-top"><div class="gateway-app-brand"><span class="gateway-app-monogram">N</span><strong>Pay<span>Nex</span></strong></div><span class="gateway-app-avatar">JP</span></div>
 <div class="gateway-app-date">QUARTA-FEIRA, 18 NOV</div>
