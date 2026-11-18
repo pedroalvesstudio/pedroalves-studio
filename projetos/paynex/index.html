@@ -1648,6 +1648,35 @@ a.pill.ghost{color:#c8ddf7!important;border-color:rgba(143,196,255,.42)!importan
 #negocio .checkout-motion-preview.demo-success .checkout-status,
 #negocio .checkout-success-details .checkout-success-status,
 #negocio .checkout-success-mark{color:#16815c!important}
+
+/* GLOBAL SHADOW REFINEMENT — soft ambient depth, no hard dark edge or neon halo */
+:root{--shadow-soft:0 10px 30px rgba(2,10,22,.13);--shadow-lift:0 14px 34px rgba(2,10,22,.17)}
+:where(button,a.pill,.pill,.checkout-button,.hero-actions a,.hero-actions button,
+.feature,.benefit,.activation-card,.activation-price-tile,.activation-benefit-tile,
+.faq-list details,.checkout-preview,.checkout-motion-preview,.price-card,.stat,
+.product-dashboard-b,.product-phone-b,.product-phone,.gateway-app-phone,
+.gateway-app-phone-premium,.gateway-app-balance-card,.product-phone-b-balance,
+.product-kpi,.product-dash-panels,.product-dash-activity,
+.gateway-app-actions div,.product-phone-b-actions div){
+ box-shadow:var(--shadow-soft)!important;
+}
+:where(button,a.pill,.pill,.checkout-button,.hero-actions a,.hero-actions button):hover{
+ box-shadow:0 10px 26px rgba(2,10,22,.16)!important;
+}
+:where(.product-dashboard-b,.product-phone-b,.product-phone,.gateway-app-phone,
+.gateway-app-phone-premium){
+ box-shadow:0 18px 42px rgba(2,10,22,.2)!important;
+}
+:where(.product-dashboard-b:hover,.product-phone-b:hover,.gateway-app-phone:hover,
+.gateway-app-phone-premium:hover){
+ box-shadow:0 20px 46px rgba(2,10,22,.22)!important;
+}
+/* Remove concentrated colored halos that make shadows look sharp or heavy */
+:where(button,a.pill,.pill,.checkout-button,.hero-actions a,.hero-actions button,
+.feature,.benefit,.activation-card,.activation-benefit-tile,
+.product-dashboard-b,.product-phone-b,.gateway-app-phone,.gateway-app-phone-premium){
+ filter:none!important;
+}
 </style>
 </head>
 <body>
