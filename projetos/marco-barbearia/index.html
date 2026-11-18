@@ -36,6 +36,11 @@
 <body>
 <header class="site-header"><div class="header-inner">
 <a class="brand" href="#inicio" aria-label="Marco Barbearia início"><span class="brand-mark">M</span><span>MARCO</span><span>BARBEARIA</span></a>
+<button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+<nav class="nav" aria-label="Navegação principal">
+<a href="#servicos">Serviços</a><a href="#trabalho">Nosso Trabalho</a><a href="#equipe">Nossa Equipe</a><a href="#clientes">Clientes</a><a href="#historia">História</a>
+</nav>
+<a class="header-cta" href="#inicio">Agendar horário ↗</a>
 </div></header>
 <main>
 <section class="hero" id="inicio">
@@ -43,4 +48,21 @@
 <div class="hero-content"><div class="hero-kicker">Estilo, identidade e cuidado</div><h1>Muito além de <span>cabelo e barba.</span></h1><div class="hero-bottom"><p>Atendimento especializado em barbearia, com 2 unidades na região para cuidar de você.</p><a class="btn" href="#inicio">Agendar horário <span class="arrow">↗</span></a></div></div>
 </section>
 </main>
+<script>
+const menuButton=document.querySelector(".menu-toggle");
+const navigation=document.querySelector(".nav");
+menuButton?.addEventListener("click",()=>{
+ const isOpen=menuButton.getAttribute("aria-expanded")==="true";
+ menuButton.setAttribute("aria-expanded",String(!isOpen));
+ menuButton.setAttribute("aria-label",isOpen?"Abrir menu":"Fechar menu");
+ menuButton.textContent=isOpen?"☰":"×";
+ navigation?.classList.toggle("open",!isOpen);
+});
+navigation?.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{
+ navigation.classList.remove("open");
+ menuButton?.setAttribute("aria-expanded","false");
+ menuButton?.setAttribute("aria-label","Abrir menu");
+ if(menuButton)menuButton.textContent="☰";
+}));
+</script>
 </body></html>
