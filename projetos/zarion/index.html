@@ -460,57 +460,75 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 }
 </style>
 <script id="latera-original-benefits-20261118">
-/* Original Zarion interaction, measured with MotionLens:
-   trigger .techo-wrapper, animated .techo-wrap, xPercent -100, scrub 1.5.
-   Wait for GSAP instead of silently abandoning setup if CDN loads late. */
+/* Six original cards, scroll-controlled horizontal carousel.
+   Keep a complete three-card viewport at every resting scroll position. */
 (function(){
  'use strict';
- let attempts=0,installed=false;
+ let initialized=false,attempts=0;
  function init(){
-  if(installed)return;
+  if(initialized)return;
   const section=document.querySelector('.section.techo');
   const wrapper=section&&section.querySelector('.techo-wrapper');
   const sticky=wrapper&&wrapper.querySelector('.techo-sticky-wrap');
   const track=sticky&&sticky.querySelector('.techo-wrap');
-  const cards=track&&track.querySelectorAll('.techo-card');
-  if(!wrapper||!sticky||!track||!cards||cards.length!==6)return;
+  const rail=track&&track.querySelector('.techo-flex-wrap');
+  const cards=rail&&Array.from(rail.querySelectorAll('.techo-card'));
+  if(!wrapper||!sticky||!rail||!cards||cards.length!==6)return;
   if(!window.gsap||!window.ScrollTrigger){
-   if(++attempts<=100)window.setTimeout(init,120);
+   if(++attempts<100)setTimeout(init,120);
    return;
   }
-  installed=true;
-  const GS=window.gsap, ST=window.ScrollTrigger;
+  initialized=true;
+  const GS=window.gsap,ST=window.ScrollTrigger;
   GS.registerPlugin(ST);
-  const mm=GS.matchMedia();
-  mm.add('(min-width: 992px)',function(){
-   const rail=track.querySelector('.techo-flex-wrap');
-   if(!rail)return;
-   // Move only the actual overflow width, leaving the final card fully visible.
-   const getTravel=()=>Math.max(0,rail.scrollWidth-sticky.clientWidth);
+  GS.matchMedia().add('(min-width: 992px)',function(){
+   const visibleCount=3;
+   const maxIndex=cards.length-visibleCount;
+   let step=0,lastIndex=-1;
    GS.set(track,{clearProps:'transform'});
-   const tween=GS.fromTo(rail,{x:0},{
-    x:()=>-getTravel(),
-    duration:1,
-    ease:'none',
-    scrollTrigger:{
-     trigger:wrapper,
-     start:'top top',
-     end:'bottom bottom',
-     scrub:1.5,
-     invalidateOnRefresh:true
+   function measure(){
+    const style=getComputedStyle(rail);
+    const gap=parseFloat(style.columnGap||style.gap)||16;
+    const width=Math.max(220,(sticky.clientWidth-gap*(visibleCount-1))/visibleCount);
+    cards.forEach(card=>{
+     card.style.setProperty('width',width+'px','important');
+     card.style.setProperty('min-width',width+'px','important');
+     card.style.setProperty('flex','0 0 '+width+'px','important');
+    });
+    step=width+gap;
+   }
+   measure();
+   GS.set(rail,{x:0});
+   const trigger=ST.create({
+    trigger:wrapper,start:'top top',end:'bottom bottom',
+    invalidateOnRefresh:true,
+    onUpdate:self=>{
+     const index=Math.min(maxIndex,Math.max(0,Math.round(self.progress*maxIndex)));
+     if(index===lastIndex)return;
+     lastIndex=index;
+     GS.to(rail,{x:-index*step,duration:0.52,ease:'power2.out',overwrite:true});
+    },
+    onRefresh:self=>{
+     measure();
+     lastIndex=-1;
+     const index=Math.min(maxIndex,Math.max(0,Math.round(self.progress*maxIndex)));
+     lastIndex=index;
+     GS.set(rail,{x:-index*step});
     }
    });
    section.dataset.lateraCarousel='active';
    return function(){
+    trigger.kill();
+    GS.killTweensOf(rail);
+    GS.set(rail,{clearProps:'transform'});
+    cards.forEach(card=>{card.style.removeProperty('width');card.style.removeProperty('min-width');card.style.removeProperty('flex')});
     section.dataset.lateraCarousel='mobile';
-    tween.kill();
    };
   });
   ST.refresh();
-  window.addEventListener('load',function(){ST.refresh()},{once:true});
+  window.addEventListener('load',()=>ST.refresh(),{once:true});
  }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
- else init();
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 </script>
 <style id="latera-polish-20261118">
