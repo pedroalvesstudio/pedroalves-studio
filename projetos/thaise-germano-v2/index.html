@@ -618,40 +618,30 @@ html{scroll-behavior:smooth}
 </a>
 
 <style id="thaise-mobile-hero-readability-20261118">
-/* Mobile hero: center the portrait and create a soft dark glass layer
-   behind the copy so the headline stays readable over the image. */
+/* Mobile: preserve the portrait's original scale; only center it horizontally.
+   Keep the dark readability treatment confined to the text area. */
 @media (max-width: 700px) {
   .hero-stage {
     position: relative !important;
     isolation: isolate !important;
     overflow: hidden !important;
-    min-height: max(760px, 100svh) !important;
-    padding: 132px 22px 36px !important;
-    justify-content: flex-end !important;
+    min-height: calc(100svh - 70px) !important;
+    padding: 80px 22px 34px !important;
   }
   .hero-portrait {
     left: 0 !important;
     right: 0 !important;
-    top: 58px !important;
+    top: auto !important;
     bottom: 0 !important;
     width: 100% !important;
-    height: auto !important;
-    opacity: .88 !important;
+    height: 68% !important;
+    opacity: .92 !important;
     justify-content: center !important;
-  }
-  .hero-portrait img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
-    object-position: center bottom !important;
   }
   .hero-copy {
     position: relative !important;
     z-index: 2 !important;
     isolation: isolate !important;
-    width: 100% !important;
-    padding: 20px 15px 17px !important;
-    border-radius: 14px !important;
   }
   .hero-copy:before {
     content: "" !important;
@@ -668,10 +658,6 @@ html{scroll-behavior:smooth}
     backdrop-filter: blur(15px) !important;
     pointer-events: none !important;
   }
-}
-@media (max-width: 390px) {
-  .hero-stage { padding-left: 16px !important; padding-right: 16px !important; }
-  .hero-copy { padding-left: 12px !important; padding-right: 12px !important; }
 }
 </style>
 </body>
