@@ -43,7 +43,13 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 /* Project covers: editorial safe area without changing the card aspect ratio. */
 .project-preview{padding:clamp(12px,1.6vw,20px);box-sizing:border-box}
 .project-preview-stage{position:relative;width:100%;height:100%;border-radius:9px;overflow:hidden;background:#111;isolation:isolate}
-.project-preview-stage iframe{position:absolute;top:0;left:0;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;background:#111}
+/* Actually reframe the page inside the cover: reserve space at left and top, not just outside the iframe. */
+.project-preview-stage iframe{position:absolute;top:0;left:0;width:205%;height:215%;border:0;transform:translate(30px,16px) scale(.46);transform-origin:top left;pointer-events:none;background:transparent}
+.project[data-project="latera"] .project-preview-stage{background:#fff6ed}
+.project[data-project="aurenta"] .project-preview-stage{background:#f7f4ee}
+.project[data-project="kodara"] .project-preview-stage{background:#000}
+.project[data-project="nexora"] .project-preview-stage{background:#f9f9ff}
+@media(max-width:640px){.project-preview-stage iframe{transform:translate(20px,10px) scale(.46)}}
 .project-preview-stage:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid rgba(255,255,255,.06);border-radius:9px}
 @media(max-width:640px){.project-preview{padding:10px}.project-preview-stage{border-radius:7px}}
 
