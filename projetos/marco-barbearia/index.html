@@ -1007,6 +1007,137 @@ body{background:#000!important}
  .client-caption strong,.client-caption span{font-size:9px!important;line-height:1.2!important}
  .client-caption--stacked{flex-direction:column!important}
 }
+
+/* Reference lock — clients section geometry from the supplied 1438px screenshot */
+.clients-section{
+  background:#080a0b!important;
+  padding:26px 0 22px!important;
+}
+.clients-inner{
+  width:calc(100% - 22px)!important;
+  max-width:none!important;
+  margin:0 auto!important;
+}
+.clients-heading{
+  width:min(850px,calc(100% - 36px))!important;
+  margin:0 auto 63px!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  column-gap:48px!important;
+  align-items:start!important;
+}
+.clients-heading h2{
+  margin:0!important;
+  font-size:30px!important;
+  line-height:1.14!important;
+  letter-spacing:-.035em!important;
+}
+.clients-heading p{
+  margin:2px 0 0!important;
+  max-width:430px!important;
+  font-size:16px!important;
+  line-height:1.12!important;
+  color:#f0f0ed!important;
+}
+.clients-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:8px!important;
+  align-items:stretch!important;
+}
+.client-card{
+  width:100%!important;
+  height:305px!important;
+  min-height:305px!important;
+  padding:0!important;
+  margin:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:12px!important;
+  background:#0b0d0e!important;
+}
+.client-card img{
+  display:block!important;
+  width:100%!important;
+  height:235px!important;
+  min-height:235px!important;
+  max-height:235px!important;
+  flex:0 0 235px!important;
+  margin:0!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+  border:0!important;
+  border-radius:0!important;
+}
+.client-caption{
+  position:relative!important;
+  inset:auto!important;
+  width:84%!important;
+  height:33px!important;
+  min-height:33px!important;
+  max-height:33px!important;
+  flex:0 0 33px!important;
+  align-self:center!important;
+  margin:16px auto 0!important;
+  padding:0 12px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:3px!important;
+  box-sizing:border-box!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:#eff21b!important;
+  color:#080909!important;
+  text-align:center!important;
+  white-space:normal!important;
+}
+.client-caption strong,.client-caption span{
+  display:inline!important;
+  width:auto!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#080909!important;
+  font:500 12px/1.15 "DM Sans",sans-serif!important;
+  text-align:center!important;
+}
+.client-caption--stacked{
+  height:51px!important;
+  min-height:51px!important;
+  max-height:51px!important;
+  flex-basis:51px!important;
+  margin-top:8px!important;
+  flex-direction:column!important;
+  gap:2px!important;
+  padding:0 10px!important;
+}
+@media(max-width:760px){
+ .clients-section{padding:38px 0 44px!important}
+ .clients-inner{width:calc(100% - 28px)!important}
+ .clients-heading{
+   width:100%!important;
+   margin:0 auto 24px!important;
+   grid-template-columns:1fr!important;
+   gap:12px!important;
+ }
+ .clients-heading h2{font-size:25px!important;line-height:1.16!important}
+ .clients-heading p{font-size:13px!important;line-height:1.5!important}
+ .clients-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .client-card{height:220px!important;min-height:220px!important}
+ .client-card img{height:164px!important;min-height:164px!important;max-height:164px!important;flex-basis:164px!important}
+ .client-caption{width:calc(100% - 16px)!important;height:30px!important;min-height:30px!important;max-height:30px!important;flex-basis:30px!important;margin-top:12px!important;padding:0 5px!important}
+ .client-caption strong,.client-caption span{font-size:9px!important}
+ .client-caption--stacked{height:38px!important;min-height:38px!important;max-height:38px!important;flex-basis:38px!important;margin-top:4px!important;flex-direction:column!important}
+}
 </style>
 </head>
 <body>
