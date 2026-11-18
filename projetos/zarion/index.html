@@ -210,7 +210,8 @@ html{scroll-behavior:auto!important}
 }
 .section.works .find-color-bg{transition:none!important;will-change:width}
 .section.casesh .case-line{transition:width .4s ease,background-color .4s ease!important}
-.happen-single-wrap{animation:none!important;will-change:transform}
+.section.works .happen-single-wrap{animation:latera-logo-vertical-loop 10s linear infinite!important;animation-play-state:running!important;will-change:transform}
+@keyframes latera-logo-vertical-loop{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-100%,0)}}
 .menu-link [menu-one],.menu-link [menu-two]{transition:transform .25s ease!important}
 .menu-link:hover [menu-one],.menu-link:hover [menu-two]{transform:translateY(-100%)!important}
 .primary-button .primary-button-text,.primary-button .primary-arrow{transition:transform .4s ease!important}
@@ -488,19 +489,4 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   else window.addEventListener('load',mountBenefits,{once:true});
 })();
 </script>
-<script id="latera-original-logos-loop-20261118">
-/* Captured Zarion: three repeated vertical tracks, GSAP duration 10s, repeat -1, linear. */
-(function(){
- function init(){
-  const tracks=[...document.querySelectorAll('.section.works .happen-single-wrap')];
-  if(tracks.length<2||!window.gsap)return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-   gsap.set(tracks,{yPercent:0,clearProps:'transform'});
-   return;
-  }
-  gsap.fromTo(tracks,{yPercent:0},{yPercent:-100,duration:10,repeat:-1,ease:'none',overwrite:true});
- }
- if(document.readyState==='complete')init();
- else window.addEventListener('load',init,{once:true});
-})();
-</script>
+<style id="latera-original-logos-accessibility-20261118">@media(prefers-reduced-motion:reduce){.section.works .happen-single-wrap{animation:none!important;transform:none!important}}</style>
