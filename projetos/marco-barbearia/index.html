@@ -748,6 +748,72 @@ body{background:#000!important}
  .team-info p:after{margin-top:8px!important;width:32px!important}
  .team-card>img{object-position:center 38%!important}
 }
+
+/* Final team-card correction: single identity icon, clean panel, portrait starts below panel */
+.team-card{
+  height:370px!important;
+  min-height:370px!important;
+  aspect-ratio:1/1!important;
+  border-radius:14px!important;
+  overflow:hidden!important;
+  background:#050606!important;
+}
+.team-info{
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  height:150px!important;
+  padding:20px 28px 17px!important;
+  border-radius:13px!important;
+}
+.team-symbol{
+  position:relative!important;
+  width:24px!important;
+  height:24px!important;
+  min-width:24px!important;
+  margin:0 0 13px!important;
+  padding:0!important;
+  border:0!important;
+  outline:0!important;
+  background:#eff21b!important;
+  border-radius:2px!important;
+  display:grid!important;
+  place-items:center!important;
+  font-size:0!important;
+}
+.team-symbol:before,.team-symbol:after{content:none!important;display:none!important}
+.team-symbol svg{
+  display:block!important;
+  width:20px!important;
+  height:20px!important;
+  overflow:visible!important;
+}
+.team-symbol svg path{
+  fill:#080909!important;
+  stroke:none!important;
+}
+.team-info h3{font-size:29px!important;line-height:1.12!important;margin:0 0 8px!important}
+.team-info p{font-size:15px!important;line-height:1.35!important}
+.team-info p:after{width:40px!important;margin-top:10px!important}
+.team-card>img{
+  top:150px!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  width:100%!important;
+  height:calc(100% - 150px)!important;
+  object-fit:cover!important;
+  object-position:center 25%!important;
+}
+@media(max-width:700px){
+ .team-card{height:320px!important;min-height:320px!important}
+ .team-info{height:132px!important;padding:17px 17px 14px!important}
+ .team-symbol{width:22px!important;height:22px!important;min-width:22px!important;margin-bottom:10px!important}
+ .team-symbol svg{width:18px!important;height:18px!important}
+ .team-info h3{font-size:20px!important;margin-bottom:7px!important}
+ .team-info p{font-size:12px!important}
+ .team-card>img{top:132px!important;height:calc(100% - 132px)!important;object-position:center 22%!important}
+}
 </style>
 </head>
 <body>
