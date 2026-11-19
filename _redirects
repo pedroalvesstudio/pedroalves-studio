@@ -1,0 +1,15 @@
+/projetos/fynora /projetos/aurenta 301
+/projetos/fynora/ /projetos/aurenta/ 301
+/projetos/fynora/* /projetos/aurenta/:splat 301
+/projetos/mooni /projetos/kodara 301
+/projetos/mooni/ /projetos/kodara/ 301
+/projetos/mooni/* /projetos/kodara/:splat 301
+/projetos/zarion /projetos/latera 301
+/projetos/zarion/ /projetos/latera/ 301
+/projetos/zarion/* /projetos/latera/:splat 301
+/projetos/nexora /projetos/nexora-ai 301
+/projetos/nexora/ /projetos/nexora-ai/ 301
+/projetos/nexora/* /projetos/nexora-ai/:splat 301
+/projetos/thaise-germano-v2 /projetos/thaise 301
+/projetos/thaise-germano-v2/ /projetos/thaise/ 301
+/projetos/thaise-germano-v2/* /projetos/thaise/:splat 301

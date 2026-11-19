@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'index.html'
+      - '_redirects'
       - 'projetos/**'
       - '.github/workflows/publish.yml'
   workflow_dispatch:
@@ -22,19 +23,19 @@ jobs:
         run: |
           set -euo pipefail
           test -s index.html
-          for project in fynora videfo zarion althor norte nexora mooni; do
+          for project in aurenta kodara latera nexora-ai thaise paynex; do
             test -s "projetos/$project/index.html"
           done
-          test -s projetos/mooni/assets/kodara-original.css
-          test -s projetos/mooni/assets/kodara-icon.svg
-          test -s projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp
-          file projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp | grep -qi webp
-          grep -q "kodara" projetos/mooni/index.html
-          grep -q "Desarrollo más inteligente" projetos/mooni/index.html
-          grep -q "fb-carousel" projetos/mooni/index.html
-          grep -q "w-tab-link" projetos/mooni/index.html
-          grep -q "w-slider" projetos/mooni/index.html
-          echo "Homepage and all seven project pages verified, including Kodara and original interactions."
+          test -s projetos/kodara/assets/kodara-original.css
+          test -s projetos/kodara/assets/kodara-icon.svg
+          test -s projetos/thaise/assets/thaise-hero-cutout.webp
+          file projetos/thaise/assets/thaise-hero-cutout.webp | grep -qi webp
+          grep -q "kodara" projetos/kodara/index.html
+          grep -q "Desarrollo más inteligente" projetos/kodara/index.html
+          grep -q "fb-carousel" projetos/kodara/index.html
+          grep -q "w-tab-link" projetos/kodara/index.html
+          grep -q "w-slider" projetos/kodara/index.html
+          echo "Homepage and all six official project pages verified, including Kodara and original interactions."
 
   deploy:
     needs: verify
@@ -47,6 +48,7 @@ jobs:
           set -euo pipefail
           mkdir -p site
           cp index.html site/index.html
+          cp _redirects site/_redirects
           cp -R projetos site/projetos
       - name: Publish static assets to the existing Worker
         uses: cloudflare/wrangler-action@v3
@@ -60,7 +62,7 @@ jobs:
           set -euo pipefail
           python -m pip install --quiet pillow
           for attempt in {1..10}; do
-            if curl -fsS "https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/thaise-germano-v2/assets/thaise-hero-cutout.webp" -o /tmp/thaise.webp; then
+            if curl -fsS "https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/thaise/assets/thaise-hero-cutout.webp" -o /tmp/thaise.webp; then
               python - <<'PY'
           from PIL import Image
           im = Image.open("/tmp/thaise.webp").convert("RGBA")
