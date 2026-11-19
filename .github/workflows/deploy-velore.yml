@@ -1,0 +1,44 @@
+name: Deploy VELORE Automotive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'projetos/velore/**'
+      - '.github/workflows/deploy-velore.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify VELORE website
+        run: |
+          set -euo pipefail
+          test -s projetos/velore/index.html
+          grep -q 'VELORE' projetos/velore/index.html
+          grep -q 'DRIVEN BY' projetos/velore/index.html
+          grep -q 'id="collection"' projetos/velore/index.html
+          grep -q 'id="philosophy"' projetos/velore/index.html
+          echo "VELORE website files verified."
+
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stage VELORE website
+        run: |
+          set -euo pipefail
+          mkdir -p site
+          cp projetos/velore/index.html site/index.html
+      - name: Publish independent VELORE Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --assets ./site --name velore-automotive --compatibility-date 2026-11-17
