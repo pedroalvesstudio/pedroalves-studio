@@ -2,7 +2,7 @@
 
 Portfolio website showcasing web design and front-end development work by PedroAlves Studio.
 
-**Live portfolio:** https://pedroalves-studio.pedroalves2-esp.workers.dev/
+**Live portfolio:** https://pedroalvesstudio.es/
 
 ## About
 
@@ -14,12 +14,12 @@ The names below match the titles displayed on the portfolio website.
 
 | Project | Area | Portfolio page |
 |---|---|---|
-| AURENTA CAPITAL | Finance | [View project](https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/fynora/) |
-| KODARA | Software | [View project](https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/mooni/) |
-| LATERA | Artificial intelligence | [View project](https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/zarion/) |
-| NEXORA AI | Artificial intelligence | [View project](https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/nexora/) |
-| THAÍSE GERMANO | Accounting mentorship | [View project](https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/thaise-germano-v2/) |
-| PAYNEX | Fintech | [View project](https://pedroalves-studio.pedroalves2-esp.workers.dev/projetos/paynex/) |
+| AURENTA CAPITAL | Finance | [View project](https://pedroalvesstudio.es/projetos/fynora/) |
+| KODARA | Software | [View project](https://pedroalvesstudio.es/projetos/mooni/) |
+| LATERA | Artificial intelligence | [View project](https://pedroalvesstudio.es/projetos/zarion/) |
+| NEXORA AI | Artificial intelligence | [View project](https://pedroalvesstudio.es/projetos/nexora/) |
+| THAÍSE GERMANO | Accounting mentorship | [View project](https://pedroalvesstudio.es/projetos/thaise-germano-v2/) |
+| PAYNEX | Fintech | [View project](https://pedroalvesstudio.es/projetos/paynex/) |
 
 ## Technologies
 
@@ -35,4 +35,4 @@ The names below match the titles displayed on the portfolio website.
 
 ## Contact
 
-For project inquiries, use the contact section on the [live portfolio](https://pedroalves-studio.pedroalves2-esp.workers.dev/).
+For project inquiries, use the contact section on the [live portfolio](https://pedroalvesstudio.es/).
