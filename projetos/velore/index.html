@@ -32,7 +32,7 @@ const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isInte
   const heroVideo = document.querySelector('.hero-bg video');
   const heroLayer = document.querySelector('.hero-bg');
   if (!heroVideo || !heroLayer) return;
-  const START_TRIM = 1.00;
+  const START_TRIM = 3.00;
   const slowPlayback = () => {
     heroVideo.playbackRate = 0.78;
     if (heroVideo.currentTime < START_TRIM) heroVideo.currentTime = START_TRIM;
