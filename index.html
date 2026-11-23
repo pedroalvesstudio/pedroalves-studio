@@ -215,9 +215,14 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 
 /* Intro 05: Arquitetura Modular — source animation and background kept intact.
    Only the demo chrome (topbar, frame, labels, controls) is omitted. */
-.intro.studio-intro-five{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse 115% 120% at 50% 72%,rgba(55,84,48,.19) 0%,rgba(39,62,40,.14) 43%,rgba(21,34,25,.095) 75%,rgba(17,27,21,.07) 100%),#090c0a;display:block;isolation:isolate;overflow:hidden;pointer-events:none;visibility:visible;animation:studioIntroFiveExit 4.8s linear both}
-.intro.studio-intro-five::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(201,250,99,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(201,250,99,.028) 1px,transparent 1px);background-size:80px 80px;opacity:.8}
-.studio-intro-five .studio-intro-stage{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:100dvh;height:100%;isolation:isolate;overflow:hidden;background:transparent}
+/* Intro 05 — exact original stage, lighting, grid and frame from 05-modular.html. */
+.intro.studio-intro-five{position:fixed;inset:0;z-index:100;background:#08090a;display:block;isolation:isolate;overflow:hidden;pointer-events:none;visibility:visible;animation:studioIntroFiveExit 4.8s linear both}
+.studio-intro-five .studio-intro-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:100dvh;height:100%;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 70%,#141914 0,#090a0b 64%)}
+.studio-intro-five .studio-intro-stage:before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(201,250,99,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,250,99,.035) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 75%)}
+.studio-intro-five .studio-intro-frame{position:absolute;inset:clamp(15px,3.5vw,52px);border:1px solid rgba(210,236,180,.11);pointer-events:none;z-index:2}
+.studio-intro-five .studio-intro-frame:before,.studio-intro-five .studio-intro-frame:after{content:'';position:absolute;width:20px;height:20px;border-color:var(--lime);opacity:.65}
+.studio-intro-five .studio-intro-frame:before{left:-1px;top:-1px;border-top:1px solid;border-left:1px solid}
+.studio-intro-five .studio-intro-frame:after{right:-1px;bottom:-1px;border-right:1px solid;border-bottom:1px solid}
 .studio-intro-five .studio-intro-scene{width:min(100%,1250px);min-height:600px;display:grid;place-items:center;position:relative;padding:100px 28px 160px;perspective:1000px}
 .studio-intro-five .studio-intro-module{position:relative}
 .studio-intro-five .studio-intro-logo{display:flex;align-items:center;justify-content:center;gap:clamp(13px,2vw,26px);position:relative;z-index:3;white-space:nowrap}
@@ -258,6 +263,7 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 <body>
 <div class="intro studio-intro-five" aria-hidden="true">
   <div class="studio-intro-stage">
+    <div class="studio-intro-frame"></div>
     <div class="studio-intro-scene">
       <div class="studio-intro-module">
         <div class="studio-intro-logo">
