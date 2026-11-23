@@ -200,20 +200,11 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 @media(prefers-reduced-motion:reduce){#proyectos .project,.portfolio-special,.portfolio-filter{transition:none!important}}
 
 
-/* Home hero — soft, slow mesh gradient; no expensive backdrop blur. */
+/* Hero background: identical base and grid to approved modular intro 05. */
 #inicio.hero{position:relative;isolation:isolate}
-#inicio.hero > :not(.studio-mesh-motion){position:relative;z-index:1}
-#inicio .studio-mesh-motion{position:absolute;top:0;bottom:0;left:50%;width:100vw;max-width:none;transform:translateX(-50%);z-index:0;pointer-events:none;overflow:hidden;opacity:.55;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 76%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 76%,transparent 100%)}
-#inicio .studio-mesh-motion .mesh-orb{position:absolute;will-change:transform;border-radius:50%;pointer-events:none}
-#inicio .studio-mesh-motion .mesh-a{inset:-60% -48% -26% 12%;background:radial-gradient(ellipse at 54% 49%,rgba(139,233,75,.25) 0%,rgba(104,198,71,.15) 25%,rgba(42,100,54,.07) 48%,transparent 77%);animation:studioMeshA 28s ease-in-out infinite alternate}
-#inicio .studio-mesh-motion .mesh-b{inset:-23% -42% -53% 30%;background:radial-gradient(ellipse at 58% 50%,rgba(69,160,89,.29) 0%,rgba(62,128,65,.13) 33%,rgba(42,90,59,.05) 58%,transparent 80%);animation:studioMeshB 35s ease-in-out infinite alternate}
-#inicio .studio-mesh-motion .mesh-c{inset:-45% -50% -28% 27%;background:radial-gradient(ellipse at 50% 50%,rgba(187,249,109,.18) 0%,rgba(109,193,91,.10) 35%,transparent 77%);animation:studioMeshC 32s ease-in-out infinite alternate}
-#inicio .studio-mesh-motion .mesh-shade{position:absolute;inset:0;background:linear-gradient(90deg,#0b0b0d 0%,rgba(11,11,13,.94) 23%,rgba(11,11,13,.55) 52%,rgba(11,11,13,.34) 100%)}
-#inicio .studio-mesh-motion .mesh-noise{display:none}
-@keyframes studioMeshA{from{transform:translate(-8%,3%) scale(1)}to{transform:translate(4%,-5%) scale(1.07)}}
-@keyframes studioMeshB{from{transform:translate(5%,2%) scale(1.04)}to{transform:translate(-5%,-3%) scale(.97)}}
-@keyframes studioMeshC{from{transform:translate(-3%,-4%) scale(.98)}to{transform:translate(5%,4%) scale(1.08)}}
-@media(prefers-reduced-motion:reduce){#inicio .studio-mesh-motion .mesh-orb{animation:none!important}}
+#inicio.hero:before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 50% 70%,#141914 0,#090a0b 64%)}
+#inicio.hero:after{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(201,250,99,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,250,99,.035) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 75%)}
+#inicio.hero>*{position:relative;z-index:1}
 
 /* Brand symbol 02: Enquadramento, original approved SVG. */
 .mark{background:none!important;display:inline-flex;align-items:center;justify-content:center;filter:none!important}
@@ -289,7 +280,7 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 <div class="menu-shade" id="menu-shade" aria-hidden="true"></div><div class="overlay" id="ov" role="dialog" aria-modal="true" aria-label="Navegación principal" aria-hidden="true"><button id="cb" aria-label="Cerrar menú">✕</button><nav><a href="#inicio" data-i="home" data-tone="home">Inicio</a><a href="#proyectos" data-i="projects" data-tone="projects">Proyectos</a><a href="#servicios" data-i="services" data-tone="services">Servicios</a><a href="#sobre" data-i="about" data-tone="about">Sobre mí</a><a href="#contacto" data-i="contact" data-tone="contact">Contacto</a></nav></div>
 <main>
 
-<div class="wrap"><section class="hero" id="inicio"><div class="studio-mesh-motion" id="studio-mesh-motion" aria-hidden="true"><div class="mesh-orb mesh-a"></div><div class="mesh-orb mesh-b"></div><div class="mesh-orb mesh-c"></div><div class="mesh-shade"></div><div class="mesh-noise"></div></div><div class="eyebrow" data-i="eyebrow">ESTUDIO CREATIVO INDEPENDIENTE · DISEÑO & DIGITAL</div><h1 data-i="headline">Ideas que<br><em>dejan huella.</em></h1><div class="herofoot"><p data-i="intro">Diseño y desarrollo sitios web modernos, interactivos y personalizados que ayudan a los negocios a destacar y conectar con sus clientes.</p><a class="heroicon" href="#proyectos" aria-label="Ver proyectos"><span class="mark" aria-hidden="true"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#c9fa63" d="M14 14H78V33H33V78H14V14Z"/><path fill="#f3f5f0" d="M106 106H42V87H87V42H106V106Z"/><rect x="46" y="46" width="28" height="28" rx="2" fill="#c9fa63" transform="rotate(45 60 60)"/></svg></span></a></div></section></div>
+<div class="wrap"><section class="hero" id="inicio"><div class="eyebrow" data-i="eyebrow">ESTUDIO CREATIVO INDEPENDIENTE · DISEÑO & DIGITAL</div><h1 data-i="headline">Ideas que<br><em>dejan huella.</em></h1><div class="herofoot"><p data-i="intro">Diseño y desarrollo sitios web modernos, interactivos y personalizados que ayudan a los negocios a destacar y conectar con sus clientes.</p><a class="heroicon" href="#proyectos" aria-label="Ver proyectos"><span class="mark" aria-hidden="true"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#c9fa63" d="M14 14H78V33H33V78H14V14Z"/><path fill="#f3f5f0" d="M106 106H42V87H87V42H106V106Z"/><rect x="46" y="46" width="28" height="28" rx="2" fill="#c9fa63" transform="rotate(45 60 60)"/></svg></span></a></div></section></div>
 <div class="marquee"><div class="marquee-track"><div class="marquee-group">WEB DESIGN <b>✳</b> LANDING PAGES <b>✳</b> UI/UX DESIGN <b>✳</b> INTERACTIVE WEB <b>✳</b> WEB DESIGN <b>✳</b> LANDING PAGES <b>✳</b> UI/UX DESIGN <b>✳</b> INTERACTIVE WEB <b>✳</b></div><div class="marquee-group" aria-hidden="true">BRANDING <b>✳</b> WEB DESIGN <b>✳</b> DIGITAL EXPERIENCE <b>✳</b> CREATIVE DIRECTION <b>✳</b> BRANDING <b>✳</b> WEB DESIGN <b>✳</b> DIGITAL EXPERIENCE <b>✳</b> CREATIVE DIRECTION <b>✳</b></div></div></div>
 
 <section id="proyectos"><div class="wrap"><div class="head reveal"><h2 data-i="selected">Trabajo<br>seleccionado<span class="lime">.</span></h2><small>01 / 06</small></div><div class="portfolio-filters" role="group" aria-label="Filtrar proyectos">
