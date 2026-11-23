@@ -204,7 +204,7 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 #inicio.hero{position:relative;isolation:isolate}
 #inicio.hero > :not(.studio-mesh-motion){position:relative;z-index:1}
 #inicio .studio-mesh-motion{position:absolute;top:0;bottom:0;left:50%;width:100vw;max-width:none;transform:translateX(-50%);z-index:0;pointer-events:none;overflow:hidden;opacity:.66;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 9%,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 9%,#000 88%,transparent 100%)}
-#inicio .studio-mesh-motion .mesh-orb{position:absolute;border-radius:50%;filter:blur(56px);will-change:transform}
+#inicio .studio-mesh-motion .mesh-orb{position:absolute;border-radius:50%;will-change:transform;contain:paint}
 #inicio .studio-mesh-motion .mesh-a{inset:-25% -19% 24% 52%;background:radial-gradient(ellipse,rgba(166,253,75,.42),transparent 68%);animation:studioMeshA 8s ease-in-out infinite alternate}
 #inicio .studio-mesh-motion .mesh-b{inset:35% -20% -35% 40%;background:radial-gradient(ellipse,rgba(43,162,73,.5),transparent 65%);animation:studioMeshB 12s ease-in-out infinite alternate}
 #inicio .studio-mesh-motion .mesh-c{inset:8% 10% 18% 60%;background:radial-gradient(ellipse,rgba(202,255,109,.27),transparent 60%);animation:studioMeshC 10s ease-in-out infinite alternate}
@@ -297,6 +297,32 @@ mb.onclick=()=>menu(true);cb.onclick=()=>menu(false);shade.onclick=()=>menu(fals
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ov.classList.contains('open'))menu(false)});
 ov.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>menu(false)));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+<script id="studio-preview-performance">
+/* Pause decorative animation in embedded portfolio covers:
+   keep their visible design and navigation, without running six full animated websites. */
+(function(){
+  const frames=document.querySelectorAll('#proyectos .project-preview iframe');
+  function freeze(frame){
+    try{
+      const doc=frame.contentDocument;
+      if(!doc||!doc.documentElement)return;
+      if(!doc.getElementById('studio-static-preview-style')){
+        const style=doc.createElement('style');
+        style.id='studio-static-preview-style';
+        style.textContent='*,*::before,*::after{animation-play-state:paused!important;transition-duration:0s!important}video{visibility:hidden!important}';
+        (doc.head||doc.documentElement).appendChild(style);
+      }
+      doc.querySelectorAll('video,audio').forEach(media=>{try{media.pause()}catch(e){}});
+      if(doc.getAnimations)doc.getAnimations({subtree:true}).forEach(a=>{try{a.pause()}catch(e){}});
+    }catch(e){/* Cross-origin frames simply keep their original behavior. */}
+  }
+  frames.forEach(frame=>{
+    frame.setAttribute('loading','lazy');
+    frame.addEventListener('load',()=>{freeze(frame);setTimeout(()=>freeze(frame),700)},{passive:true});
+    if(frame.contentDocument&&frame.contentDocument.readyState==='complete')freeze(frame);
+  });
+})();
 </script>
 <script id="portfolio-cover-text-safe-area">
 /* Only move the text composition inside the Latera cover: the original
