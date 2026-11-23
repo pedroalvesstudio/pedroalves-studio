@@ -299,28 +299,23 @@ ov.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>menu(fals
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 <script id="studio-preview-performance">
-/* Pause decorative animation in embedded portfolio covers:
-   keep their visible design and navigation, without running six full animated websites. */
+/* Keep each live thumbnail, but pause only endless decorative animations once it has settled. */
 (function(){
   const frames=document.querySelectorAll('#proyectos .project-preview iframe');
-  function freeze(frame){
+  function quiet(frame){
     try{
       const doc=frame.contentDocument;
-      if(!doc||!doc.documentElement)return;
-      if(!doc.getElementById('studio-static-preview-style')){
-        const style=doc.createElement('style');
-        style.id='studio-static-preview-style';
-        style.textContent='*,*::before,*::after{animation-play-state:paused!important;transition-duration:0s!important}video{visibility:hidden!important}';
-        (doc.head||doc.documentElement).appendChild(style);
-      }
+      if(!doc)return;
+      if(doc.getAnimations)doc.getAnimations({subtree:true}).forEach(anim=>{
+        try{if(anim.effect&&anim.effect.getComputedTiming().iterations===Infinity)anim.pause()}catch(e){}
+      });
       doc.querySelectorAll('video,audio').forEach(media=>{try{media.pause()}catch(e){}});
-      if(doc.getAnimations)doc.getAnimations({subtree:true}).forEach(a=>{try{a.pause()}catch(e){}});
-    }catch(e){/* Cross-origin frames simply keep their original behavior. */}
+    }catch(e){/* Cross-origin embeds preserve their normal behavior. */}
   }
   frames.forEach(frame=>{
     frame.setAttribute('loading','lazy');
-    frame.addEventListener('load',()=>{freeze(frame);setTimeout(()=>freeze(frame),700)},{passive:true});
-    if(frame.contentDocument&&frame.contentDocument.readyState==='complete')freeze(frame);
+    frame.addEventListener('load',()=>setTimeout(()=>quiet(frame),3600));
+    if(frame.contentDocument&&frame.contentDocument.readyState==='complete')setTimeout(()=>quiet(frame),3600);
   });
 })();
 </script>
