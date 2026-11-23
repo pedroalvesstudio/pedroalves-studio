@@ -42,6 +42,15 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 .project-preview{aspect-ratio:1.5/1;position:relative;display:block;overflow:hidden;border-radius:12px;background:#171719;border:1px solid #2e2e33;isolation:isolate}
 /* Full-bleed original site preview. Only text is inset in LATERA's portfolio iframe. */
 .project-preview iframe{position:absolute;inset:0;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:top left;pointer-events:none;background:#111}
+
+/* Portfolio thumbnails: give every site its proper desktop viewport at 3-column sizes.
+   The iframe itself remains interactive-free; card links are unchanged. */
+#proyectos .project-preview iframe{width:260%;height:260%;transform:scale(.384615385);transform-origin:top left}
+#proyectos .project[data-project="latera"] .project-preview iframe{width:285%;height:285%;transform:scale(.350877193)}
+#proyectos .project-preview{background:#151518}
+@media(max-width:1050px){#proyectos .project-preview iframe{width:220%;height:220%;transform:scale(.454545455)}#proyectos .project[data-project="latera"] .project-preview iframe{width:250%;height:250%;transform:scale(.4)}}
+@media(max-width:700px){#proyectos .project-preview iframe{width:240%;height:240%;transform:scale(.416666667)}#proyectos .project[data-project="latera"] .project-preview iframe{width:265%;height:265%;transform:scale(.377358491)}}
+
 .project-preview:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;transition:background .35s ease}
 .project:hover .project-preview:after{background:rgba(255,255,255,.035)}
 .meta{display:block;margin-top:15px;padding:0 0 18px;border-bottom:1px solid var(--line)}.meta .project-category{display:block;color:var(--lime);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px}.meta strong{display:block;color:var(--fg);font:600 24px/1.1 "Space Grotesk";letter-spacing:-.04em;margin:0 0 5px}.meta p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.note{color:var(--muted);font-size:12px;margin-top:50px}
@@ -275,30 +284,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ov.classList.contai
 ov.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>menu(false)));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-<script id="portfolio-cover-text-safe-area">
-/* Only move the text composition inside the Latera cover: the original
-   hero background, mountains and navbar remain untouched; the assistant panel shifts left slightly. */
-(function(){
-  function apply(){
-    var frame=document.querySelector('.project[data-project="latera"] .project-preview iframe');
-    if(!frame)return;
-    function insetText(){
-      try{
-        var doc=frame.contentDocument;
-        if(!doc||doc.getElementById('portfolio-latera-text-inset'))return;
-        var css=doc.createElement('style');
-        css.id='portfolio-latera-text-inset';
-        css.textContent='.section.hero .hero-left-wrap{position:relative!important;left:55px!important;} .section.hero .hero-right-wrap{position:relative!important;left:-32px!important;}';
-        doc.head.appendChild(css);
-      }catch(err){console.warn('Preview text inset:',err);}
-    }
-    frame.addEventListener('load',insetText);
-    if(frame.contentDocument&&frame.contentDocument.readyState==='complete')insetText();
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);
-  else apply();
-})();
-</script><a id="whatsapp-float" class="whatsapp-float" href="https://wa.me/34604287765?text=Hola%2C%20Pedro.%20Me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" aria-label="Contactar a Pedro por WhatsApp">
+<a id="whatsapp-float" class="whatsapp-float" href="https://wa.me/34604287765?text=Hola%2C%20Pedro.%20Me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" aria-label="Contactar a Pedro por WhatsApp">
 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.1 11.7a8.1 8.1 0 0 1-12 7.1L4 20l1.2-4A8.1 8.1 0 1 1 20.1 11.7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 8.4c.2-.4.4-.4.7-.4h.5c.2 0 .3.1.4.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4-.1.6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.5-1.2.7-1.9.6-1.1-.2-2.5-.9-3.8-2.1-1.1-1.1-1.9-2.5-2-3.5-.1-.8.3-1.6.9-2.2Z" fill="currentColor"/></svg>
 <span data-i="whatsapp">Hablemos</span></a>
 <style id="whatsapp-floating-cta-css">
