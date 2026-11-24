@@ -234,6 +234,121 @@
   .hero h1{margin-bottom:38px}
   .hero-content{padding-bottom:58px}
 }
+</style>
+<style id="vertice-mobile-final-audit">
+@media(max-width:760px){
+  html,body{max-width:100%;overflow-x:clip}
+  .container{width:calc(100% - 40px);max-width:100%}
+  header{isolation:isolate}
+  .nav{min-width:0}
+  .logo{flex:0 0 auto}
+  .nav-cta{flex:0 0 auto}
+  .menu-btn{flex:0 0 40px;width:40px;height:40px;display:grid;place-items:center;padding:0}
+  .hero{min-height:0}
+  .hero-content{min-height:clamp(570px,calc(100svh - 75px),660px);padding:42px 0 66px}
+  .hero h1{max-width:100%;white-space:normal;text-wrap:balance;font-size:clamp(54px,12.2vw,86px);line-height:1.01;margin:clamp(42px,10vw,62px) 0 42px}
+  .hero h1>span{max-width:100%}
+  .hero h1 .offset{padding-left:clamp(14px,4vw,30px)}
+  .hero-bottom{width:100%;max-width:none;align-items:center;justify-content:space-between;gap:18px}
+  .hero-desc{min-width:0;max-width:min(68%,270px);font-size:14px;line-height:1.65}
+  .round-link{width:66px;height:66px}
+  .hero-index{bottom:16px}
+  .hero-art{pointer-events:none}
+  .strip{height:66px}
+  .marquee-item{font-size:22px;gap:24px;padding-right:24px}
+  .marquee-item .pas-ui-spark{width:18px;height:18px}
+  .section{padding-block:66px}
+  .section-head{display:block}
+  .section-head .kicker{margin:0 0 23px;white-space:normal}
+  .section-title{max-width:100%;font-size:clamp(41px,9.7vw,68px);line-height:1.06;letter-spacing:-.07em;overflow-wrap:break-word}
+  .intro-note{align-items:flex-end;gap:16px;margin-top:28px}
+  .intro-note p{min-width:0;font-size:15px;line-height:1.65}
+  .small-arrow{width:48px;height:48px;flex:0 0 48px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 14px;padding:46px 0 12px}
+  .stat{min-width:0;padding:0 0 0 14px;border-left:1px solid var(--line)}
+  .stat:first-child,.stat:nth-child(3){padding-left:0;border-left:0}
+  .stat-value{font-size:clamp(47px,12vw,70px);max-width:100%;letter-spacing:-.08em}
+  .stat>span{font-size:11px;line-height:1.45;margin-top:8px}
+  .services .section-head{display:block}
+  .services .section-title{max-width:100%}
+  .service-list{margin-top:34px}
+  .service{grid-template-columns:31px minmax(0,1fr) 26px;gap:10px;padding:22px 0;min-height:0}
+  .service-number{font-size:10px}
+  .service h3{min-width:0;font-size:clamp(23px,5.6vw,31px);line-height:1.16;overflow-wrap:break-word}
+  .service p{grid-column:2;grid-row:2;margin:2px 0 0;font-size:12px;line-height:1.55}
+  .service-arrow{grid-column:3;grid-row:1;font-size:24px;align-self:center}
+  .service:before{pointer-events:none}
+  .approach .section-head{margin-bottom:30px}
+  .approach-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+  .approach-visual{width:100%;min-height:0;height:clamp(250px,76vw,370px)}
+  .approach-image{object-fit:cover;object-position:center}
+  .approach-photo-label{inset:auto 14px 14px;gap:10px;font-size:8px;letter-spacing:.08em}
+  .approach-photo-label span{min-width:0}
+  .steps{min-width:0}
+  .step{grid-template-columns:36px minmax(0,1fr);gap:12px;padding:23px 0}
+  .step h3{font-size:21px;line-height:1.2}
+  .step p{font-size:13px;line-height:1.6}
+  .case-top{align-items:flex-start;gap:12px;margin-bottom:22px}
+  .case-top .kicker{white-space:normal}
+  .case-disclaimer{max-width:48%;font-size:8px;line-height:1.45;text-align:right}
+  .case-photo{height:clamp(280px,86vw,390px)}
+  .case-photo-label{left:14px;top:14px;max-width:48%;font-size:8px;line-height:1.4}
+  .case-photo-meta{right:14px;top:14px;max-width:43%;font-size:8px;line-height:1.45}
+  .case-photo-center{max-width:100%;font-size:clamp(68px,16vw,118px);letter-spacing:-.1em}
+  .case-photo-index{left:14px;bottom:14px;font-size:8px}
+  .case-bottom{grid-template-columns:minmax(0,1fr);gap:18px;margin-top:25px}
+  .case-bottom h3{font-size:clamp(30px,7.4vw,44px);line-height:1.08}
+  .case-details{gap:14px}
+  .case-details p{font-size:14px;line-height:1.65}
+  .case-tags{gap:7px}
+  .case-tags span{font-size:9px;padding:7px 9px}
+  .contact{padding:72px 0 0}
+  .contact-top{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
+  .contact h2{min-width:0;max-width:calc(100% - 68px);font-size:clamp(48px,11.5vw,78px);line-height:1.02;letter-spacing:-.085em;margin:34px 0 48px;overflow-wrap:normal}
+  .contact-circle{width:58px;height:58px;flex:0 0 58px;margin:0 0 48px;font-size:28px}
+  .footer-main{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 18px;padding:40px 0 46px}
+  .footer-brand{grid-column:1/-1;grid-row:auto;gap:14px}
+  .footer-vertice{font-size:31px}
+  .footer-brand p{font-size:13px}
+  .footer-column{min-width:0;gap:12px;font-size:12px}
+  .footer-title{font-size:9px;margin-bottom:6px}
+  .footer-bottom-v4{align-items:flex-start;flex-direction:column;gap:16px;padding:19px 0 22px}
+  .pas-footer-standard-row{align-items:flex-start;flex-wrap:wrap;gap:12px;padding:16px 0 14px}
+  .pas-footer-copyright{flex:1 1 100%;font-size:9px}
+  .pas-footer-credit{flex:0 1 auto;max-width:100%;flex-wrap:wrap;gap:8px}
+  .pas-footer-label{font-size:7px;white-space:normal}
+}
+@media(max-width:390px){
+  .container{width:calc(100% - 34px)}
+  .nav{gap:8px}
+  .logo{font-size:21px;gap:8px}
+  .logo .logomark{width:27px;height:27px}
+  .nav-cta{padding:8px 8px 8px 11px;font-size:9px;gap:6px}
+  .nav-cta i{width:22px;height:22px}
+  .hero-content{min-height:590px;padding-top:36px}
+  .hero h1{font-size:clamp(49px,12.4vw,58px);margin-top:46px;margin-bottom:34px}
+  .hero-desc{font-size:13px;max-width:68%}
+  .round-link{width:58px;height:58px}
+  .section-title{font-size:clamp(38px,10vw,46px)}
+  .stat-value{font-size:clamp(43px,12vw,56px)}
+  .case-photo-meta{max-width:40%;font-size:7px}
+  .case-photo-label{max-width:50%;font-size:7px}
+  .case-photo-center{font-size:clamp(64px,17vw,82px)}
+  .contact h2{font-size:clamp(44px,11.7vw,53px);max-width:calc(100% - 62px)}
+  .contact-circle{width:52px;height:52px;flex-basis:52px}
+}
+@media(max-width:340px){
+  .container{width:calc(100% - 28px)}
+  .nav-cta{display:none}
+  .menu-btn{margin-left:auto}
+  .hero h1{font-size:48px}
+  .hero-bottom{gap:10px}
+  .hero-desc{max-width:70%;font-size:12px}
+  .stats{gap:26px 10px}
+  .stat-value{font-size:42px}
+  .case-photo-center{font-size:62px}
+  .footer-main{gap:26px 12px}
+}
 </style></head>
 <body>
 <div class="loader" aria-hidden="true"><div class="loader-word">VÉRTICE<span><svg class="pas-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7" fill="currentColor"/></svg></span></div></div>
