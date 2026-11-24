@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'index.html'
+      - 'home/**'
       - '_redirects'
       - 'projetos/**'
       - '.github/workflows/publish.yml'
@@ -23,7 +24,8 @@ jobs:
         run: |
           set -euo pipefail
           test -s index.html
-          for project in aurenta kodara latera nexora-ai thaise paynex; do
+          test -s home/index.html
+          for project in aurenta kodara latera nexora-ai thaise paynex vertice; do
             test -s "projetos/$project/index.html"
           done
           test -s projetos/kodara/assets/kodara-original.css
@@ -35,7 +37,7 @@ jobs:
           grep -q "fb-carousel" projetos/kodara/index.html
           grep -q "w-tab-link" projetos/kodara/index.html
           grep -q "w-slider" projetos/kodara/index.html
-          echo "Homepage and all six official project pages verified, including Kodara and original interactions."
+          echo "Homepage and all official project pages verified, including Vértice, Kodara and original interactions."
 
   deploy:
     needs: verify
@@ -48,6 +50,7 @@ jobs:
           set -euo pipefail
           mkdir -p site
           cp index.html site/index.html
+          cp -R home site/home
           cp _redirects site/_redirects
           cp -R projetos site/projetos
       - name: Publish static assets to the existing Worker
