@@ -270,7 +270,21 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;align-i
 #cb svg{width:18px;height:18px}
 .sf-back svg{width:15px;height:15px}
 </style>
-</head>
+<style id="pas-mobile-refinement-v1">
+@media(max-width:520px){
+  .portfolio-filter{min-height:40px;padding:10px 13px;font-size:11px}
+  .menu{min-height:40px;height:40px;padding:0 12px;font-size:12px;line-height:1}
+  .lang button{min-width:30px;min-height:32px;padding:6px 7px}
+  .whatsapp-float{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:370px){
+  .top{padding-left:14px;padding-right:14px}
+  .brandword{font-size:15px}
+  .topright{gap:5px}
+  .lang button{min-width:30px;min-height:32px;padding:5px 6px}
+  .menu{min-height:40px;height:40px;padding:0 10px;font-size:11px}
+}
+</style></head>
 <body>
 <div class="intro studio-intro-five" aria-hidden="true">
   <div class="studio-intro-stage">
