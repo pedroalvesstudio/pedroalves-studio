@@ -1011,34 +1011,4 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 .pas-studio-signature-v1__word i{all:unset!important;font:600 14px/1 Arial,Helvetica,sans-serif!important;color:#c9fa63!important}
 .pas-studio-signature-v1__link:hover{opacity:.78!important}
 @media(max-width:600px){.pas-studio-signature-v1{align-items:flex-start!important;flex-direction:column!important;gap:10px!important;margin-top:20px!important;padding-top:16px!important}.pas-studio-signature-v1__copyright{flex:none!important;width:100%!important}.pas-studio-signature-v1__credit{justify-content:flex-start!important;flex-wrap:wrap!important;gap:8px!important;text-align:left!important}.pas-studio-signature-v1__label{white-space:normal!important}.pas-studio-signature-v1__symbol{width:20px!important;height:20px!important;flex-basis:20px!important}.pas-studio-signature-v1__word,.pas-studio-signature-v1__word strong,.pas-studio-signature-v1__word span,.pas-studio-signature-v1__word i{font-size:14px!important}}
-</style><script id="pas-studio-signature-v1">
-(function(){
-function apply(){
-var footer=document.querySelector('footer, .footer-section, section.footer, .site-footer, .foco-credit, .nx-footer-compact, .footer-compact');
-if(!footer){footer=document.createElement('footer');footer.className='pas-generated-footer';document.body.appendChild(footer);}
-if(footer.querySelector('.pas-studio-signature-v1'))return;
-var copyright='';
-var walker=document.createTreeWalker(footer,NodeFilter.SHOW_TEXT);
-var nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-nodes.forEach(function(node){
-var value=(node.nodeValue||'').trim();
-if(value.indexOf('©')!==-1){
-if(!copyright){var match=value.match(/©\s*\d{4}[^·|•\n]*/);copyright=match?match[0].trim():value;}
-node.nodeValue=node.nodeValue.replace(/©\s*\d{4}[^·|•\n]*/,'').trim();
-}
-});
-footer.querySelectorAll('.pas-footer-standard-row,.pas-footer-credit,.pas-footer-copyright,.footer-made,.pas-credit,.footer-credit,.foco-copyright-placeholder').forEach(function(el){el.remove();});
-footer.querySelectorAll('a[href*="pedroalvesstudio.es"]').forEach(function(el){el.remove();});
-footer.querySelectorAll('[class*="pas-brand-lockup"],[class*="pas-brand-word"],[class*="pas-brand-symbol"]').forEach(function(el){if(el.closest('footer'))el.remove();});
-var host=footer.querySelector('.footer-inner,.nx-footer-wrap,.footer-main,.wrap,.container,.w-container,.big-container')||footer;
-var row=document.createElement('div');row.className='pas-studio-signature-v1';
-var copy=document.createElement('span');copy.className='pas-studio-signature-v1__copyright';copy.textContent=copyright||'© 2026';
-var credit=document.createElement('div');credit.className='pas-studio-signature-v1__credit';
-var label=document.createElement('span');label.className='pas-studio-signature-v1__label';label.textContent='DISEÑO Y DESARROLLO WEB POR';
-var link=document.createElement('a');link.className='pas-studio-signature-v1__link';link.href='https://pedroalvesstudio.es/';link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','PedroAlves Studio');
-link.innerHTML='<svg class="pas-studio-signature-v1__symbol" viewBox="0 0 120 120" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M14 14H78V33H33V78H14V14Z"/><path d="M106 106H42V87H87V42H106V106Z"/><rect x="46" y="46" width="28" height="28" rx="2" transform="rotate(45 60 60)"/></svg><span class="pas-studio-signature-v1__word"><strong>pedroalves</strong><span>studio</span><i>.</i></span>';
-credit.appendChild(label);credit.appendChild(link);row.appendChild(copy);row.appendChild(credit);host.appendChild(row);
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
-})();
-</script>
+</style><script id="pas-studio-signature-v1">(function(){function apply(){var footer=document.querySelector('footer, .footer-section, section.footer, .site-footer, .foco-credit, .nx-footer-compact, .footer-compact');if(!footer){footer=document.createElement('footer');footer.className='pas-generated-footer';document.body.appendChild(footer);}if(footer.querySelector('.pas-studio-signature-v1'))return;var copyright='';var walker=document.createTreeWalker(footer,NodeFilter.SHOW_TEXT);var nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);nodes.forEach(function(node){var value=(node.nodeValue||'').trim();if(value.indexOf('©')!==-1){if(!copyright){var match=value.match(/©\s*\d{4}[^·|•\n]*/);copyright=match?match[0].trim():value;}node.nodeValue=node.nodeValue.replace(/©\s*\d{4}[^·|•\n]*/,'').trim();}});footer.querySelectorAll('.pas-footer-standard-row,.pas-footer-credit,.pas-footer-copyright,.footer-made,.pas-credit,.footer-credit,.foco-copyright-placeholder').forEach(function(el){el.remove();});footer.querySelectorAll('a[href*="pedroalvesstudio.es"]').forEach(function(el){el.remove();});footer.querySelectorAll('[class*="pas-brand-lockup"],[class*="pas-brand-word"],[class*="pas-brand-symbol"]').forEach(function(el){el.remove();});var host=footer.querySelector('.footer-inner,.nx-footer-wrap,.wrap,.container,.w-container,.big-container')||footer;var row=document.createElement('div');row.className='pas-studio-signature-v1';var copy=document.createElement('span');copy.className='pas-studio-signature-v1__copyright';copy.textContent=copyright||'© 2026';var credit=document.createElement('div');credit.className='pas-studio-signature-v1__credit';var label=document.createElement('span');label.className='pas-studio-signature-v1__label';label.textContent='DISEÑO Y DESARROLLO WEB POR';var link=document.createElement('a');link.className='pas-studio-signature-v1__link';link.href='https://pedroalvesstudio.es/';link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','PedroAlves Studio');link.innerHTML='<svg class="pas-studio-signature-v1__symbol" viewBox="0 0 120 120" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M14 14H78V33H33V78H14V14Z"/><path d="M106 106H42V87H87V42H106V106Z"/><rect x="46" y="46" width="28" height="28" rx="2" transform="rotate(45 60 60)"/></svg><span class="pas-studio-signature-v1__word"><strong>pedroalves</strong><span>studio</span><i>.</i></span>';credit.appendChild(label);credit.appendChild(link);row.appendChild(copy);row.appendChild(credit);host.appendChild(row);}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();})();</script>
