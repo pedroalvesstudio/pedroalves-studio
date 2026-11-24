@@ -457,7 +457,7 @@ html{scroll-behavior:smooth}
 }
 
 </style>
-</head>
+<style id="pas-standard-footer-v3">.pas-footer-credit{box-sizing:border-box;width:100%;display:flex;justify-content:flex-end;align-items:center;gap:12px;padding:15px 0 5px;margin-top:18px;border-top:1px solid currentColor;font-family:inherit;line-height:1.1}.pas-footer-label{font-size:8px!important;line-height:1.2!important;letter-spacing:.16em!important;text-transform:uppercase!important;font-weight:600!important;opacity:.68;white-space:nowrap}.pas-brand-lockup{display:inline-flex;align-items:center;gap:6px;text-decoration:none!important;color:inherit!important;white-space:nowrap}.pas-brand-symbol{width:18px!important;height:18px!important;display:block!important;flex:0 0 18px!important;max-width:none!important}.pas-brand-word{display:inline-flex;align-items:baseline;font-size:13px!important;line-height:1!important;letter-spacing:-.055em!important;color:inherit!important}.pas-brand-word strong{font-weight:800!important}.pas-brand-word span{font-weight:400!important;opacity:.82}.pas-brand-word i{font-style:normal;font-weight:800;color:var(--pas-brand-accent,#c9fa63)}.pas-footer-credit.is-color{color:#17213a!important;--pas-brand-accent:#c9fa63}.pas-footer-credit.is-negative{color:#fff!important;--pas-brand-accent:#fff}.pas-footer-credit *{box-sizing:border-box}@media(max-width:600px){.pas-footer-credit{justify-content:center;gap:8px;flex-wrap:wrap;padding-top:13px}.pas-footer-label{font-size:7px!important}.pas-brand-symbol{width:16px!important;height:16px!important;flex-basis:16px!important}.pas-brand-word{font-size:12px!important}}</style></head>
 <body>
 
 <header class="site-header">
@@ -599,9 +599,9 @@ html{scroll-behavior:smooth}
 <nav class="footer-links" aria-label="Links do rodapé">
 <a href="#sobre">Sobre</a><a href="#solucoes">Método</a><a href="#resultados">Resultados</a><a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
 </nav>
-<p class="footer-credit"><a class="pas-credit-link" href="https://pedroalves-studio.pedroalves2-esp.workers.dev/" target="_blank" rel="noopener noreferrer"><svg class="pas-credit-mark" viewBox="0 0 1002 1036" aria-hidden="true"><path fill="currentColor" d="M393 0H605V178L556 412L744 257L900 169L998 348L843 434L623 517L844 598L1001 687L900 869L744 778L555 624L605 854V1035H393V852L442 623L260 778L98 869L0 687L154 598L378 517L152 433L0 348L98 169L259 256L443 411L393 179Z"/></svg><span>Feito por <strong>PedroAlves Studio</strong></span></a></p>
+<p class="footer-credit"></p>
 </div>
-</footer>
+<div class="pas-footer-credit is-white"><span class="pas-footer-label">Diseño y desarrollo web por</span><a class="pas-brand-lockup" href="https://pedroalvesstudio.es/" target="_blank" rel="noopener noreferrer" aria-label="PedroAlves Studio"><svg class="pas-brand-symbol" viewBox="0 0 120 120" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M14 14H78V33H33V78H14V14Z" fill="#ffffff"/><path d="M106 106H42V87H87V42H106V106Z" fill="#ffffff"/><rect x="46" y="46" width="28" height="28" rx="2" fill="#ffffff" transform="rotate(45 60 60)"/></svg><span class="pas-brand-word"><strong>pedroalves</strong><span>studio</span><i>.</i></span></a></div></footer>
 <script>
 (()=>{const b=document.querySelector(".menu-toggle"),n=document.querySelector(".site-nav");if(!b||!n)return;b.addEventListener("click",()=>{const open=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"Fechar menu":"Abrir menu");n.classList.toggle("is-open",open)});n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{n.classList.remove("is-open");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Abrir menu")}));})();
 </script>
@@ -617,5 +617,5 @@ html{scroll-behavior:smooth}
 <a class="whatsapp-float" href="https://wa.me/34604287765" target="_blank" rel="noopener noreferrer" aria-label="Falar com a equipe da Thaíse pelo WhatsApp">
 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.1 11.8a8.1 8.1 0 0 1-12 7.1L4 20l1.1-4a8.1 8.1 0 1 1 15-4.2Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.8 8.1c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.5-1.2.7-1.9.6-1.1-.2-2.4-.8-3.7-2-1.1-1.1-1.8-2.4-2-3.4-.2-.8.1-1.5.8-2.4Z" fill="currentColor"/></svg><span>WhatsApp</span>
 </a>
-<style id="pas-credit-brand-style">.pas-credit{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;font:500 11px/1.3 Arial,sans-serif;letter-spacing:.01em;opacity:.82}.pas-credit a,.pas-credit-link{display:inline-flex;align-items:center;gap:7px;color:inherit!important;text-decoration:none!important}.pas-credit-mark{width:13px;height:14px;display:block;flex:0 0 13px}.pas-credit strong{font-weight:700}.pas-credit a:hover,.pas-credit-link:hover{opacity:.72}</style></body>
+</body>
 </html>
