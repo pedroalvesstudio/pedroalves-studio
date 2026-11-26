@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Belaneve — 3 propuestas de Header</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef2f7;color:#20345b;font-family:Arial,Helvetica,sans-serif}
+.top{padding:34px clamp(20px,5vw,64px) 22px;background:#fff;border-bottom:1px solid #e4e9f0}
+.kicker{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#35aeda;font-weight:700}
+h1{font-size:clamp(25px,4vw,40px);font-weight:500;letter-spacing:-.04em;margin:10px 0 8px}
+p{color:#65738a;font-size:13px;margin:0;line-height:1.6}
+.switcher{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+button{border:1px solid #d9e1eb;background:#fff;color:#20345b;padding:11px 16px;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;transition:.2s}
+button:hover{border-color:#35b7e7;color:#168bb9}button.active{background:#20345b;color:#fff;border-color:#20345b}
+main{padding:24px clamp(14px,3vw,40px) 45px}
+.frame{background:#fff;border:1px solid #dfe6ef;border-radius:8px;overflow:hidden;box-shadow:0 14px 36px rgba(32,52,91,.08)}
+.frame-head{display:flex;justify-content:space-between;align-items:center;padding:13px 17px;background:#fff;border-bottom:1px solid #e8edf3}
+.frame-head strong{font-size:12px}.frame-head span{font-size:10px;color:#8b98aa;letter-spacing:.1em;text-transform:uppercase}
+iframe{display:block;width:100%;height:270px;border:0;background:#fff}
+.note{padding:13px 17px;border-top:1px solid #e8edf3;color:#78869a;font-size:11px;line-height:1.5}
+@media(max-width:640px){.top{padding-top:25px}.switcher{display:grid;grid-template-columns:1fr}.switcher button{text-align:left}iframe{height:230px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="kicker">Belaneve Clinics · Redesign</div><h1>Três propostas para o novo header</h1><p>Compare as três estruturas. A marca, a paleta, os textos e os destinos de navegação permanecem os da Belaneve.</p>
+<div class="switcher" role="tablist" aria-label="Escolher proposta">
+<button class="active" data-src="opcion-01.html" role="tab" aria-selected="true">01 · Barra superior + navegação</button>
+<button data-src="opcion-02.html" role="tab" aria-selected="false">02 · Marca protagonista</button>
+<button data-src="opcion-03.html" role="tab" aria-selected="false">03 · Navegação flutuante</button>
+</div></header>
+<main><section class="frame"><div class="frame-head"><strong id="title">Opção 01 — Barra superior azul + navegação horizontal</strong><span>Prévia interativa</span></div><iframe id="preview" src="opcion-01.html" title="Prévia da opção 1"></iframe><div class="note">Teste o menu “Especialidades”, o seletor de idioma, os estados de hover e o comportamento do menu em largura mobile redimensionando a janela. Esta é uma prévia do cabeçalho, não uma página final.</div></section></main>
+<script>
+const labels={"opcion-01.html":"Opção 01 — Barra superior azul + navegação horizontal","opcion-02.html":"Opção 02 — Marca protagonista + menu em segunda linha","opcion-03.html":"Opção 03 — Navegação flutuante com cápsula"};
+document.querySelectorAll("[data-src]").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll("[data-src]").forEach(x=>{x.classList.remove("active");x.setAttribute("aria-selected","false")});btn.classList.add("active");btn.setAttribute("aria-selected","true");document.querySelector("#preview").src=btn.dataset.src;document.querySelector("#preview").title="Prévia "+btn.dataset.src;document.querySelector("#title").textContent=labels[btn.dataset.src]}));
+</script>
+</body></html>
