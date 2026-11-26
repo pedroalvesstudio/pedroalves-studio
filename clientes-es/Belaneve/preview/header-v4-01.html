@@ -1,0 +1,41 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Belaneve — Concepto 01</title><style>
+:root{--n:#0A3B63;--b:#2A9BD3;--c:#34D7DF;--ink:#234f70;--line:#dce8ef;--pale:#f2f8fb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--n);background:#f5f8fa}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+.brand img{display:block;width:190px;height:auto;max-width:100%}
+.book{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;background:var(--n);color:white;padding:17px 20px;min-width:150px;font-size:11px;font-weight:800;letter-spacing:.08em;transition:.25s}
+.book span{font-size:17px;color:var(--c);transition:transform .25s}.book:hover{background:var(--b);transform:translateY(-2px)}.book:hover span{transform:translate(3px,-3px)}
+.lang{position:relative}.lang>button{background:none;border:0;color:var(--n);font-size:11px;font-weight:700;padding:10px}.lang>div{display:none;position:absolute;right:0;top:100%;background:#fff;min-width:110px;box-shadow:0 12px 30px #0a3b6320;padding:6px;z-index:20}.lang.open>div{display:grid}.lang>div a{padding:9px;font-size:11px}.lang>div a:hover{background:var(--pale)}
+.has-menu{position:relative}.menu-btn{background:none;border:0;color:inherit;padding:0;font-weight:inherit;font-size:inherit}.menu-btn span{color:var(--b);margin-left:5px}.mega{display:none;position:absolute;top:calc(100% + 12px);left:0;width:320px;background:#fff;border-top:3px solid var(--c);padding:12px;box-shadow:0 18px 45px #0a3b6320;z-index:30}.has-menu.open .mega{display:grid;grid-template-columns:1fr 1fr}.mega a{padding:10px;font-size:12px;color:#365c78;border-bottom:1px solid #eaf0f4}.mega a:hover{background:var(--pale);color:var(--b)}
+.mobile-nav{display:none}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+header{background:white}
+.topline{height:38px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;background:var(--n);color:white;font-size:11px}
+.topline .online{font-weight:800;letter-spacing:.07em;color:white}.topline .contacts{display:flex;gap:25px;color:#e0edf5}
+.mast{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;padding:22px 5vw 20px}
+.mast-left{display:flex;align-items:center;gap:35px}.mast-left .brand img{width:210px}
+.mast-copy{max-width:300px;border-left:1px solid var(--line);padding-left:25px;color:#6b8395;font-size:12px;line-height:1.6}
+.mast-right{display:flex;align-items:center;gap:18px}.mast-right .book{min-width:185px;padding:21px 23px;font-size:12px}
+.navband{padding:0 5vw;background:#eef6fa;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;min-height:55px}
+.navband nav{display:flex;align-items:center;gap:clamp(13px,2vw,29px)}
+.navband nav>a,.navband .menu-btn{font-size:11px;font-weight:700;white-space:nowrap;padding:19px 0}
+.navband nav>a:hover,.navband .menu-btn:hover{color:var(--b)}
+.navband .mega{top:calc(100% + 1px)}
+.navband .lang{margin-left:25px}
+.mobile-trigger{display:none;border:1px solid var(--line);background:white;padding:12px;color:var(--n)}
+@media(max-width:1100px){.mast{grid-template-columns:1fr auto}.mast-copy{display:none}.navband nav{display:none}.mobile-trigger{display:block}.navband{justify-content:flex-end}.mast-right .book{min-width:145px}}
+@media(max-width:650px){.topline{padding:0 17px}.topline .contacts{gap:12px}.topline .contacts a:first-child{display:none}.mast{padding:15px 17px;gap:10px}.mast-left .brand img{width:150px}.mast-right .book{min-width:0;padding:14px 12px;gap:8px;font-size:9px}.mast-right .lang{display:none}.navband{padding:8px 17px}}
+</style></head><body>
+<header>
+<div class="topline"><a class="online" href="https://belaneve.es/solicitar-cita/">PIDA CITA ONLINE · y en breve nos pondremos en contacto</a><div class="contacts"><a href="mailto:info@belaneve.com">info@belaneve.com</a><a href="tel:+34965461169">965 46 11 69</a></div></div>
+<div class="mast"><div class="mast-left"><a class="brand" href="https://belaneve.es/" aria-label="Belaneve Clinics"><img src="https://belaneve.es/wp-content/uploads/2023/09/Belaneve-logotipo-1.png" alt="Belaneve Clinics"></a><div class="mast-copy">Clínica especializada en salud, medicina y cuidado personal</div></div><div class="mast-right"><div class="lang"><button aria-expanded="false">ES <span>⌄</span></button><div><a href="https://belaneve.es/">Español</a><a href="https://belaneve.es/en/">English</a></div></div><a class="book" href="https://belaneve.es/solicitar-cita/">PEDIR CITA <span>↗</span></a></div></div>
+<div class="navband"><nav><a href="https://belaneve.es/">Inicio</a><div class="has-menu"><button class="menu-btn" aria-expanded="false">Especialidades <span>＋</span></button><div class="mega"><a href="https://belaneve.es/cirujano-plastico-alicante/">Cirugía Plástica</a><a href="https://belaneve.es/medicina-estetica-alicante/">Medicina Estética</a><a href="https://belaneve.es/dermatologia-clinica-alicante/">Dermatología Clínica (adultos)</a><a href="https://belaneve.es/dermatologia-pediatrica-alicante/">Dermatología Pediátrica (niños)</a><a href="https://belaneve.es/dermatologia-estetica-alicante/">Dermatología Estética</a><a href="https://belaneve.es/tricologo-alicante/">Tricología (capilar)</a><a href="https://belaneve.es/cirujano-maxilofacial-alicante/">Cirugía Maxilofacial</a><a href="https://belaneve.es/medicina-familiar-alicante/">Medicina Familiar</a><a href="https://belaneve.es/nutricionista-alicante/">Nutrición</a></div></div><a href="https://belaneve.es/equipo-medico/">Doctores</a><a href="https://belaneve.es/aseguradoras/">Aseguradoras</a><a href="https://belaneve.es/facilidades-pago/">Facilidades de pago</a><a href="https://belaneve.es/tarifas/">Tarifas</a><a href="https://belaneve.es/parafarmacia-san-juan-alicante/">Parafarmacia</a><a href="https://belaneve.es/contacto/">Contacto</a></nav><button class="mobile-trigger" aria-expanded="false">☰ Menú</button></div>
+<div class="mobile-nav"></div>
+</header><main style="min-height:65vh;display:grid;place-items:center;color:#8ca1b0;font-size:11px;letter-spacing:.15em">CONCEPTO 01 · BOOKING FIRST</main>
+<script>
+const mobile=document.querySelector('.mobile-nav'),trigger=document.querySelector('.mobile-trigger');
+mobile.innerHTML=document.querySelector('.navband nav').innerHTML;
+trigger.addEventListener('click',()=>{mobile.classList.toggle('show');trigger.setAttribute('aria-expanded',String(mobile.classList.contains('show')))});
+document.querySelectorAll('.menu-btn').forEach(b=>b.addEventListener('click',()=>{const p=b.parentElement;p.classList.toggle('open');b.setAttribute('aria-expanded',String(p.classList.contains('open')))}));
+document.querySelectorAll('.lang>button').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));
+</script><style>.mobile-nav.show{display:grid;padding:15px 20px;background:#fff;gap:14px}.mobile-nav.show>a,.mobile-nav.show .menu-btn{font-size:13px;padding:8px 0}.mobile-nav.show .mega{position:static;box-shadow:none;width:100%}</style></body></html>
