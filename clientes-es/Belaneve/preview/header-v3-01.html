@@ -1,0 +1,68 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>01 — Split architecture | Belaneve</title><style>
+:root{--navy:#0A3B63;--blue:#2A9BD3;--cyan:#34D7DF;--ink:#16486D;--line:#dce8ef;--pale:#f3f9fc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--navy);background:#f5f8fb}a{color:inherit;text-decoration:none}button{font:inherit}
+header{position:sticky;top:0;z-index:99;background:#fff;transition:box-shadow .3s}header.scrolled{box-shadow:0 12px 32px #0a3b6318}
+.brand{display:flex;align-items:center;flex-shrink:0}.brand img{width:190px;max-width:100%;height:auto;display:block}
+.utility{display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:11px;color:var(--ink)}
+.bookline{font-weight:800;letter-spacing:.07em;white-space:nowrap}.bookline span{color:var(--blue);margin-left:7px}
+.contacts{display:flex;align-items:center;gap:24px}.contacts a{white-space:nowrap;color:#557187;transition:color .2s}.contacts a:hover{color:var(--blue)}
+.nav{display:flex;align-items:center;gap:clamp(11px,1.35vw,21px)}.navlink{position:relative;display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:12px 0;color:var(--navy);font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer}
+.navlink:after{content:"";position:absolute;left:0;right:100%;bottom:4px;height:2px;background:var(--cyan);transition:right .25s}.navlink:hover:after,.item.open>.navlink:after{right:0}
+.navlink:hover,.item.open>.navlink{color:var(--blue)}.navlink svg,.langbtn svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:1.5;transition:transform .2s}.item.open .navlink svg,.lang.open .langbtn svg{transform:rotate(180deg)}
+.item{position:relative}.drop{position:absolute;top:calc(100% + 6px);left:-16px;width:290px;padding:12px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--cyan);box-shadow:0 20px 44px #0a3b6320;display:grid;opacity:0;visibility:hidden;transform:translateY(9px);transition:.24s}
+.item.open .drop,.item:hover .drop,.item:focus-within .drop{opacity:1;visibility:visible;transform:translateY(0)}.drop>a,.sub a{padding:9px 10px;font-size:12px;color:#46657d;border-bottom:1px solid #edf2f5}.drop a:hover{background:var(--pale);color:var(--blue)}.sub{display:grid;padding:8px 0 4px;border-bottom:1px solid #edf2f5}.sub b{font-size:11px;padding:6px 10px;color:var(--navy)}.sub a{padding-left:18px;border:0}
+.lang{position:relative}.langbtn{display:flex;align-items:center;gap:5px;border:0;background:none;color:var(--navy);font-weight:700;font-size:11px;cursor:pointer;padding:9px 0}.langdrop{position:absolute;right:0;top:100%;width:110px;background:white;border:1px solid var(--line);box-shadow:0 12px 30px #0a3b6318;padding:5px;display:grid;opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}.lang.open .langdrop,.lang:hover .langdrop{opacity:1;visibility:visible;transform:none}.langdrop a{font-size:11px;padding:9px}.langdrop a:hover{background:var(--pale)}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:13px;min-height:44px;padding:0 18px;background:var(--navy);color:#fff;font-size:10px;font-weight:800;letter-spacing:.09em;white-space:nowrap;transition:.25s}.cta svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;transition:transform .2s}.cta:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 9px 20px #0a3b6325}.cta:hover svg{transform:translateX(3px)}
+.toggle{display:none;width:43px;height:43px;border:1px solid var(--line);background:#fff;color:var(--navy);align-items:center;justify-content:center}.toggle svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.mobile{display:none}.demo{min-height:60vh;display:grid;place-items:center;color:#8da1b0;font-size:11px;letter-spacing:.15em;text-transform:uppercase;background:linear-gradient(135deg,#f7fafc,#eaf4f9)}
+@media(max-width:1120px){.nav,.desktop-cta{display:none!important}.toggle{display:flex}.mobile{display:block;position:absolute;top:100%;left:0;right:0;background:#fff;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s,opacity .25s;box-shadow:0 20px 35px #0a3b6318}.open-mobile .mobile{max-height:calc(100dvh - 80px);overflow:auto;opacity:1}.mobile-nav{display:grid;padding:8px 22px}.mobile-nav>.navlink,.mobile-nav>.item>.navlink{width:100%;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px}.mobile .drop{position:static;display:none;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;border-left:2px solid var(--cyan);width:100%;padding:4px 0 8px 12px}.mobile .item.open .drop{display:grid}.mobile-bottom{display:flex;align-items:center;gap:15px;padding:14px 22px 22px}.mobile-bottom .cta{flex:1}}
+@media(max-width:650px){.brand img{width:148px}.contacts{gap:12px}.contacts a{font-size:0}.contacts a:before{font-size:15px;color:var(--blue)}.contacts a.email:before{content:"✉"}.contacts a.phone:before{content:"☎"}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* Option 1: split architecture — vertical brand column, utility and navigation in right pane */
+.frame{display:grid;grid-template-columns:235px 1fr;min-height:132px}
+.brand-panel{display:flex;align-items:center;justify-content:center;padding:20px 24px;border-right:1px solid var(--line);background:#fff}
+.brand-panel .brand img{width:185px}
+.right-panel{display:grid;grid-template-rows:48px 1fr}
+.utility{padding:0 30px;background:var(--navy);color:white}
+.utility .bookline{color:white;font-size:10px}.utility .bookline span{color:var(--cyan)}
+.utility .contacts a{color:#e1eff7}.utility .contacts a:hover{color:var(--cyan)}
+.navrow{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 30px;background:#fff}
+.navrow .nav{gap:clamp(9px,1.15vw,18px)}
+.navrow .navlink{font-size:10px}
+.actions{display:flex;align-items:center;gap:15px}
+@media(max-width:1320px){.frame{grid-template-columns:190px 1fr}.brand-panel .brand img{width:155px}.navrow{padding:0 18px}.navrow .nav{gap:9px}}
+@media(max-width:1120px){.frame{grid-template-columns:1fr;min-height:0}.brand-panel{display:none}.right-panel{display:flex;flex-direction:column}.utility{min-height:42px;padding:0 20px}.navrow{min-height:74px;padding:0 20px}.navrow .nav{display:none}.actions{margin-left:auto}}
+@media(max-width:650px){.utility{padding:0 16px}.utility .bookline{font-size:9px}.utility .contacts{gap:10px}.navrow{min-height:68px;padding:0 16px}}
+</style></head><body><header><div class="frame"><div class="brand-panel"><a class="brand" href="https://belaneve.es/" aria-label="Belaneve Clinics inicio"><img src="https://belaneve.es/wp-content/uploads/2023/09/Belaneve-logotipo-1.png" alt="Belaneve Clinics"></a></div><div class="right-panel"><div class="utility"><span class="bookline">PIDA CITA ONLINE <span>→</span></span><div class="contacts"><a class="email" href="mailto:info@belaneve.com">info@belaneve.com</a><a class="phone" href="tel:+34965461169">965 46 11 69</a></div></div><div class="navrow"><nav class="nav">
+<a href="https://belaneve.es/" class="navlink">Inicio</a>
+<div class="item"><button class="navlink trigger" aria-expanded="false">Especialidades <svg viewBox="0 0 12 12"><path d="m2 4 4 4 4-4"/></svg></button><div class="drop">
+<a href="https://belaneve.es/cirujano-plastico-alicante/">Cirugía Plástica</a>
+<a href="https://belaneve.es/medicina-estetica-alicante/">Medicina Estética</a>
+<div class="sub"><b>Dermatología</b><a href="https://belaneve.es/dermatologia-clinica-alicante/">Dermatología Clínica (adultos)</a><a href="https://belaneve.es/dermatologia-pediatrica-alicante/">Dermatología Pediátrica (niños)</a><a href="https://belaneve.es/dermatologia-estetica-alicante/">Dermatología Estética</a></div>
+<a href="https://belaneve.es/tricologo-alicante/">Tricología (capilar)</a><a href="https://belaneve.es/cirujano-maxilofacial-alicante/">Cirugía Maxilofacial</a><a href="https://belaneve.es/medicina-familiar-alicante/">Medicina Familiar</a><a href="https://belaneve.es/nutricionista-alicante/">Nutrición</a></div></div>
+<a href="https://belaneve.es/equipo-medico/" class="navlink">Doctores</a>
+<a href="https://belaneve.es/aseguradoras/" class="navlink">Aseguradoras</a>
+<a href="https://belaneve.es/facilidades-pago/" class="navlink">Facilidades de pago</a>
+<a href="https://belaneve.es/tarifas/" class="navlink">Tarifas</a>
+<a href="https://belaneve.es/parafarmacia-san-juan-alicante/" class="navlink">Parafarmacia</a>
+<a href="https://belaneve.es/contacto/" class="navlink">Contacto</a></nav><div class="actions"><div class="lang"><button class="langbtn" aria-expanded="false">ES <svg viewBox="0 0 12 12"><path d="m2 4 4 4 4-4"/></svg></button><div class="langdrop"><a href="https://belaneve.es/">Español</a><a href="https://belaneve.es/en/">English</a></div></div><a class="cta" href="https://belaneve.es/solicitar-cita/">PEDIR CITA <svg viewBox="0 0 18 18"><path d="M2 9h13M9 3l6 6-6 6"/></svg></a><button class="toggle" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button></div></div></div></div><div class="mobile"><nav class="mobile-nav">
+<a href="https://belaneve.es/" class="navlink">Inicio</a>
+<div class="item"><button class="navlink trigger" aria-expanded="false">Especialidades <svg viewBox="0 0 12 12"><path d="m2 4 4 4 4-4"/></svg></button><div class="drop">
+<a href="https://belaneve.es/cirujano-plastico-alicante/">Cirugía Plástica</a>
+<a href="https://belaneve.es/medicina-estetica-alicante/">Medicina Estética</a>
+<div class="sub"><b>Dermatología</b><a href="https://belaneve.es/dermatologia-clinica-alicante/">Dermatología Clínica (adultos)</a><a href="https://belaneve.es/dermatologia-pediatrica-alicante/">Dermatología Pediátrica (niños)</a><a href="https://belaneve.es/dermatologia-estetica-alicante/">Dermatología Estética</a></div>
+<a href="https://belaneve.es/tricologo-alicante/">Tricología (capilar)</a><a href="https://belaneve.es/cirujano-maxilofacial-alicante/">Cirugía Maxilofacial</a><a href="https://belaneve.es/medicina-familiar-alicante/">Medicina Familiar</a><a href="https://belaneve.es/nutricionista-alicante/">Nutrición</a></div></div>
+<a href="https://belaneve.es/equipo-medico/" class="navlink">Doctores</a>
+<a href="https://belaneve.es/aseguradoras/" class="navlink">Aseguradoras</a>
+<a href="https://belaneve.es/facilidades-pago/" class="navlink">Facilidades de pago</a>
+<a href="https://belaneve.es/tarifas/" class="navlink">Tarifas</a>
+<a href="https://belaneve.es/parafarmacia-san-juan-alicante/" class="navlink">Parafarmacia</a>
+<a href="https://belaneve.es/contacto/" class="navlink">Contacto</a></nav><div class="mobile-bottom"><a class="cta" href="https://belaneve.es/solicitar-cita/">PEDIR CITA <svg viewBox="0 0 18 18"><path d="M2 9h13M9 3l6 6-6 6"/></svg></a><div class="lang"><button class="langbtn" aria-expanded="false">ES <svg viewBox="0 0 12 12"><path d="m2 4 4 4 4-4"/></svg></button><div class="langdrop"><a href="https://belaneve.es/">Español</a><a href="https://belaneve.es/en/">English</a></div></div></div></div></header><main class="demo">Propuesta 01 — Split architecture</main><script>
+const h=document.querySelector('header'),t=document.querySelector('.toggle');
+t?.addEventListener('click',()=>{h.classList.toggle('open-mobile');t.setAttribute('aria-expanded',String(h.classList.contains('open-mobile')))});
+document.querySelectorAll('.trigger,.langbtn').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();const p=b.parentElement;p.classList.toggle('open');b.setAttribute('aria-expanded',String(p.classList.contains('open')))}));
+document.addEventListener('click',e=>{if(!e.target.closest('.item'))document.querySelectorAll('.item.open').forEach(x=>x.classList.remove('open'));if(!e.target.closest('.lang'))document.querySelectorAll('.lang.open').forEach(x=>x.classList.remove('open'))});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){h.classList.remove('open-mobile');document.querySelectorAll('.open').forEach(x=>x.classList.remove('open'));t?.setAttribute('aria-expanded','false')}});
+window.addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>20),{passive:true});
+</script></body></html>
